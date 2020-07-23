@@ -1,0 +1,670 @@
+{
+    "animation": {
+        "css3": true,
+        "description": "Specifies the keyframe-based animations."
+    },
+    "animation-delay": {
+        "css3": true,
+        "description": "Specifies when the animation will start."
+    },
+    "animation-direction": {
+        "css3": true,
+        "description": "Specifies whether the animation should play in reverse on alternate cycles or not."
+    },
+    "animation-duration": {
+        "css3": true,
+        "description": "Specifies the number of seconds or milliseconds an animation should take to complete one cycle."
+    },
+    "animation-fill-mode": {
+        "css3": true,
+        "description": "Specifies how a CSS animation should apply styles to its target before and after it is executing."
+    },
+    "animation-iteration-count": {
+        "css3": true,
+        "description": "Specifies the number of times an animation cycle should be played before stopping."
+    },
+    "animation-name": {
+        "css3": true,
+        "description": "Specifies the name of @keyframes defined animations that should be applied to the selected element."
+    },
+    "animation-play-state": {
+        "css3": true,
+        "description": "Specifies whether the animation is running or paused."
+    },
+    "animation-timing-function": {
+        "css3": true,
+        "description": "Specifies how a CSS animation should progress over the duration of each cycle."
+    },
+    "background": {
+        "css3": false,
+        "description": "Defines a variety of background properties within one declaration."
+    },
+    "background-attachment": {
+        "css3": false,
+        "description": "Specify whether the background image is fixed in the viewport or scrolls."
+    },
+    "background-clip": {
+        "css3": true,
+        "description": "Specifies the painting area of the background."
+    },
+    "background-color": {
+        "css3": false,
+        "description": "Defines an element's background color."
+    },
+    "background-image": {
+        "css3": false,
+        "description": "Defines an element's background image."
+    },
+    "background-origin": {
+        "css3": true,
+        "description": "Specifies the positioning area of the background images."
+    },
+    "background-position": {
+        "css3": false,
+        "description": "Defines the origin of a background image."
+    },
+    "background-repeat": {
+        "css3": false,
+        "description": "Specify whether/how the background image is tiled."
+    },
+    "background-size": {
+        "css3": true,
+        "description": "Specifies the size of the background images."
+    },
+    "border": {
+        "css3": false,
+        "description": "Sets the width, style, and color for all four sides of an element's border."
+    },
+    "border-bottom": {
+        "css3": false,
+        "description": "Sets the width, style, and color of the bottom border of an element."
+    },
+    "border-bottom-color": {
+        "css3": false,
+        "description": "Sets the color of the bottom border of an element."
+    },
+    "border-bottom-left-radius": {
+        "css3": true,
+        "description": "Defines the shape of the bottom-left border corner of an element."
+    },
+    "border-bottom-right-radius": {
+        "css3": true,
+        "description": "Defines the shape of the bottom-right border corner of an element."
+    },
+    "border-bottom-style": {
+        "css3": false,
+        "description": "Sets the style of the bottom border of an element."
+    },
+    "border-bottom-width": {
+        "css3": false,
+        "description": "Sets the width of the bottom border of an element."
+    },
+    "border-color": {
+        "css3": false,
+        "description": "Sets the color of the border on all the four sides of an element."
+    },
+    "border-image": {
+        "css3": true,
+        "description": "Specifies how an image is to be used in place of the border styles."
+    },
+    "border-image-outset": {
+        "css3": true,
+        "description": "Specifies the amount by which the border image area extends beyond the border box."
+    },
+    "border-image-repeat": {
+        "css3": true,
+        "description": "Specifies whether the image-border should be repeated, rounded or stretched."
+    },
+    "border-image-slice": {
+        "css3": true,
+        "description": "Specifies the inward offsets of the image-border."
+    },
+    "border-image-source": {
+        "css3": true,
+        "description": "Specifies the location of the image to be used as a border."
+    },
+    "border-image-width": {
+        "css3": true,
+        "description": "Specifies the width of the image-border."
+    },
+    "border-left": {
+        "css3": false,
+        "description": "Sets the width, style, and color of the left border of an element."
+    },
+    "border-left-color": {
+        "css3": false,
+        "description": "Sets the color of the left border of an element."
+    },
+    "border-left-style": {
+        "css3": false,
+        "description": "Sets the style of the left border of an element."
+    },
+    "border-left-width": {
+        "css3": false,
+        "description": "Sets the width of the left border of an element."
+    },
+    "border-radius": {
+        "css3": true,
+        "description": "Defines the shape of the border corners of an element."
+    },
+    "border-right": {
+        "css3": false,
+        "description": "Sets the width, style, and color of the right border of an element."
+    },
+    "border-right-color": {
+        "css3": false,
+        "description": "Sets the color of the right border of an element."
+    },
+    "border-right-style": {
+        "css3": false,
+        "description": "Sets the style of the right border of an element."
+    },
+    "border-right-width": {
+        "css3": false,
+        "description": "Sets the width of the right border of an element."
+    },
+    "border-style": {
+        "css3": false,
+        "description": "Sets the style of the border on all the four sides of an element."
+    },
+    "border-top": {
+        "css3": false,
+        "description": "Sets the width, style, and color of the top border of an element."
+    },
+    "border-top-color": {
+        "css3": false,
+        "description": "Sets the color of the top border of an element."
+    },
+    "border-top-left-radius": {
+        "css3": true,
+        "description": "Defines the shape of the top-left border corner of an element."
+    },
+    "border-top-right-radius": {
+        "css3": true,
+        "description": "Defines the shape of the top-right border corner of an element."
+    },
+    "border-top-style": {
+        "css3": false,
+        "description": "Sets the style of the top border of an element."
+    },
+    "border-top-width": {
+        "css3": false,
+        "description": "Sets the width of the top border of an element."
+    },
+    "border-width": {
+        "css3": false,
+        "description": "Sets the width of the border on all the four sides of an element."
+    },
+    "color": {
+        "css3": false,
+        "description": "Specify the color of the text of an element."
+    },
+    "opacity": {
+        "css3": true,
+        "description": "Specifies the transparency of an element."
+    },
+    "height": {
+        "css3": false,
+        "description": "Specify the height of an element."
+    },
+    "max-height": {
+        "css3": false,
+        "description": "Specify the maximum height of an element."
+    },
+    "max-width": {
+        "css3": false,
+        "description": "Specify the maximum width of an element."
+    },
+    "min-height": {
+        "css3": false,
+        "description": "Specify the minimum height of an element."
+    },
+    "min-width": {
+        "css3": false,
+        "description": "Specify the minimum width of an element."
+    },
+    "width": {
+        "css3": false,
+        "description": "Specify the width of an element."
+    },
+    "content": {
+        "css3": false,
+        "description": "Inserts generated content."
+    },
+    "quotes": {
+        "css3": false,
+        "description": "Specifies quotation marks for embedded quotations."
+    },
+    "counter-reset": {
+        "css3": false,
+        "description": "Creates or resets one or more counters."
+    },
+    "counter-increment": {
+        "css3": false,
+        "description": "Increments one or more counter values."
+    },
+    "align-content": {
+        "css3": true,
+        "description": "Specifies the alignment of flexible container's items within the flex container."
+    },
+    "align-items": {
+        "css3": true,
+        "description": "Specifies the default alignment for items within the flex container."
+    },
+    "align-self": {
+        "css3": true,
+        "description": "Specifies the alignment for selected items within the flex container."
+    },
+    "flex": {
+        "css3": true,
+        "description": "Specifies the components of a flexible length."
+    },
+    "flex-basis": {
+        "css3": true,
+        "description": "Specifies the initial main size of the flex item."
+    },
+    "flex-direction": {
+        "css3": true,
+        "description": "Specifies the direction of the flexible items."
+    },
+    "flex-flow": {
+        "css3": true,
+        "description": "A shorthand property for the flex-direction and the flex-wrap properties."
+    },
+    "flex-grow": {
+        "css3": true,
+        "description": "Specifies how the flex item will grow relative to the other items inside the flex container."
+    },
+    "flex-shrink": {
+        "css3": true,
+        "description": "Specifies how the flex item will shrink relative to the other items inside the flex container."
+    },
+    "flex-wrap": {
+        "css3": true,
+        "description": "Specifies whether the flexible items should wrap or not."
+    },
+    "justify-content": {
+        "css3": true,
+        "description": "Specifies how flex items are aligned along the main axis of the flex container after any flexible lengths and auto margins have been resolved."
+    },
+    "order": {
+        "css3": true,
+        "description": "Specifies the order in which a flex items are displayed and laid out within a flex container."
+    },
+    "font": {
+        "css3": false,
+        "description": "Defines a variety of font properties within one declaration."
+    },
+    "font-family": {
+        "css3": false,
+        "description": "Defines a list of fonts for element."
+    },
+    "font-size": {
+        "css3": false,
+        "description": "Defines the font size for the text."
+    },
+    "font-size-adjust": {
+        "css3": true,
+        "description": "Preserves the readability of text when font fallback occurs."
+    },
+    "font-stretch": {
+        "css3": true,
+        "description": "Selects a normal, condensed, or expanded face from a font."
+    },
+    "font-style": {
+        "css3": false,
+        "description": "Defines the font style for the text."
+    },
+    "font-variant": {
+        "css3": false,
+        "description": "Specify the font variant."
+    },
+    "font-weight": {
+        "css3": false,
+        "description": "Specify the font weight of the text."
+    },
+    "list-style": {
+        "css3": false,
+        "description": "Defines the display style for a list and list elements."
+    },
+    "list-style-image": {
+        "css3": false,
+        "description": "Specifies the image to be used as a list-item marker."
+    },
+    "list-style-position": {
+        "css3": false,
+        "description": "Specifies the position of the list-item marker."
+    },
+    "list-style-type": {
+        "css3": false,
+        "description": "Specifies the marker style for a list-item."
+    },
+    "margin": {
+        "css3": false,
+        "description": "Sets the margin on all four sides of the element."
+    },
+    "margin-bottom": {
+        "css3": false,
+        "description": "Sets the bottom margin of the element."
+    },
+    "margin-left": {
+        "css3": false,
+        "description": "Sets the left margin of the element."
+    },
+    "margin-right": {
+        "css3": false,
+        "description": "Sets the right margin of the element."
+    },
+    "margin-top": {
+        "css3": false,
+        "description": "Sets the top margin of the element."
+    },
+    "column-count": {
+        "css3": true,
+        "description": "Specifies the number of columns in a multi-column element."
+    },
+    "column-fill": {
+        "css3": true,
+        "description": "Specifies how columns will be filled."
+    },
+    "column-gap": {
+        "css3": true,
+        "description": "Specifies the gap between the columns in a multi-column element."
+    },
+    "column-rule": {
+        "css3": true,
+        "description": "Specifies a straight line, or \"rule\", to be drawn between each column in a multi-column element."
+    },
+    "column-rule-color": {
+        "css3": true,
+        "description": "Specifies the color of the rules drawn between columns in a multi-column layout."
+    },
+    "column-rule-style": {
+        "css3": true,
+        "description": "Specifies the style of the rule drawn between the columns in a multi-column layout."
+    },
+    "column-rule-width": {
+        "css3": true,
+        "description": "Specifies the width of the rule drawn between the columns in a multi-column layout."
+    },
+    "column-span": {
+        "css3": true,
+        "description": "Specifies how many columns an element spans across in a multi-column layout."
+    },
+    "column-width": {
+        "css3": true,
+        "description": "Specifies the optimal width of the columns in a multi-column element."
+    },
+    "columns": {
+        "css3": true,
+        "description": "A shorthand property for setting column-width and column-count properties."
+    },
+    "outline": {
+        "css3": false,
+        "description": "Sets the width, style, and color for all four sides of an element's outline."
+    },
+    "outline-color": {
+        "css3": false,
+        "description": "Sets the color of the outline."
+    },
+    "outline-offset": {
+        "css3": true,
+        "description": "Set the space between an outline and the border edge of an element."
+    },
+    "outline-style": {
+        "css3": false,
+        "description": "Sets a style for an outline."
+    },
+    "outline-width": {
+        "css3": false,
+        "description": "Sets the width of the outline."
+    },
+    "padding": {
+        "css3": false,
+        "description": "Sets the padding on all four sides of the element."
+    },
+    "padding-bottom": {
+        "css3": false,
+        "description": "Sets the padding to the bottom side of an element."
+    },
+    "padding-left": {
+        "css3": false,
+        "description": "Sets the padding to the left side of an element."
+    },
+    "padding-right": {
+        "css3": false,
+        "description": "Sets the padding to the right side of an element."
+    },
+    "padding-top": {
+        "css3": false,
+        "description": "Sets the padding to the top side of an element."
+    },
+    "page-break-after": {
+        "css3": false,
+        "description": "Insert a page breaks after an element."
+    },
+    "page-break-before": {
+        "css3": false,
+        "description": "Insert a page breaks before an element."
+    },
+    "page-break-inside": {
+        "css3": false,
+        "description": "Insert a page breaks inside an element."
+    },
+    "border-collapse": {
+        "css3": false,
+        "description": "Specifies whether table cell borders are connected or separated."
+    },
+    "border-spacing": {
+        "css3": false,
+        "description": "Sets the spacing between the borders of adjacent table cells."
+    },
+    "caption-side": {
+        "css3": false,
+        "description": "Specify the position of table's caption."
+    },
+    "empty-cells": {
+        "css3": false,
+        "description": "Show or hide borders and backgrounds of empty table cells."
+    },
+    "table-layout": {
+        "css3": false,
+        "description": "Specifies a table layout algorithm."
+    },
+    "direction": {
+        "css3": false,
+        "description": "Define the text direction/writing direction."
+    },
+    "tab-size": {
+        "css3": true,
+        "description": "Specifies the length of the tab character."
+    },
+    "text-align": {
+        "css3": false,
+        "description": "Sets the horizontal alignment of inline content."
+    },
+    "text-align-last": {
+        "css3": true,
+        "description": "Specifies how the last line of a block or a line right before a forced line break is aligned when text-align is justify."
+    },
+    "text-decoration": {
+        "css3": false,
+        "description": "Specifies the decoration added to text."
+    },
+    "text-decoration-color": {
+        "css3": true,
+        "description": "Specifies the color of the text-decoration-line."
+    },
+    "text-decoration-line": {
+        "css3": true,
+        "description": "Specifies what kind of line decorations are added to the element."
+    },
+    "text-decoration-style": {
+        "css3": true,
+        "description": "Specifies the style of the lines specified by the text-decoration-line property"
+    },
+    "text-indent": {
+        "css3": false,
+        "description": "Indent the first line of text."
+    },
+    "text-justify": {
+        "css3": true,
+        "description": "Specifies the justification method to use when the text-align property is set to justify."
+    },
+    "text-overflow": {
+        "css3": true,
+        "description": "Specifies how the text content will be displayed, when it overflows the block containers."
+    },
+    "text-shadow": {
+        "css3": true,
+        "description": "Applies one or more shadows to the text content of an element."
+    },
+    "text-transform": {
+        "css3": false,
+        "description": "Transforms the case of the text."
+    },
+    "line-height": {
+        "css3": false,
+        "description": "Sets the height between lines of text."
+    },
+    "vertical-align": {
+        "css3": false,
+        "description": "Sets the vertical positioning of an element relative to the current text baseline."
+    },
+    "letter-spacing": {
+        "css3": false,
+        "description": "Sets the extra spacing between letters."
+    },
+    "word-spacing": {
+        "css3": false,
+        "description": "Sets the spacing between words."
+    },
+    "white-space": {
+        "css3": false,
+        "description": "Specifies how white space inside the element is handled."
+    },
+    "word-break": {
+        "css3": true,
+        "description": "Specifies how to break lines within words."
+    },
+    "word-wrap": {
+        "css3": true,
+        "description": "Specifies whether to break words when the content overflows the boundaries of its container."
+    },
+    "backface-visibility": {
+        "css3": true,
+        "description": "Specifies whether or not the \"back\" side of a transformed element is visible when facing the user."
+    },
+    "perspective": {
+        "css3": true,
+        "description": "Defines the perspective from which all child elements of the object are viewed."
+    },
+    "perspective-origin": {
+        "css3": true,
+        "description": "Defines the origin (the vanishing point for the 3D space) for the perspective property."
+    },
+    "transform": {
+        "css3": true,
+        "description": "Applies a 2D or 3D transformation to an element."
+    },
+    "transform-origin": {
+        "css3": true,
+        "description": "Defines the origin of transformation for an element."
+    },
+    "transform-style": {
+        "css3": true,
+        "description": "Specifies how nested elements are rendered in 3D space."
+    },
+    "transition": {
+        "css3": true,
+        "description": "Defines the transition between two states of an element."
+    },
+    "transition-delay": {
+        "css3": true,
+        "description": "Specifies when the transition effect will start."
+    },
+    "transition-duration": {
+        "css3": true,
+        "description": "Specifies the number of seconds or milliseconds a transition effect should take to complete."
+    },
+    "transition-property": {
+        "css3": true,
+        "description": "Specifies the names of the CSS properties to which a transition effect should be applied."
+    },
+    "transition-timing-function": {
+        "css3": true,
+        "description": "Specifies the speed curve of the transition effect."
+    },
+    "display": {
+        "css3": false,
+        "description": "Specifies how an element is displayed onscreen."
+    },
+    "position": {
+        "css3": false,
+        "description": "Specifies how an element is positioned."
+    },
+    "top": {
+        "css3": false,
+        "description": "Specify the location of the top edge of the positioned element."
+    },
+    "right": {
+        "css3": false,
+        "description": "Specify the location of the right edge of the positioned element."
+    },
+    "bottom": {
+        "css3": false,
+        "description": "Specify the location of the bottom edge of the positioned element."
+    },
+    "left": {
+        "css3": false,
+        "description": "Specify the location of the left edge of the positioned element."
+    },
+    "float": {
+        "css3": false,
+        "description": "Specifies whether or not a box should float."
+    },
+    "clear": {
+        "css3": false,
+        "description": "Specifies the placement of an element in relation to floating elements."
+    },
+    "z-index": {
+        "css3": false,
+        "description": "Specifies a layering or stacking order for positioned elements."
+    },
+    "overflow": {
+        "css3": false,
+        "description": "Specifies the treatment of content that overflows the element's box."
+    },
+    "overflow-x": {
+        "css3": true,
+        "description": "Specifies how to manage the content when it overflows the width of the element's content area."
+    },
+    "overflow-y": {
+        "css3": true,
+        "description": "Specifies how to manage the content when it overflows the height of the element's content area."
+    },
+    "resize": {
+        "css3": true,
+        "description": "Specifies whether or not an element is resizable by the user."
+    },
+    "clip": {
+        "css3": false,
+        "description": "Defines the clipping region."
+    },
+    "visibility": {
+        "css3": false,
+        "description": "Specifies whether or not an element is visible."
+    },
+    "cursor": {
+        "css3": false,
+        "description": "Specify the type of cursor."
+    },
+    "box-shadow": {
+        "css3": true,
+        "description": "Applies one or more drop-shadows to the element's box."
+    },
+    "box-sizing": {
+        "css3": true,
+        "description": "Alter the default CSS box model."
+    }
+}
