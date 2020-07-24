@@ -11,6 +11,15 @@ function getArrayIndexByValue (array ,value, property) {
     }
     return index;
 }
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
 const DefaultOptions = ['initial', 'inherit'];
 const PositionOptions = ['static', 'relative', 'absolute', 'fixed', 'sticky'];
 const DisplayOptions = ['inline', 'block', 'contents', 'flex', 'flow', 'flow-root', 'grid', 'inline-block', 'inline-flex', 'inline-grid', 'inline-table', 'list-item', 'run-in', 'table', 'table-caption', 'table-column-group', 'table-header-group', 'table-footer-group', 'table-row-group', 'table-cell', 'table-column', 'table-row', 'none'];
@@ -70,8 +79,8 @@ const BoxSizingOptions = ['content-box', 'padding-box', 'border-box'];
 
 const PropertyValueTypes = {
     DEFAULTS: {id: 0, options: DefaultOptions, label: 'Default Options'},
-    STRING: {id: 1},
-    CSS_CLASS_UI: {id: 2, label: 'String'},
+    STRING: {id: 1, label: 'String'},
+    CSS_CLASS_UI: {id: 2, label: 'Composite'},
     PX: {id: 3, suffix: 'px', label: 'Pixels'},
     S: {id: 4, suffix: 's', label: 'Seconds'},
     PT: {id: 5, suffix: 'pt', label: 'Points'},
@@ -152,9 +161,21 @@ const PropertyValueTypes = {
     BOX_SIZING_OPTIONS: {id: 80, options: BoxSizingOptions, label: 'Box Sizing Options'}
 };
 
+function getValueTypeByID(id){
+    let propertyValueType = null;
+    for(let p in PropertyValueTypes){
+        if (PropertyValueTypes[p].id == id){
+            propertyValueType = PropertyValueTypes[p];
+        }
+    }
+    return propertyValueType;
+}
+
 const Utilities = {
     createUniqueID: createUniqueID,
     getArrayIndexByValue: getArrayIndexByValue,
-    PropertyValueTypes: PropertyValueTypes
+    PropertyValueTypes: PropertyValueTypes,
+    getParameterByName: getParameterByName,
+    getValueTypeByID: getValueTypeByID
 }
 export default Utilities;
