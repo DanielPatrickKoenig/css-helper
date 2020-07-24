@@ -22,9 +22,9 @@ export default {
   mounted: function () {
       let self = this;
       axios.get('property-manifest.json').then((response) => {
-          self.$root.propertyManifest = response.data;
-          self.$data.searchItems = self.$root.propertyManifest;
-          self.$data.ready = true;
+        self.$root.propertyManifest = response.data;
+        self.$data.searchItems = self.$root.propertyManifest;
+        self.$data.ready = true;
       });
   }
 }
