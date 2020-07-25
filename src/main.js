@@ -6,12 +6,13 @@ import PropertyPage from './pages/PropertyPage.vue';
 import VueRouter from 'vue-router';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPlus, faCog, faInfo, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faCog, faInfo, faTimes, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 Vue.use(VueRouter);
 
 const router = new VueRouter({
+  mode: 'history',
   routes: [
     { path: '/', component: HomePage },
     { path: '/search', component: SearchPage },
@@ -23,6 +24,8 @@ library.add(faPlus);
 library.add(faCog);
 library.add(faInfo);
 library.add(faTimes);
+library.add(faCaretDown);
+library.add(faCaretUp);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
