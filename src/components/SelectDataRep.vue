@@ -1,6 +1,6 @@
 <template>
     <div>
-        <select v-on:change="onValueChange">
+        <select v-model="value" v-on:change="onValueChange">
             <option v-for="(v, i) in data.options" :key="'option-' + i.toString()">
                 {{v}}
             </option>
@@ -10,6 +10,11 @@
 <script>
 import BaseDataRep from './base/BaseDataRep.js';
 export default {
-    extends: BaseDataRep
+    extends: BaseDataRep,
+    methods: {
+        getDefaultValue: function () {
+            return this.data.options[0];
+        }
+    }
 }
 </script>
