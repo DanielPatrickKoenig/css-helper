@@ -1,7 +1,11 @@
 <template>
     <div class="property-table-component">
         <div class="header-container full-width-content">
-            <input class="search-box" type="text" v-model="searchTerm" /> <router-link v-if="selections.length > 0" :to="'/property?names='+selections.join(',')">GO</router-link>
+            <input class="search-box" type="text" v-model="searchTerm" /> 
+            <router-link v-if="selections.length > 0" :to="'/property?names='+selections.join(',')" class="selection-link">
+                <label>Selections {{selections.length}} </label>
+                <font-awesome-icon icon="code"/>
+            </router-link>
             <div class="content-row header-row">
                 <ul>
                     <li>Name</li>
@@ -43,7 +47,8 @@ export default {
             searchTerm: '',
             valueTypes: Utilities.PropertyValueTypes,
             selectionMatrix: {},
-            selections: []
+            selections: [],
+            ready: this.$root.ready
         }
     },
     methods: {
@@ -85,6 +90,9 @@ div.property-table-component{
         background-color: $sub-menu-bg;
         top:2em;
         z-index: 9;
+        > .selection-link{
+            float:right;
+        }
     }
     
 }
