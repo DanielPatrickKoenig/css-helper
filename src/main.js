@@ -6,7 +6,7 @@ import PropertyPage from './pages/PropertyPage.vue';
 import VueRouter from 'vue-router';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPlus, faCog, faInfo, faTimes, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faCog, faInfo, faTimes, faCaretDown, faCaretUp, faBars, faCode } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 Vue.use(VueRouter);
@@ -26,6 +26,8 @@ library.add(faInfo);
 library.add(faTimes);
 library.add(faCaretDown);
 library.add(faCaretUp);
+library.add(faBars);
+library.add(faCode);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
