@@ -27,8 +27,12 @@ const DataReps = {
     INTEGER: 2,
     COMPOSITE: 3,
     TOOL: 4,
-    TEXT_FEILD: 6
+    TEXT_FEILD: 5
 }
+
+const ValueSeparatorMatrix = {
+    'background-size': '/'
+};
 
 const DefaultOptions = ['initial', 'inherit'];
 const PositionOptions = ['static', 'relative', 'absolute', 'fixed', 'sticky'];
@@ -181,12 +185,26 @@ function getValueTypeByID(id){
     return propertyValueType;
 }
 
+function getPropertyDataByIndex(data, index){
+    let propertyData = {};
+    let propertyName = '';
+    for(let d in data){
+        if(data[d].index == index){
+            propertyData = data[d];
+            propertyName = d;
+        }
+    }
+    return  {name: propertyName, data: propertyData};
+}
+
 const Utilities = {
     createUniqueID: createUniqueID,
     getArrayIndexByValue: getArrayIndexByValue,
     PropertyValueTypes: PropertyValueTypes,
     getParameterByName: getParameterByName,
     getValueTypeByID: getValueTypeByID,
-    DataReps: DataReps
+    DataReps: DataReps,
+    getPropertyDataByIndex: getPropertyDataByIndex,
+    ValueSeparatorMatrix: ValueSeparatorMatrix
 }
 export default Utilities;

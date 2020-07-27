@@ -2,7 +2,10 @@
     <div>
         <div>
             <div v-for="(n, i) in propertyNames" :key="'property-'+i.toString()">
-                <PropertyEditor v-if="propertyManifest[n].value_max == undefined" :name="n" :index="i" v-on:data-type-selected="onDataTypeSelected">
+                <div v-if="propertyManifest[n].property_types[0] == PropertyValueTypes.CSS_CLASS_UI.id">
+                    <CompositeValueEditor :names="getSubProperties(n)" :name="n" v-on:value-change="onValueChange" />
+                </div>
+                <PropertyEditor v-else-if="propertyManifest[n].value_max == undefined" :name="n" :index="i" v-on:data-type-selected="onDataTypeSelected">
                     <DataRepGroup :type="selectePropertyTypes['type'+i]" :name="n" :index="i" v-on:value-change="onValueChange" />
                 </PropertyEditor>
                 <div v-else>
@@ -21,12 +24,14 @@ import Utilities from '../utils/Utilities';
 import PropertyEditor from '../components/PropertyEditor.vue';
 import MultiValueEditor from './MultiValueEditor.vue';
 import DataRepGroup from './DataRepGroup.vue';
+import CompositeValueEditor from './CompositeValueEditor.vue';
 
 export default {
     components: {
         PropertyEditor,
         MultiValueEditor,
-        DataRepGroup
+        DataRepGroup,
+        CompositeValueEditor
     },
     props: ['names', 'types', 'sig', 'multiples'],
     data () {
@@ -34,7 +39,8 @@ export default {
             propertyNames: this.names,
             selectePropertyTypes: this.types,
             DataReps: Utilities.DataReps,
-            propertyManifest: this.$root.propertyManifest
+            propertyManifest: this.$root.propertyManifest,
+            PropertyValueTypes: Utilities.PropertyValueTypes
         }
     },
     watch: {
@@ -54,6 +60,14 @@ export default {
             // this.$data.classStructure[e.name] = e.value;
             // this.$data.previewSig = Utilities.createUniqueID();
             // console.log(this.$data.classStructure);
+        },
+        getSubProperties: function (name) {
+            let subProperties = this.$data.propertyManifest[name].sub_properties;
+            let pNames = [];
+            for(let i = 0; i < subProperties.length; i++){
+                pNames.push(Utilities.getPropertyDataByIndex(this.$data.propertyManifest, subProperties[i]).name);
+            }
+            return pNames;
         }
     }
 }
