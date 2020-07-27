@@ -3,11 +3,7 @@
         <div>
             <div v-for="(n, i) in propertyNames" :key="'property-'+i.toString()">
                 <PropertyEditor v-if="propertyManifest[n].value_max == undefined" :name="n" :index="i" v-on:data-type-selected="onDataTypeSelected">
-                    <div v-if="selectePropertyTypes['type'+i.toString()]">
-                        <SelectDataRep v-if="selectePropertyTypes['type'+i.toString()].rep == DataReps.SELECT" :data="selectePropertyTypes['type'+i.toString()]" :name="n" v-on:value-change="onValueChange" />
-                        <NumberDataRep v-else-if="selectePropertyTypes['type'+i.toString()].rep == DataReps.NUMBER" :data="selectePropertyTypes['type'+i.toString()]" :name="n" v-on:value-change="onValueChange"  />
-                        <StringDataRep v-else :data="selectePropertyTypes['type'+i.toString()]" :name="n" v-on:value-change="onValueChange"  />
-                    </div>
+                    <DataRepGroup :type="selectePropertyTypes['type'+i]" :name="n" :index="i" v-on:value-change="onValueChange" />
                 </PropertyEditor>
                 <div v-else>
                     <MultiValueEditor :name="n" v-on:value-change="onValueChange" />
@@ -23,19 +19,14 @@
 <script>
 import Utilities from '../utils/Utilities';
 import PropertyEditor from '../components/PropertyEditor.vue';
-import SelectDataRep from '../components/SelectDataRep.vue';
-import NumberDataRep from '../components/NumberDataRep.vue';
-import StringDataRep from '../components/StringDataRep.vue';
-// import MultiValueDataRep from '../components/MultiValueDataRep.vue';
 import MultiValueEditor from './MultiValueEditor.vue';
+import DataRepGroup from './DataRepGroup.vue';
 
 export default {
     components: {
         PropertyEditor,
-        SelectDataRep,
-        NumberDataRep,
-        StringDataRep,
-        MultiValueEditor
+        MultiValueEditor,
+        DataRepGroup
     },
     props: ['names', 'types', 'sig', 'multiples'],
     data () {
