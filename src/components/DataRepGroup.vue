@@ -2,7 +2,7 @@
     <div v-if="type">
         <SelectDataRep v-if="type.rep == DataReps.SELECT" :data="type" :name="name" v-on:value-change="onValueChange" :index="index" />
         <NumberDataRep v-else-if="type.rep == DataReps.NUMBER" :data="type" :name="name" v-on:value-change="onValueChange" :index="index" />
-        <StringDataRep v-else :data="type.rep" :name="name" v-on:value-change="onValueChange" :index="index" />
+        <StringDataRep v-else :data="type" :name="name" v-on:value-change="onValueChange" :index="index" />
     </div>
 </template>
 <script>

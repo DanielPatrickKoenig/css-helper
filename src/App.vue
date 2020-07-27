@@ -25,6 +25,9 @@ export default {
       let self = this;
       axios.get('property-manifest.json').then((response) => {
         self.$root.propertyManifest = response.data;
+        for(let p in self.$root.propertyManifest){
+          self.$root.propertyManifest[p].property_types.push(0);
+        }
         self.$root.ready = true;
         self.$data.ready = self.$root.ready;
       });

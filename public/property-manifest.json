@@ -135,6 +135,7 @@
             26,
             23
         ],
+        "value_separator": " ",
         "value_max": 2,
         "index": 15
     },
@@ -272,6 +273,7 @@
         "property_types": [
             28
         ],
+        "value_separator": " ",
         "value_max": 2,
         "index": 28
     },
@@ -367,6 +369,7 @@
             8,
             26
         ],
+        "value_separator": " ",
         "value_max": 4,
         "index": 36
     },
@@ -415,6 +418,7 @@
         "property_types": [
             27
         ],
+        "value_separator": " ",
         "value_max": 4,
         "index": 41
     },
@@ -497,6 +501,7 @@
             8,
             26
         ],
+        "value_separator": " ",
         "value_max": 4,
         "index": 48
     },
@@ -649,6 +654,7 @@
         "booleans": [
             "none"
         ],
+        "value_separator": " ",
         "value_max": 2,
         "index": 58
     },
@@ -661,6 +667,7 @@
         "booleans": [
             "none"
         ],
+        "value_separator": " ",
         "value_max": -1,
         "index": 59
     },
@@ -673,6 +680,7 @@
         "booleans": [
             "none"
         ],
+        "value_separator": " ",
         "value_max": -1,
         "index": 60
     },
@@ -806,6 +814,7 @@
             1,
             41
         ],
+        "value_separator": " ",
         "value_max": -1,
         "index": 74
     },
@@ -916,6 +925,7 @@
             8,
             26
         ],
+        "value_separator": " ",
         "value_max": 4,
         "booleans": [
             "auto"
@@ -1168,6 +1178,7 @@
             8,
             26
         ],
+        "value_separator": " ",
         "value_max": 4,
         "index": 105
     },
@@ -1271,6 +1282,7 @@
             8,
             26
         ],
+        "value_separator": " ",
         "value_max": 2,
         "index": 114
     },
@@ -1343,6 +1355,7 @@
         "property_types": [
             60
         ],
+        "value_separator": " ",
         "value_max": -1,
         "index": 122
     },
@@ -1360,6 +1373,7 @@
         "property_types": [
             60
         ],
+        "value_separator": " ",
         "value_max": -1,
         "index": 124
     },
@@ -1369,6 +1383,7 @@
         "property_types": [
             61
         ],
+        "value_separator": " ",
         "value_max": -1,
         "index": 125
     },
@@ -1538,6 +1553,7 @@
             8,
             26
         ],
+        "value_separator": " ",
         "value_max": 2,
         "index": 140
     },
@@ -1571,6 +1587,7 @@
         "property_types": [
             2
         ],
+        "value_separator": " ",
         "value_max": -1,
         "index": 144,
         "sub_properties": [147, 146, 148, 145]
@@ -1601,6 +1618,7 @@
             "all",
             "none"
         ],
+        "value_separator": " ",
         "value_max": -1,
         "index": 147
     },
@@ -1729,6 +1747,7 @@
         "property_types": [
             76
         ],
+        "value_separator": " ",
         "value_max": 2,
         "index": 158
     },
@@ -1793,6 +1812,8 @@
         "property_types": [
             64
         ],
+        "value_separator": ",",
+        "value_max": -1,
         "index": 165
     },
     "box-sizing": {
