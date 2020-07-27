@@ -1,7 +1,8 @@
 <template>
     <div v-if="propertyDetails">
-        <h3>{{name}}</h3>
-        <p>{{propertyDetails.description}}</p>
+        <h3 v-if="!listed || index == 0">{{name}}</h3>
+        <p v-if="!listed || index == 0">{{propertyDetails.description}}</p>
+        <p v-if="listed">Value {{(index + 1).toString()}}</p>
         <ul>
             <li v-for="(v, i) in propertyDetails.property_types" :key="'type-'+i.toString()">
                 <a v-on:click="onPropertyTypeSelected(v)">{{getValueTypeByID(v).label}}</a>
@@ -16,7 +17,7 @@
 <script>
 import Utilities from '../utils/Utilities';
 export default {
-    props: ['name', 'index'],
+    props: ['name', 'index', 'listed'],
     computed: {
         propertyDetails: function () {
             return this.$root.propertyManifest[this.name];
