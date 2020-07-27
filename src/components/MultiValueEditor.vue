@@ -1,35 +1,31 @@
 <template>
     <div>
         <div v-for="(v, i) in values" :key="'property-value-'+i.toString()">
+            <button v-if="values.length > 1" v-on:click="removeValue(i)">
+                <font-awesome-icon icon="times" />
+            </button>
             <PropertyEditor :name="name" :index="i" v-on:data-type-selected="onDataTypeSelected" listed="true">
-                <div v-if="propertyTypes[i]">
-                    <SelectDataRep v-if="propertyTypes[i].rep == DataReps.SELECT" :data="propertyTypes[i]" :name="name" v-on:value-change="onValueChange" :index="i" />
-                    <NumberDataRep v-else-if="propertyTypes[i].rep == DataReps.NUMBER" :data="propertyTypes[i]" :name="name" v-on:value-change="onValueChange" :index="i" />
-                    <StringDataRep v-else :data="propertyTypes[i]" :name="name" v-on:value-change="onValueChange" :index="i" />
-                </div>
+                <DataRepGroup :type="propertyTypes[i]" :name="name" :index="i" v-on:value-change="onValueChange" />
             </PropertyEditor>
         </div>
-        <button v-on:click="addValue">Add</button>
+        <button v-if="values.length < propertyManifest[name].value_max || propertyManifest[name].value_max < 0" v-on:click="addValue">
+            <font-awesome-icon icon="plus" /> Add Entry
+        </button>
     </div>
 </template>
 <script>
 import Utilities from '../utils/Utilities';
 import PropertyEditor from '../components/PropertyEditor.vue';
-import SelectDataRep from '../components/SelectDataRep.vue';
-import NumberDataRep from '../components/NumberDataRep.vue';
-import StringDataRep from '../components/StringDataRep.vue';
+import DataRepGroup from './DataRepGroup.vue';
 export default {
     components: {
         PropertyEditor,
-        SelectDataRep,
-        NumberDataRep,
-        StringDataRep
+        DataRepGroup
     },
     props: ['name'],
     data () {
         return {
             values: [],
-            output: [],
             propertyManifest: this.$root.propertyManifest,
             propertyTypes: [],
             DataReps: Utilities.DataReps
@@ -45,22 +41,16 @@ export default {
             this.$emit('data-type-selected', e);
             console.log(e.pt);
             this.$data.propertyTypes.splice(e.index, 1, Utilities.getValueTypeByID(e.pt));
-            // this.$data.selectePropertyTypes['type'+e.index.toString()] = Utilities.getValueTypeByID(e.pt);
-            // console.log(this.$data.selectePropertyTypes);
             this.$forceUpdate();
         },
         onValueChange: function (e) {
-            // this.$emit('value-change', {value: this.processValue(this.$data.value), name: this.name}
-            // console.log(e.value.toString());
-            // let propertyData = this.$data.propertyManifest[this.name];
-            // let prefix = Utilities.getValueTypeByID(propertyData.property_types[0]).prefix ? Utilities.getValueTypeByID(propertyData.property_types[0]).prefix : '';
-            // let suffix = Utilities.getValueTypeByID(propertyData.property_types[0]).suffix ? Utilities.getValueTypeByID(propertyData.property_types[0]).suffix : '';
             this.$data.values.splice(e.index, 1, e.value.toString());
-            // console.log(e.index)
             this.$emit('value-change', {value: this.$data.values.join(' '), name: this.name, index: this.index});
-            // this.$data.classStructure[e.name] = e.value;
-            // this.$data.previewSig = Utilities.createUniqueID();
-            // console.log(this.$data.classStructure);
+        },
+        removeValue: function (index) {
+            this.$data.values.splice(index, 1);
+            this.$data.propertyTypes.splice(index, 1);
+            this.$emit('value-change', {value: this.$data.values.join(' '), name: this.name, index: this.index});
         }
     },
     mounted: function () {
