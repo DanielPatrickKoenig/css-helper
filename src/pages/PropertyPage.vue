@@ -1,25 +1,18 @@
 <template>
     <div>
-        <PropertyEditor v-for="(n, i) in propertyNames" :name="n" :index="i" :key="'property-'+i.toString()" v-on:data-type-selected="onDataTypeSelected">
-            <div v-if="selectePropertyTypes['type'+i.toString()]">
-                <SelectDataRep v-if="selectePropertyTypes['type'+i.toString()].rep == DataReps.SELECT" :data="selectePropertyTypes['type'+i.toString()]" :name="n" v-on:value-change="onValueChange" />
-                <NumberDataRep v-if="selectePropertyTypes['type'+i.toString()].rep == DataReps.NUMBER" :data="selectePropertyTypes['type'+i.toString()]" :name="n" v-on:value-change="onValueChange"  />
-            </div>
-        </PropertyEditor>
+        <PropertyEditorGroup :names="propertyNames" :types="selectePropertyTypes" sig="a" v-on:data-type-selected="onDataTypeSelected" v-on:value-change="onValueChange" multiples="true" />
         <HTMLPreview markup="<span>sup</span>" :css="classStructure" selector="" :sig="previewSig" />
     </div>
 </template>
 <script>
 import Utilities from '../utils/Utilities.js';
-import PropertyEditor from '../components/PropertyEditor.vue';
-import SelectDataRep from '../components/SelectDataRep.vue';
-import NumberDataRep from '../components/NumberDataRep.vue';
+import PropertyEditorGroup from '../components/PropertyEditorGroup.vue';
+
 import HTMLPreview from '../components/HTMLPreview.vue';
+
 export default {
     components: {
-        PropertyEditor,
-        SelectDataRep,
-        NumberDataRep,
+        PropertyEditorGroup,
         HTMLPreview
     },
     data () {
@@ -28,7 +21,8 @@ export default {
             selectePropertyTypes: {},
             DataReps: Utilities.DataReps,
             classStructure: {},
-            previewSig: Utilities.createUniqueID()
+            previewSig: Utilities.createUniqueID(),
+            editorGroupSig: Utilities.getValueTypeByID()
         }
     },
     methods: {

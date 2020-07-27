@@ -121,7 +121,7 @@ const PropertyValueTypes = {
     VH: {id: 30, suffix: 'vh', label: 'View Height', rep: DataReps.NUMBER},
     VW: {id: 31, suffix: 'vw', label: 'View Width', rep: DataReps.NUMBER},
     ATTRIBUTE: {id: 32, label: 'Attribute', rep: DataReps.TEXT_FEILD},
-    URL: {id: 33, label: 'URL', rep: DataReps.TEXT_FEILD},
+    URL: {id: 33, label: 'URL', rep: DataReps.TEXT_FEILD, prefix: 'url(', suffix: ')'},
     CONTENT_OPTIONS: {id: 34, options: ContentOptions, label: 'Content Options', rep: DataReps.SELECT},
     ALIGN_CONTENT_OPTIONS: {id: 35, options: AlignContentOptions, label: 'Align Content Options', rep: DataReps.SELECT},
     ALIGN_ITEMS_OPTIONS: {id: 36, options: AlignItemsOptions, label: 'Align Items Options', rep: DataReps.SELECT},

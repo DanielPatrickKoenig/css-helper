@@ -1,5 +1,5 @@
 export default {
-    props: ['data', 'name'],
+    props: ['data', 'name', 'index'],
     data () {
         return {
             value: this.getDefaultValue()
@@ -7,7 +7,7 @@ export default {
     },
     methods: {
         onValueChange: function(e){
-            this.$emit('value-change', {value: this.processValue(this.deriveValue(e)), name: this.name});
+            this.$emit('value-change', {value: this.processValue(this.deriveValue(e)), name: this.name, index: this.index});
         },
         deriveValue: function(e){
             return e.target.value;
@@ -20,6 +20,6 @@ export default {
         }
     },
     mounted: function () {
-        this.$emit('value-change', {value: this.processValue(this.$data.value), name: this.name});
+        this.$emit('value-change', {value: this.processValue(this.$data.value), name: this.name, index: this.index});
     }
 }
