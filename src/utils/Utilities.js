@@ -197,6 +197,16 @@ function getPropertyDataByIndex(data, index){
     return  {name: propertyName, data: propertyData};
 }
 
+function moveArrayItem(arr, old_index, new_index) {
+    if (new_index >= arr.length) {
+        var k = new_index - arr.length + 1;
+        while (k--) {
+            arr.push(undefined);
+        }
+    }
+    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+}
+
 const Utilities = {
     createUniqueID: createUniqueID,
     getArrayIndexByValue: getArrayIndexByValue,
@@ -205,6 +215,7 @@ const Utilities = {
     getValueTypeByID: getValueTypeByID,
     DataReps: DataReps,
     getPropertyDataByIndex: getPropertyDataByIndex,
-    ValueSeparatorMatrix: ValueSeparatorMatrix
+    ValueSeparatorMatrix: ValueSeparatorMatrix,
+    moveArrayItem: moveArrayItem
 }
 export default Utilities;

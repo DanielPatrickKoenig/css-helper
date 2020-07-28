@@ -1,17 +1,20 @@
 <template>
     <div>
+        <span v-for="(v, k, i) in selectorManifest" :key="'style-'+i.toString()" v-html="'<style>#' + mainElementID + selectors[i]+'{'+selectorManifest['#' + mainElementID + selectors[i]]+'}</style>'"></span>
+        <!-- <span :id="mainElementID+'-style-container'" v-html="'<style>#'+this.getInitialID()+'{'+getCSSString()+'}</style>'"></span> -->
         <div v-html="markup" :id="mainElementID"></div>
     </div>
 </template>
 <script>
 export default {
-    props: ['markup', 'css', 'selector', 'sig'],
+    props: ['markup', 'css', 'selector', 'selectors', 'sig'],
     data () {
         return {
             mainElementID: this.getInitialID(),
             selectorString: '',
             cssObject: this.css,
-            selectorStr: this.selectors
+            selectorStr: this.selectors,
+            selectorManifest: {}
         }
     },
     methods: {
@@ -26,8 +29,11 @@ export default {
             return str;
         },
         applyStyle: function () {
-            let selStr = this.$data.selectorString == '' ? '#' + this.$data.mainElementID : '#' + this.$data.mainElementID + ' ' + this.$data.selectorString;
-            document.querySelector(selStr).setAttribute('style', this.getCSSString());
+            let selStr = this.$data.selectorString == '' ? '#' + this.$data.mainElementID : '#' + this.$data.mainElementID + this.$data.selectorString;
+            // document.querySelector(selStr).setAttribute('style', this.getCSSString());
+            // this.$forceUpdate();
+            this.$data.selectorManifest[selStr] = this.getCSSString();
+            // document.querySelector('#'+this.$data.mainElementID+'-style-container').innerHTML = '<style>'+selStr+'{'+this.getCSSString()+'}</style>';
             this.$forceUpdate();
         }
     },
