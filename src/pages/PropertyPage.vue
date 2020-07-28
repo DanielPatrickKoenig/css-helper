@@ -1,7 +1,14 @@
 <template>
     <div>
         <PropertyEditorGroup :names="propertyNames" :types="selectePropertyTypes" sig="a" v-on:data-type-selected="onDataTypeSelected" v-on:value-change="onValueChange" multiples="true" />
-        <HTMLPreview markup="<span>sup</span>" :css="classStructure" selector="" :sig="previewSig" />
+        <HTMLPreview :markup="markup" :css="classStructure" :selectors="selectionInfo.selectors" :selector="selectionInfo.selectors[selectionInfo.selectorIndex]" :sig="previewSig" />
+        <textarea v-model="markup" />
+
+        <DragOrderList class="drag-order-list" :count="selectionInfo.selectors.length" v-on:order-changed="onSelectorOrderChanged">
+            <button style="display:block;width:100%;height:2em;" v-for="(v, i) in selectionInfo.selectors" :key="'selector-'+i.toString()" :slot="'item-'+i.toString()" v-on:click="selectionInfo.selectorIndex = i">
+                {{v}}
+            </button>
+        </DragOrderList>
     </div>
 </template>
 <script>
@@ -9,11 +16,13 @@ import Utilities from '../utils/Utilities.js';
 import PropertyEditorGroup from '../components/PropertyEditorGroup.vue';
 
 import HTMLPreview from '../components/HTMLPreview.vue';
+import DragOrderList from '../components/DragOrderList.vue';
 
 export default {
     components: {
         PropertyEditorGroup,
-        HTMLPreview
+        HTMLPreview,
+        DragOrderList
     },
     data () {
         return {
@@ -22,7 +31,12 @@ export default {
             DataReps: Utilities.DataReps,
             classStructure: {},
             previewSig: Utilities.createUniqueID(),
-            editorGroupSig: Utilities.getValueTypeByID()
+            editorGroupSig: Utilities.getValueTypeByID(),
+            markup: '<span>sup</span><table><thead><tr><th>fruit</th><th>vegetables</th></tr></thead><tbody><tr><td>orange</td><td>carrot</td></tr><tr><td>apple</td><td>potato</td></tr></tbody></table>',
+            selectionInfo: {
+                selectors: [],
+                selectorIndex: 0
+            }
         }
     },
     methods: {
@@ -35,7 +49,26 @@ export default {
             this.$data.classStructure[e.name] = e.value;
             this.$data.previewSig = Utilities.createUniqueID();
             console.log(this.$data.classStructure);
+        },
+        onSelectorOrderChanged: function (e) {
+            Utilities.moveArrayItem(this.$data.selectionInfo.selectors, e.moved, e.target);
+            this.$data.previewSig = Utilities.createUniqueID();
+            this.$forceUpdate();
         }
+    },
+    mounted: function () {
+        this.$data.selectionInfo.selectors.push('');
+        this.$data.selectionInfo.selectors.push(' > span');
+        this.$data.selectionInfo.selectors.push(' > table th');
+        this.$data.selectionInfo.selectors.push(' > table td');
     }
 }
 </script>
+<style lang="scss" scoped>
+.drag-order-list{
+    position: fixed;
+    top:50px;
+    right:5px;
+    width:20em;
+}
+</style>
