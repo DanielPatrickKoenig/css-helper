@@ -1,6 +1,6 @@
 <template>
     <div>
-        <span v-for="(v, k, i) in selectorManifest" :key="'style-'+i.toString()" v-html="'<style>#' + mainElementID + selectors[i]+'{'+selectorManifest['#' + mainElementID + selectors[i]]+'}</style>'"></span>
+        <span v-for="(v, k, i) in selectorManifest" :key="'style-'+i.toString()" v-html="'<style>#' + mainElementID + selectorConnecion + selectors[i]+'{'+selectorManifest['#' + mainElementID + selectorConnecion + selectors[i]]+'}</style>'"></span>
         <span v-html="getHighlightStyle()"></span>
         <!-- <span :id="mainElementID+'-style-container'" v-html="'<style>#'+this.getInitialID()+'{'+getCSSString()+'}</style>'"></span> -->
         <div v-html="markup" :id="mainElementID"></div>
@@ -9,50 +9,53 @@
 <script>
 import Utilities from '../utils/Utilities';
 export default {
-    props: ['markup', 'css', 'selector', 'selectors', 'highlighting', 'sig'],
+    props: ['markup', 'matrix', 'selector', 'selectors', 'highlighting', 'sig'],
     data () {
         return {
             mainElementID: this.getInitialID(),
             selectorString: '',
-            cssObject: this.css,
             selectorStr: this.selector,
-            selectorManifest: {}
+            selectorManifest: {},
+            selectorConnecion: ' '
         }
     },
     methods: {
         getInitialID: function () {
             return Utilities.createUniqueID() + '-html-preview-container';
         },
-        getCSSString: function () {
+        getCSSItemString: function (item) {
             let str = '';
-            for(let c in this.cssObject){
-                str += c + ':' + this.cssObject[c] + ';'
+            for(let c in item){
+                str += c + ':' + item[c] + ';'
             }
             return str;
         },
-        applyStyle: function () {
-            let selStr = this.$data.selectorString == '' ? '#' + this.$data.mainElementID : '#' + this.$data.mainElementID + this.$data.selectorString;
-            // document.querySelector(selStr).setAttribute('style', this.getCSSString());
-            // this.$forceUpdate();
-            this.$data.selectorManifest[selStr] = this.getCSSString();
-            console.log(this.$data.selectorManifest);
+        applyStyles: function () {
+            for(let m in this.matrix){
+                let selStr = m == '' ? '#' + this.$data.mainElementID + this.$data.selectorConnecion : '#' + this.$data.mainElementID + this.$data.selectorConnecion + m;
+                // document.querySelector(selStr).setAttribute('style', this.getCSSString());
+                // this.$forceUpdate();
+                this.$data.selectorManifest[selStr] = this.getCSSItemString(this.matrix[m]);
+                console.log(this.$data.selectorManifest);
+            }
+            
             // document.querySelector('#'+this.$data.mainElementID+'-style-container').innerHTML = '<style>'+selStr+'{'+this.getCSSString()+'}</style>';
             this.$forceUpdate();
         },
         getHighlightStyle: function () {
-            return this.highlighting ? '<style>#' + this.$data.mainElementID + this.selector + '{box-shadow:0 0 0 1px #ff0000 !important;}</style>' : '';
+            return this.highlighting ? '<style>#' + this.$data.mainElementID + this.$data.selectorConnecion + this.selector + '{box-shadow:0 0 0 1px #ff0000 !important;}</style>' : '';
         }
     },
     watch: {
         sig: function () {
             this.$data.selectorStr = this.selector;
             this.$data.selectorString = this.$data.selectorStr;
-            this.$data.cssObject = this.css;
-            this.applyStyle();
+            this.applyStyles();
+            // this.applyStyle();
         }
     },
     mounted: function () {
-        this.applyStyle();
+        this.applyStyles();
     }
 }
 </script>
