@@ -24,7 +24,7 @@ export default {
         searchables: function () {
             let items = {}
             for (let k in this.$data.searchItems) {
-                if (k.split(this.$data.searchTerm).length > 1 && (this.showOnEmpty || this.$data.searchTerm != '')) {
+                if (k.toLowerCase().split(this.$data.searchTerm.toLowerCase()).length > 1 && (this.showOnEmpty || this.$data.searchTerm != '')) {
                     items[k] = this.$data.searchItems[k];
                 }
             }

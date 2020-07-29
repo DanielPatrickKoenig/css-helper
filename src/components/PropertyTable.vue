@@ -66,7 +66,7 @@ export default {
         searchables: function () {
             let items = {}
             for (let k in this.data) {
-                if (k.split(this.$data.searchTerm).length > 1) {
+                if (k.toLowerCase().split(this.$data.searchTerm.toLowerCase()).length > 1) {
                     items[k] = this.data[k];
                 }
             }
