@@ -37,7 +37,6 @@
 <script>
 import Utilities from '../utils/Utilities.js';
 import PropertyEditorGroup from '../components/PropertyEditorGroup.vue';
-
 import HTMLPreview from '../components/HTMLPreview.vue';
 import DragOrderList from '../components/DragOrderList.vue';
 import ModalWindow from '../components/ModalWindow.vue';
