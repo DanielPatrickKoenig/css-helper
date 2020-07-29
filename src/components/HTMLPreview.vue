@@ -1,25 +1,27 @@
 <template>
     <div>
         <span v-for="(v, k, i) in selectorManifest" :key="'style-'+i.toString()" v-html="'<style>#' + mainElementID + selectors[i]+'{'+selectorManifest['#' + mainElementID + selectors[i]]+'}</style>'"></span>
+        <span v-html="getHighlightStyle()"></span>
         <!-- <span :id="mainElementID+'-style-container'" v-html="'<style>#'+this.getInitialID()+'{'+getCSSString()+'}</style>'"></span> -->
         <div v-html="markup" :id="mainElementID"></div>
     </div>
 </template>
 <script>
+import Utilities from '../utils/Utilities';
 export default {
-    props: ['markup', 'css', 'selector', 'selectors', 'sig'],
+    props: ['markup', 'css', 'selector', 'selectors', 'highlighting', 'sig'],
     data () {
         return {
             mainElementID: this.getInitialID(),
             selectorString: '',
             cssObject: this.css,
-            selectorStr: this.selectors,
+            selectorStr: this.selector,
             selectorManifest: {}
         }
     },
     methods: {
         getInitialID: function () {
-            return 'html-preview-container';
+            return Utilities.createUniqueID() + '-html-preview-container';
         },
         getCSSString: function () {
             let str = '';
@@ -33,8 +35,12 @@ export default {
             // document.querySelector(selStr).setAttribute('style', this.getCSSString());
             // this.$forceUpdate();
             this.$data.selectorManifest[selStr] = this.getCSSString();
+            console.log(this.$data.selectorManifest);
             // document.querySelector('#'+this.$data.mainElementID+'-style-container').innerHTML = '<style>'+selStr+'{'+this.getCSSString()+'}</style>';
             this.$forceUpdate();
+        },
+        getHighlightStyle: function () {
+            return this.highlighting ? '<style>#' + this.$data.mainElementID + this.selector + '{box-shadow:0 0 0 1px #ff0000 !important;}</style>' : '';
         }
     },
     watch: {
@@ -50,8 +56,3 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
-#html-preview-container{
-    background-color: #00cc00;
-}
-</style>
