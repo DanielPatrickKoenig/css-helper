@@ -1,7 +1,7 @@
 <template>
     <div>
         <PropertyEditorGroup :names="propertyNames" :types="selectePropertyTypes" sig="a" v-on:data-type-selected="onDataTypeSelected" v-on:value-change="onValueChange" multiples="true" />
-        <HTMLPreview :markup="markup" :css="classStructure" :selectors="selectionInfo.selectors" :selector="selectionInfo.selectors[selectionInfo.selectorIndex]" :sig="previewSig" />
+        <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectionInfo.selectors" :selector="selectionInfo.selectors[selectionInfo.selectorIndex]" :sig="previewSig" />
         <textarea v-model="markup" />
         <div class="drag-order-list">
             <DragOrderList class="drag-order-inner-list" :count="selectionInfo.selectors.length" v-on:order-changed="onSelectorOrderChanged">
@@ -30,7 +30,7 @@
             <div v-else>
                 <input v-model="selectionInfo.selectors[selectionInfo.selectorEditIndex]" type="text" />
             </div>
-            <HTMLPreview :markup="markup" :css="classStructure" :selectors="selectionInfo.selectors" :selector="selectionInfo.adding ? selectionInfo.tempSelector : selectionInfo.selectors[selectionInfo.selectorIndex]" highlighting="true" :sig="previewSig" />
+            <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectionInfo.selectors" :selector="selectionInfo.adding ? selectionInfo.tempSelector : selectionInfo.selectors[selectionInfo.selectorEditIndex]" highlighting="true" :sig="previewSig" />
         </ModalWindow>
     </div>
 </template>
@@ -53,6 +53,7 @@ export default {
             propertyNames: Utilities.getParameterByName('names').split(','),
             selectePropertyTypes: {},
             DataReps: Utilities.DataReps,
+            classManifest: {},
             classStructure: {},
             previewSig: Utilities.createUniqueID(),
             editorGroupSig: Utilities.getValueTypeByID(),
@@ -75,13 +76,28 @@ export default {
         },
         onValueChange: function (e) {
             this.$data.classStructure[e.name] = e.value;
-            this.$data.previewSig = Utilities.createUniqueID();
             console.log(this.$data.classStructure);
+            this.$data.previewSig = Utilities.createUniqueID();
+            this.$data.classManifest[this.$data.selectionInfo.selectors[this.$data.selectionInfo.selectorIndex]] = JSON.parse(JSON.stringify(this.$data.classStructure));
+            console.log(this.$data.classManifest);
         },
         onSelectorOrderChanged: function (e) {
             Utilities.moveArrayItem(this.$data.selectionInfo.selectors, e.moved, e.target);
             this.$data.previewSig = Utilities.createUniqueID();
             this.$forceUpdate();
+        },
+        addSelector: function () {
+            this.$data.selectionInfo.selectors.push(this.$data.selectionInfo.tempSelector);
+            this.$data.selectionInfo.selectorEditorOpen = false;
+            this.$data.selectionInfo.adding = false;
+            this.updateClassManifest();
+        },
+        updateClassManifest: function () {
+            let cManifest = {};
+            for(let i = 0; i < this.$data.selectionInfo.selectors.length; i++){
+                cManifest[this.$data.selectionInfo.selectors[i]] = this.$data.classManifest[this.$data.selectionInfo.selectors[i]] ? this.$data.classManifest[this.$data.selectionInfo.selectors[i]] : {};
+            }
+            this.$data.classManifest = cManifest;
         }
     },
     mounted: function () {
@@ -89,6 +105,7 @@ export default {
         this.$data.selectionInfo.selectors.push(' > span');
         this.$data.selectionInfo.selectors.push(' > table th');
         this.$data.selectionInfo.selectors.push(' > table td');
+        this.updateClassManifest();
     }
 }
 </script>

@@ -28,6 +28,9 @@ export default {
         onPropertyTypeSelected: function (pt) {
             this.$emit('data-type-selected', {pt: pt, index: this.index});
         }
+    },
+    mounted: function () {
+        this.$emit('data-type-selected', {pt: this.propertyDetails.property_types[0], index: this.index});
     }
 }
 </script>
