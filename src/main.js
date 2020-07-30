@@ -41,7 +41,10 @@ new Vue({
   data () {
     return {
       propertyManifest: {},
-      ready: false
+      ready: false,
+      selectorPropertyMatrix: {},
+      selectorList: [],
+      selectorIndex: 0
     }
   }
 }).$mount('#app')

@@ -1,8 +1,8 @@
 <template>
     <div v-if="type">
-        <SelectDataRep v-if="type.rep == DataReps.SELECT" :data="type" :name="name" v-on:value-change="onValueChange" :index="index" />
-        <NumberDataRep v-else-if="type.rep == DataReps.NUMBER" :data="type" :name="name" v-on:value-change="onValueChange" :index="index" />
-        <StringDataRep v-else :data="type" :name="name" v-on:value-change="onValueChange" :index="index" />
+        <SelectDataRep v-if="type.rep == DataReps.SELECT" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" />
+        <NumberDataRep v-else-if="type.rep == DataReps.NUMBER" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" />
+        <StringDataRep v-else :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" />
     </div>
 </template>
 <script>
@@ -12,7 +12,7 @@ import NumberDataRep from '../components/NumberDataRep.vue';
 import StringDataRep from '../components/StringDataRep.vue';
 import Utilities from '../utils/Utilities';
 export default {
-    props: ['type', 'name', 'index', 'sig'],
+    props: ['type', 'name', 'index', 'composited', 'initval', 'sig'],
     components: {
         SelectDataRep,
         NumberDataRep,

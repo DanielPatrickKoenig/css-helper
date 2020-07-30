@@ -31,7 +31,8 @@ const DataReps = {
 }
 
 const ValueSeparatorMatrix = {
-    'background-size': '/'
+    'default': {actual: ' ', proxy: '----SPACE----'},
+    'background-size': {actual: '/', proxy: '----SLASH----'}
 };
 
 const DefaultOptions = ['initial', 'inherit'];
@@ -207,6 +208,49 @@ function moveArrayItem(arr, old_index, new_index) {
     arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
 }
 
+function propertyisLogged(scope, name, composited){
+    let logged = false;
+    if(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]]){
+        if(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css){
+            if(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css[name]){
+                // hasValue = true;
+                // console.log(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css[name]);
+                logged = true;
+                // scope.$data.value = scope.parseValue(scope.$root.propertyManifest[name].value_separator ? scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css[name].split(scope.$root.propertyManifest[name].value_separator)[scope.index] : scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css[name]);
+            }
+            else{
+                if(!composited){
+                    scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css[name] = {};   
+                }
+            }
+        }
+        else{
+            scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css = {};
+        }
+        // if(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type){
+        //     console.log(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type[name]);
+        //     if(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type.join){
+        //         scope.data = scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type[scope.index];
+        //     }
+        //     else {
+        //         scope.data = scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type;
+        //     }
+        //     if(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css){
+        //         if(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css[name]){
+        //             console.log(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css[name]);
+        //             scope.$data.value = scope.processValue(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css[name]);
+        //         }
+        //     }
+            
+        // }
+        // console.log(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type[name]);
+    }
+    else{
+        scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]] = {};
+    }
+    return logged;
+}
+
 const Utilities = {
     createUniqueID: createUniqueID,
     getArrayIndexByValue: getArrayIndexByValue,
@@ -216,6 +260,7 @@ const Utilities = {
     DataReps: DataReps,
     getPropertyDataByIndex: getPropertyDataByIndex,
     ValueSeparatorMatrix: ValueSeparatorMatrix,
-    moveArrayItem: moveArrayItem
+    moveArrayItem: moveArrayItem,
+    propertyisLogged: propertyisLogged
 }
 export default Utilities;
