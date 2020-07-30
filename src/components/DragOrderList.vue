@@ -45,7 +45,7 @@ export default {
                     }
                 }
             }
-            console.log(this.$data.draggedIndex.toString() + ' / ' + aboveCount.toString());
+            // console.log(this.$data.draggedIndex.toString() + ' / ' + aboveCount.toString());
             this.$emit('order-changed', {moved: this.$data.draggedIndex, target: aboveCount});
             this.$data.dragging = false;
             this.$data.draggedIndex = -1;

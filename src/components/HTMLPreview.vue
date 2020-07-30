@@ -1,6 +1,7 @@
 <template>
     <div>
-        <span v-for="(v, k, i) in selectorManifest" :key="'style-'+i.toString()" v-html="'<style>#' + mainElementID + selectorConnecion + selectors[i]+'{'+selectorManifest['#' + mainElementID + selectorConnecion + selectors[i]]+'}</style>'"></span>
+        <!-- <span v-for="(v, k, i) in selectorManifest" :key="'style-'+i.toString()" v-html="'<style>#' + mainElementID + selectorConnecion + selectors[i]+'{'+selectorManifest['#' + mainElementID + selectorConnecion + selectors[i]]+'}</style>'"></span> -->
+        <span v-for="(v, k, i) in selectorManifest" :key="'style-'+i.toString()" v-html="'<style>#' + mainElementID + selectorConnecion + selectors[i]+'{'+getStyleString(i)+'}</style>'"></span>
         <span v-html="getHighlightStyle()"></span>
         <!-- <span :id="mainElementID+'-style-container'" v-html="'<style>#'+this.getInitialID()+'{'+getCSSString()+'}</style>'"></span> -->
         <div v-html="markup" :id="mainElementID"></div>
@@ -36,7 +37,7 @@ export default {
                 // document.querySelector(selStr).setAttribute('style', this.getCSSString());
                 // this.$forceUpdate();
                 this.$data.selectorManifest[selStr] = this.getCSSItemString(this.matrix[m]);
-                console.log(this.$data.selectorManifest);
+                // console.log(this.$data.selectorManifest);
             }
             
             // document.querySelector('#'+this.$data.mainElementID+'-style-container').innerHTML = '<style>'+selStr+'{'+this.getCSSString()+'}</style>';
@@ -44,6 +45,13 @@ export default {
         },
         getHighlightStyle: function () {
             return this.highlighting ? '<style>#' + this.$data.mainElementID + this.$data.selectorConnecion + this.selector + '{box-shadow:0 0 0 1px #ff0000 !important;}</style>' : '';
+        },
+        getStyleString: function (index) {
+            let styleSTR = this.$data.selectorManifest['#' + this.$data.mainElementID + this.$data.selectorConnecion + this.selectors[index]];
+            for(let v in Utilities.ValueSeparatorMatrix){
+                styleSTR = styleSTR.split(Utilities.ValueSeparatorMatrix[v].proxy).join(Utilities.ValueSeparatorMatrix[v].actual);
+            }
+            return styleSTR;
         }
     },
     watch: {

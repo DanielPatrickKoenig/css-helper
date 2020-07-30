@@ -52,10 +52,12 @@ export default {
         onDataTypeSelected: function (e) {
             this.$emit('data-type-selected', e);
             this.$data.selectePropertyTypes['type'+e.index.toString()] = Utilities.getValueTypeByID(e.pt);
-            console.log(this.$data.selectePropertyTypes);
+            // console.log(this.$data.selectePropertyTypes);
             this.$forceUpdate();
         },
         onValueChange: function (e) {
+            // this.$emit('value-change', e);
+            this.$root.selectorPropertyMatrix[this.$root.selectorList[this.$root.selectorIndex]].css[e.name] = e.value;
             this.$emit('value-change', e);
             // this.$data.classStructure[e.name] = e.value;
             // this.$data.previewSig = Utilities.createUniqueID();
