@@ -43,6 +43,7 @@ new Vue({
       propertyManifest: {},
       ready: false,
       selectorPropertyMatrix: {},
+      selectorTypeMatrix: {},
       selectorList: [],
       selectorIndex: 0
     }

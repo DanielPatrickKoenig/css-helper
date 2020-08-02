@@ -6,7 +6,7 @@
         <div class="drag-order-list">
             <DragOrderList class="drag-order-inner-list" :count="selectionInfo.selectors.length" v-on:order-changed="onSelectorOrderChanged">
                 <div v-for="(v, i) in selectionInfo.selectors" :key="'selector-'+i.toString()" :slot="'item-'+i.toString()">
-                    <button v-on:click="onSelectorChosen(i)">
+                    <button v-on:click="onSelectorChosen(i, true)">
                         {{i}} / {{v}}
                     </button>
                     <button v-on:click="selectionInfo.selectorEditorOpen = true; selectionInfo.selectorEditIndex = i;">
@@ -100,11 +100,18 @@ export default {
             }
             console.log(this.$root.selectorPropertyMatrix[this.$data.selectionInfo.selectors[this.$data.selectionInfo.selectorIndex]].css);
         },
-        onSelectorChosen: function (index) {
+        onSelectorChosen: function (index, repeat) {
             this.$data.selectionInfo.selectorIndex = index;
             this.$root.selectorIndex = this.$data.selectionInfo.selectorIndex;
             this.$data.showEditors = false;
-            setTimeout(function (self) {self.$data.showEditors = true;}, 10, this);
+            setTimeout(function (self) {
+                self.$data.showEditors = true;
+                setTimeout(function (_self) {
+                    if(repeat){
+                        _self.onSelectorChosen(index);
+                    }
+                }, 50, self);
+            }, 50, this);
 
         },
         onSelectorOrderChanged: function (e) {
