@@ -22,6 +22,7 @@ export default {
         onDataTypeSelected: function (e) {
             this.$emit('data-type-selected', e);
             // console.log(e.pt);
+            Utilities.addToTypeLog(this, e.name, e.index, e.pt);
             this.$data.propertyTypes.splice(e.index, 1, Utilities.getValueTypeByID(e.pt));
             this.$forceUpdate();
         },

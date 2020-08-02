@@ -40,7 +40,8 @@ export default {
             selectePropertyTypes: this.types,
             DataReps: Utilities.DataReps,
             propertyManifest: this.$root.propertyManifest,
-            PropertyValueTypes: Utilities.PropertyValueTypes
+            PropertyValueTypes: Utilities.PropertyValueTypes,
+            ready: false
         }
     },
     watch: {
@@ -53,6 +54,7 @@ export default {
             this.$emit('data-type-selected', e);
             this.$data.selectePropertyTypes['type'+e.index.toString()] = Utilities.getValueTypeByID(e.pt);
             // console.log(this.$data.selectePropertyTypes);
+            Utilities.addToTypeLog(this, e.name, e.index, e.pt);
             this.$forceUpdate();
         },
         onValueChange: function (e) {
@@ -71,6 +73,20 @@ export default {
             }
             return pNames;
         }
+    },
+    mounted: function () {
+        setTimeout(function (self) {
+            for(let i = 0; i < self.$data.propertyNames.length; i++){
+                let name = self.$data.propertyNames[i];
+                if(self.$root.selectorTypeMatrix[self.$root.selectorList[self.$root.selectorIndex]].type[name]){
+                    self.$data.selectePropertyTypes['type'+i.toString()] = Utilities.getValueTypeByID(self.$root.selectorTypeMatrix[self.$root.selectorList[self.$root.selectorIndex]].type[name]);
+                }
+            }
+            self.$forceUpdate();
+            console.log('these are the property types', self.$data.selectePropertyTypes);
+        }, 100, this);
+        
+        // this.$data.selectePropertyTypes['type'+i]
     }
 }
 </script>

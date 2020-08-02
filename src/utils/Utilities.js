@@ -251,6 +251,35 @@ function propertyisLogged(scope, name, composited){
     return logged;
 }
 
+function hasPropertyTypeList(scope, name){
+    console.log(name);
+    return scope.$root.propertyManifest[name].sub_properties || scope.$root.propertyManifest[name].value_max;
+}
+
+function startTypeLog(scope, name){
+    if(!scope.$root.selectorTypeMatrix[scope.$root.selectorList[scope.$root.selectorIndex]]){
+        scope.$root.selectorTypeMatrix[scope.$root.selectorList[scope.$root.selectorIndex]] = {};
+    }
+    if(!scope.$root.selectorTypeMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type){
+        scope.$root.selectorTypeMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type = {};
+    }
+    if(!scope.$root.selectorTypeMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type[name]){
+        scope.$root.selectorTypeMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type[name] = {};
+    }
+    console.log('what the fuck is going on!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]]);
+}
+
+function addToTypeLog(scope, name, index, value){
+    startTypeLog(scope, name);
+    if(hasPropertyTypeList(scope, name)){
+        scope.$root.selectorTypeMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type[name]['type_'+index.toString()] = value;
+    }
+    else {
+        scope.$root.selectorTypeMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type[name] = value;
+    }
+
+}
+
 const Utilities = {
     createUniqueID: createUniqueID,
     getArrayIndexByValue: getArrayIndexByValue,
@@ -261,6 +290,9 @@ const Utilities = {
     getPropertyDataByIndex: getPropertyDataByIndex,
     ValueSeparatorMatrix: ValueSeparatorMatrix,
     moveArrayItem: moveArrayItem,
-    propertyisLogged: propertyisLogged
+    propertyisLogged: propertyisLogged,
+    startTypeLog: startTypeLog,
+    addToTypeLog: addToTypeLog,
+    hasPropertyTypeList: hasPropertyTypeList
 }
 export default Utilities;
