@@ -22,7 +22,9 @@ export default {
     }
   },
   mounted: function () {
-      let self = this;
+    let self = this;
+    axios.get('preset-colors.json').then((response) => {
+      self.$root.colorPresets = response.data;
       axios.get('property-manifest.json').then((response) => {
         self.$root.propertyManifest = response.data;
         for(let p in self.$root.propertyManifest){
@@ -31,6 +33,7 @@ export default {
         self.$root.ready = true;
         self.$data.ready = self.$root.ready;
       });
+    });
   }
 }
 </script>

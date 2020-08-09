@@ -280,6 +280,15 @@ function addToTypeLog(scope, name, index, value){
 
 }
 
+function hexToRGB(hex){
+    const aRgbHex = hex.split('#').join('').match(/.{1,2}/g);
+    return {
+        r: parseInt(aRgbHex[0], 16),
+        g: parseInt(aRgbHex[1], 16),
+        b: parseInt(aRgbHex[2], 16)
+    };
+}
+
 const Utilities = {
     createUniqueID: createUniqueID,
     getArrayIndexByValue: getArrayIndexByValue,
@@ -293,6 +302,7 @@ const Utilities = {
     propertyisLogged: propertyisLogged,
     startTypeLog: startTypeLog,
     addToTypeLog: addToTypeLog,
-    hasPropertyTypeList: hasPropertyTypeList
+    hasPropertyTypeList: hasPropertyTypeList,
+    hexToRGB: hexToRGB
 }
 export default Utilities;

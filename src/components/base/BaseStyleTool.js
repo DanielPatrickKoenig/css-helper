@@ -2,7 +2,7 @@ export default{
     props: ['value'],
     data () {
         return {
-            valueObject: parse()
+            valueObject: this.parse()
         }
     },
     methods: {
