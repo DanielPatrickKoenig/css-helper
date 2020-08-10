@@ -176,6 +176,22 @@ const PropertyValueTypes = {
     BOX_SIZING_OPTIONS: {id: 80, options: BoxSizingOptions, label: 'Box Sizing Options', rep: DataReps.SELECT}
 };
 
+const GradientTypes = {
+    LINEAR: 'linear-gradient',
+    RADIAL: 'radial-gradient'
+};
+
+const PositionDirectives = {
+    CENTER: 'center',
+    TOP: 'top',
+    LEFT: 'left',
+    RIGHT: 'right',
+    BOTTOM: 'bottom',
+    CLOSEST_SIDE: 'closest-side',
+    PERCENTAGE: 'percentage'
+
+}
+
 function getValueTypeByID(id){
     let propertyValueType = null;
     for(let p in PropertyValueTypes){
@@ -280,13 +296,25 @@ function addToTypeLog(scope, name, index, value){
 
 }
 
-function hexToRGB(hex){
-    const aRgbHex = hex.split('#').join('').match(/.{1,2}/g);
-    return {
-        r: parseInt(aRgbHex[0], 16),
-        g: parseInt(aRgbHex[1], 16),
-        b: parseInt(aRgbHex[2], 16)
-    };
+function colorStringToRGB(color){
+    let output = {};
+    if(color.split('#').length > 1){
+        const aRgbHex = color.split('#').join('').match(/.{1,2}/g);
+        output = {
+            r: parseInt(aRgbHex[0], 16),
+            g: parseInt(aRgbHex[1], 16),
+            b: parseInt(aRgbHex[2], 16)
+        };
+    }
+    else if(color.split('(').length > 1){
+        const rgbList = color.split(' ').join('').split('(')[1].split(')')[0].split(',');
+        output = {
+            r: Number(rgbList[0]),
+            g: Number(rgbList[1]),
+            b: Number(rgbList[2])
+        };
+    }
+    return output;
 }
 
 const Utilities = {
@@ -303,6 +331,8 @@ const Utilities = {
     startTypeLog: startTypeLog,
     addToTypeLog: addToTypeLog,
     hasPropertyTypeList: hasPropertyTypeList,
-    hexToRGB: hexToRGB
+    colorStringToRGB: colorStringToRGB,
+    GradientTypes: GradientTypes,
+    PositionDirectives: PositionDirectives
 }
 export default Utilities;

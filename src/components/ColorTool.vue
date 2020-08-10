@@ -18,8 +18,10 @@
 import BaseDataRep from './base/BaseDataRep.js';
 import SliderComponent from './SliderComponent.vue';
 import Swatches from './Swatches.vue';
+import Utilities from '../utils/Utilities';
 // import ColorPicker from './ColorPicker.vue';
 export default {
+    props: ['start'],
     extends: BaseDataRep,
     components: {
         Swatches,
@@ -32,9 +34,9 @@ export default {
            width: 200,
            swatchCount: 64,
            sliderData: {
-               r: {value: 0, max: 255, name: 'red'},
-               g: {value: 0, max: 255, name: 'green'},
-               b: {value: 0, max: 255, name: 'blue'},
+               r: {value: this.start ? Utilities.colorStringToRGB(this.start).r : 0, max: 255, name: 'red'},
+               g: {value: this.start ? Utilities.colorStringToRGB(this.start).g : 0, max: 255, name: 'green'},
+               b: {value: this.start ? Utilities.colorStringToRGB(this.start).b : 0, max: 255, name: 'blue'},
                a: {value: 1, max: 1, name: 'alpha'}
            },
            colors: this.$root.colorPresets,

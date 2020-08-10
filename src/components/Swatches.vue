@@ -39,7 +39,7 @@ export default {
         },
         colorClicked: function (hex) {
             console.log(hex);
-            this.$emit('color-selected', Utilities.hexToRGB(hex));
+            this.$emit('color-selected', Utilities.colorStringToRGB(hex));
         }
     },
     mounted: function () {

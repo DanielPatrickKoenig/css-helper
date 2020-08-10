@@ -1,7 +1,7 @@
 <template>
     <div>
         HOME
-        <ColorTool />
+        <GradientTool :name="gProps.name" :type="gProps.type" />
         <!-- <ColorSelector style="width:300px;" :cols="20" :incrament="incrament" v-on:color-selected="onColorSelected" />
         <div :style="'position:relative;left:200px;top:120px;box-shadow:0 -1px 0 #000000;height:1px;width:' + dimensions.width + 'px;'">
             <SliderComponent constraint="horizontal" :width="dimensions.width" :ratiox="rat" :max="255" v-on:slider-moved="onSliderMoved">
@@ -12,11 +12,19 @@
     </div>
 </template>
 <script>
-import ColorTool from '../components/ColorTool.vue';
+import GradientTool from '../components/GradientTool.vue';
+import Utilities from '../utils/Utilities.js';
+//'type', 'name', 'index', 'composited', 'initval', 'sig'
 // import SliderComponent from '../components/SliderComponent.vue';
 export default {
     components: {
-        ColorTool
+        GradientTool
+    },
+    data () {
+        return {
+            gProps: {name: 'background-image', type: Utilities.PropertyValueTypes.GRADIENT_UI}
+        }
+        
     },
     methods: {
         onColorSelected: function (e) {

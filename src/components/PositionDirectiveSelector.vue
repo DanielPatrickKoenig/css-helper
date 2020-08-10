@@ -1,0 +1,58 @@
+<template>
+  <div>
+      <select v-model="selectedShapeIndex" v-on:change="selectionChanged">
+          <option v-for="(s, i) in shapes" :key="'shape-'+i.toString()" :value="i">
+              {{s}}
+          </option>
+      </select>
+      <div v-for="(s, i) in selectedPositions" :key="'selector-'+i.toString()">
+        <select v-model="selectedPositions[i].position" v-on:change="selectionChanged">
+            <option v-for="(p, k, j) in positions" :key="'option-'+i.toString()+'-'+j.toString()" :value="p">
+                {{p}}
+            </option>
+        </select>
+        <div v-if="selectedPositions[i].position == positions.PERCENTAGE">
+            <SliderComponent :width="sliderParams.width" :max="sliderParams.max" :ratiox="selectedPositions[i].ratio" :constraint="sliderParams.constraint" v-on:slider-moved="onSliderMoved" :sig="i">
+                <div style="width:20px;height:20px;margin-left:-10px;margin-top:-10px;background-color:#000000;border-radius:20px;"></div>
+            </SliderComponent>
+            <input type="number" v-model="selectedPositions[i].ratio" v-on:change="selectionChanged" />
+        </div>
+      </div>
+  </div>
+</template>
+
+<script>
+import Utilities from '../utils/Utilities.js';
+import SliderComponent from './SliderComponent.vue';
+export default {
+    components: {
+        SliderComponent
+    },
+    data () {
+        return {
+            positions: Utilities.PositionDirectives,
+            selectedPositions: [{position: Utilities.PositionDirectives.CENTER, ratio: 50}, {position: Utilities.PositionDirectives.CENTER, ratio: 50}],
+            shapes: ['circle', 'ellipse'],
+            selectedShapeIndex: 0,
+            sliderParams: {
+                width:200,
+                max: 100,
+                constraint: 'horizontal'
+            }
+        };
+    },
+    methods: {
+        onSliderMoved: function (e) {
+            this.$data.selectedPositions[Number(e.sig)].ratio = e.x;
+            this.selectionChanged();
+        },
+        selectionChanged: function(){
+            this.$emit('selection-change', {shape: this.$data.shapes[this.$data.selectedShapeIndex], positions: this.$data.selectedPositions});
+        }
+    }
+}
+</script>
+
+<style>
+
+</style>

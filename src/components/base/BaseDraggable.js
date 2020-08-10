@@ -23,8 +23,8 @@ export default{
             const pos = this.processMouseEvent(e);
             this.$data.position = this.processPosition(pos.x - this.$data.offset.x, pos.y - this.$data.offset.y);
             this.$data.positionRatio = {x: this.width ? (this.$data.position.x - this.$data.componentPosition.x) / this.width : this.$data.position.x - this.$data.componentPosition.x, y: this.height ? (this.$data.position.y - this.$data.componentPosition.y) / this.height : this.$data.position.y - this.$data.componentPosition.y};
-            const total = this.max ? this.max : 1;
-            this.$emit('slider-moved', {x: this.$data.positionRatio.x * total, y: this.$data.positionRatio.y * total, sig: this.sig});
+            this.dispatchMoveEvent();
+            // this.$emit('slider-moved', {x: this.$data.positionRatio.x * total, y: this.$data.positionRatio.y * total, sig: this.sig});
         },
         onDown: function (e) {
             // console.log('onDown start');
@@ -37,6 +37,10 @@ export default{
             // const pos = ofs;
             // this.$data.position = this.processPosition(pos.x - this.$data.offset.x, pos.y - this.$data.offset.y);
             // console.log('onDown end');
+        },
+        dispatchMoveEvent: function () {
+            const total = this.max ? this.max : 1;
+            this.$emit('slider-moved', {x: this.$data.positionRatio.x * total, y: this.$data.positionRatio.y * total, sig: this.sig});
         },
         onUp: function () {
             this.$data.dragging = false;
@@ -89,17 +93,5 @@ export default{
             this.$data.positionRatio.y = this.ratioy;
             this.$data.position.y = this.height ? this.refactorPosition(this.$data.positionRatio.y, this.height) + document.querySelector(`#${this.$data.uniqueID}`).getBoundingClientRect().top : this.$data.positionRatio.y;
         }
-    },
-    mounted: function () {
-        setTimeout(() => {
-            // const xPos = bounds.left+((this.ratiox/this.max)*this.width);
-            const targetElement = document.querySelector(`div#${this.$data.uniqueID} > div:first-child`);
-            const bounds = targetElement.getBoundingClientRect();
-            console.log(this.sig, bounds.left+((this.ratiox/this.max)*this.width));
-            this.initDrag({pageX: bounds.left, pageY: bounds.top, currentTarget: targetElement});
-            this.processDrag({pageX: bounds.left+((this.ratiox/this.max)*this.width), pageY: bounds.top+((this.ratioy/this.max)*this.height), currentTarget: targetElement});
-            this.$forceUpdate();
-            // this.onUp();
-        }, 10);
     }
 }
