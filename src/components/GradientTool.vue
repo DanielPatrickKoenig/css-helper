@@ -122,6 +122,49 @@ export default {
         onPositionChanged: function (e) {
             console.log(e);
             this.$data.colors[e.sig].position = e.x;
+        },
+        parseValue: function (val){
+            if(val.split(Utilities.GradientTypes.LINEAR).length > 1 || val.split(Utilities.GradientTypes.RADIAL).length > 1){
+                this.$data.shouldDisplay = false;
+                let openParenList = val.split('(');
+                this.$data.gradientType = val.split('(')[0];
+                openParenList.splice(0, 1);
+                let innerVal = openParenList.join('(');
+                let closeList = innerVal.split(')');
+                closeList.splice(closeList.length - 1, 1);
+                innerVal = closeList.join(')');
+                const sectionSep = 'SECTION_SEPERATOR'
+                let valSectionList = innerVal.split(',rgb').join(sectionSep+'rgb').split('#').join(sectionSep+'#').split(sectionSep);
+                console.log('innerVal', innerVal);
+                if(val.split('(')[0] == Utilities.GradientTypes.LINEAR){
+                    this.$data.angle = Number(valSectionList[0].split('deg')[0]);
+                }
+                else {
+                    this.$data.radialData.shape = valSectionList[0].split(' at ')[0];
+                    this.$data.radialData.positions[0].position = valSectionList[0].split(' at ')[1].split(' ')[0].split('%').length > 1 ? Utilities.PositionDirectives.PERCENTAGE : valSectionList[0].split(' at ')[1].split(' ')[0];
+                    this.$data.radialData.positions[1].position = valSectionList[0].split(' at ')[1].split(' ')[1].split('%').length > 1 ? Utilities.PositionDirectives.PERCENTAGE : valSectionList[0].split(' at ')[1].split(' ')[1];
+                    if(valSectionList[0].split(' at ')[1].split(' ')[0].split('%').length > 1){
+                        this.$data.radialData.positions[0].ratio = Number(valSectionList[0].split(' at ')[1].split(' ')[0].split('%')[0]);
+                    }
+                    if(valSectionList[0].split(' at ')[1].split(' ')[1].split('%').length > 1){
+                        this.$data.radialData.positions[1].ratio = Number(valSectionList[0].split(' at ')[1].split(' ')[1].split('%')[0]);
+                    }
+                }
+                this.$data.colors = [];
+                for(let i = 1;i<valSectionList.length;i++){
+                    this.$data.colors.push({hue: valSectionList[i].split(' ')[0], position: Number(valSectionList[i].split(' ')[1].split('%')[0])/100});
+                }
+                setTimeout(()=>{
+                    this.$data.shouldDisplay = true;
+                }, 10);
+            }
+            
+            // console.log(this.data);
+            // let pre = this.data.prefix ? this.data.prefix : '';
+            // let suf = this.data.suffix ? this.data.suffix : '';
+            // // console.log(val.split(pre).join('').split(suf).join(''));
+            // return val.split(pre).join('').split(suf).join('');
+            return val;
         }
     }
 }

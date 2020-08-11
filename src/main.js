@@ -45,7 +45,8 @@ new Vue({
       selectorPropertyMatrix: {},
       selectorTypeMatrix: {},
       selectorList: [],
-      selectorIndex: 0
+      selectorIndex: 0,
+      colorPresets: {}
     }
   }
 }).$mount('#app')
