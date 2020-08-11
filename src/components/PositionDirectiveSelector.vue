@@ -25,15 +25,16 @@
 import Utilities from '../utils/Utilities.js';
 import SliderComponent from './SliderComponent.vue';
 export default {
+    props: ['shape', 'position1', 'position2', 'ratio1', 'ratio2'],
     components: {
         SliderComponent
     },
     data () {
         return {
             positions: Utilities.PositionDirectives,
-            selectedPositions: [{position: Utilities.PositionDirectives.CENTER, ratio: 50}, {position: Utilities.PositionDirectives.CENTER, ratio: 50}],
+            selectedPositions: [{position: this.position1, ratio: this.ratio1}, {position: this.position2, ratio: this.ratio2}],
             shapes: ['circle', 'ellipse'],
-            selectedShapeIndex: 0,
+            selectedShapeIndex: this.shape == 'circle' ? 0 : 1,
             sliderParams: {
                 width:200,
                 max: 100,
