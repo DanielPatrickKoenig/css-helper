@@ -176,6 +176,54 @@ const PropertyValueTypes = {
     BOX_SIZING_OPTIONS: {id: 80, options: BoxSizingOptions, label: 'Box Sizing Options', rep: DataReps.SELECT}
 };
 
+const TransformFunctions = {
+    matrix: [{type: DataReps.NUMBER, suffix: [], repeats: 6}],
+    translate: [{type: DataReps.NUMBER, suffix: ['px', '%', 'em'], repeats: 2}],
+    translateX: [{type: DataReps.NUMBER, suffix: ['px', '%', 'em'], repeats: 1}],
+    translateY: [{type: DataReps.NUMBER, suffix: ['px', '%', 'em'], repeats: 1}],
+    scale: [{type: DataReps.NUMBER, suffix: [], repeats: 2}],
+    scaleX: [{type: DataReps.NUMBER, suffix: [], repeats: 1}],
+    scaleY: [{type: DataReps.NUMBER, suffix: [], repeats: 1}],
+    rotate: [{type: DataReps.TOOL, suffix: ['deg', 'turn'], repeats: 1}],
+    skew: [{type: DataReps.TOOL, suffix: ['deg', 'turn'], repeats: 2}],
+    skewX: [{type: DataReps.TOOL, suffix: ['deg', 'turn'], repeats: 1}],
+    skewY: [{type: DataReps.TOOL, suffix: ['deg', 'turn'], repeats: 1}],
+    matrix3d: [{type: DataReps.NUMBER, suffix: [], repeats: 16}],
+    translate3d: [{type: DataReps.NUMBER, suffix: ['px', '%', 'em'], repeats: 2}, {type: DataReps.NUMBER, suffix: [], repeats: 1}],
+    translateZ: [{type: DataReps.NUMBER, suffix: [], repeats: 1}],
+    scale3d: [{type: DataReps.NUMBER, suffix: [], repeats: 3}],
+    scaleZ: [{type: DataReps.NUMBER, suffix: [], repeats: 1}],
+    rotate3d: [{type: DataReps.TOOL, suffix: ['deg', 'turn'], repeats: 3}],
+    rotateX: [{type: DataReps.TOOL, suffix: ['deg', 'turn'], repeats: 1}],
+    rotateY: [{type: DataReps.TOOL, suffix: ['deg', 'turn'], repeats: 1}],
+    rotateZ: [{type: DataReps.TOOL, suffix: ['deg', 'turn'], repeats: 1}],
+    perspective: [{type: DataReps.NUMBER, suffix: [], repeats: 1}]
+};
+
+/*
+<matrix()> = matrix( <number>#{6} )
+<translate()> = translate( <length-percentage> , <length-percentage>? )
+<translateX()> = translateX( <length-percentage> )
+<translateY()> = translateY( <length-percentage> )
+<scale()> = scale( <number> , <number>? )
+<scaleX()> = scaleX( <number> )
+<scaleY()> = scaleY( <number> )
+<rotate()> = rotate( [ <angle> | <zero> ] )
+<skew()> = skew( [ <angle> | <zero> ] , [ <angle> | <zero> ]? )
+<skewX()> = skewX( [ <angle> | <zero> ] )
+<skewY()> = skewY( [ <angle> | <zero> ] )
+<matrix3d()> = matrix3d( <number>#{16} )
+<translate3d()> = translate3d( <length-percentage> , <length-percentage> , <length> )
+<translateZ()> = translateZ( <length> )
+<scale3d()> = scale3d( <number> , <number> , <number> )
+<scaleZ()> = scaleZ( <number> )
+<rotate3d()> = rotate3d( <number> , <number> , <number> , [ <angle> | <zero> ] )
+<rotateX()> = rotateX( [ <angle> | <zero> ] )
+<rotateY()> = rotateY( [ <angle> | <zero> ] )
+<rotateZ()> = rotateZ( [ <angle> | <zero> ] )
+<perspective()> = perspective( <length> )
+*/
+
 const GradientTypes = {
     LINEAR: 'linear-gradient',
     RADIAL: 'radial-gradient'
@@ -333,6 +381,7 @@ const Utilities = {
     hasPropertyTypeList: hasPropertyTypeList,
     colorStringToRGB: colorStringToRGB,
     GradientTypes: GradientTypes,
-    PositionDirectives: PositionDirectives
+    PositionDirectives: PositionDirectives,
+    TransformFunctions: TransformFunctions
 }
 export default Utilities;
