@@ -71,8 +71,12 @@ export default {
         }
     },
     methods: {
+        emitValue: function () {
+            this.$emit('value-change', {value: this.getStyleString(), name: this.name, index: this.index, type: this.data, composited: this.composited});
+        },
         addColor: function () {
             this.$data.colors.push({hue: '#000000', position: 1});
+            this.emitValue();
         },
         removeColor: function (index) {
             console.log(index);
@@ -86,15 +90,18 @@ export default {
             this.$data.shouldDisplay = false;
             setTimeout(()=>{
                 this.$data.shouldDisplay = true;
+                this.emitValue();
             }, 10);
         },
         colorUpdate: function(e){
             console.log(e);
             this.$data.colors[e.index].hue = e.value;
+            this.emitValue();
 
         },
         onAngleChange: function (e) {
             this.$data.angle = e.angle;
+            this.emitValue();
         },
         getStyleString: function (forSlider) {
             let sString = '';
@@ -113,6 +120,7 @@ export default {
         },
         onRadialSelectionChange: function (e) {
             this.$data.radialData = e;
+            this.emitValue();
         },
         getRadialShapeAndPositionString: function () {
             const pos1 = this.$data.radialData.positions[0].position == Utilities.PositionDirectives.PERCENTAGE ? `${this.$data.radialData.positions[0].ratio}%` : this.$data.radialData.positions[0].position;
@@ -122,6 +130,7 @@ export default {
         onPositionChanged: function (e) {
             console.log(e);
             this.$data.colors[e.sig].position = e.x;
+            this.emitValue();
         },
         parseValue: function (val){
             if(val.split(Utilities.GradientTypes.LINEAR).length > 1 || val.split(Utilities.GradientTypes.RADIAL).length > 1){
