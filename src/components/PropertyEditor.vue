@@ -61,6 +61,7 @@ export default {
         }
         
         this.$emit('data-type-selected', {pt: this.propertyDetails.property_types[firstSelection], index: this.index, name: this.name});
+        console.log(this.$root.selectorPropertyMatrix);
         console.log(this.$root.selectorTypeMatrix[this.$root.selectorList[this.$root.selectorIndex]].type[this.name]);
     }
 }
