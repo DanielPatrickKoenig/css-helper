@@ -6,7 +6,7 @@
                     <CompositeValueEditor :names="getSubProperties(n)" :name="n" v-on:value-change="onValueChange" />
                 </div>
                 <PropertyEditor v-else-if="propertyManifest[n].value_max == undefined" :name="n" :index="i" v-on:data-type-selected="onDataTypeSelected">
-                    <DataRepGroup :type="selectePropertyTypes['type'+i]" :name="n" :index="i" v-on:value-change="onValueChange" />
+                    <DataRepGroup :type="selectePropertyTypes['type'+i]" :name="n" :index="i" v-on:value-change="onValueChange" :initval="iVals[i]" />
                 </PropertyEditor>
                 <div v-else>
                     <MultiValueEditor :name="n" v-on:value-change="onValueChange" />
@@ -41,7 +41,8 @@ export default {
             DataReps: Utilities.DataReps,
             propertyManifest: this.$root.propertyManifest,
             PropertyValueTypes: Utilities.PropertyValueTypes,
-            ready: false
+            ready: false,
+            iVals: []
         }
     },
     watch: {
@@ -76,8 +77,13 @@ export default {
     },
     mounted: function () {
         setTimeout(function (self) {
+            
             for(let i = 0; i < self.$data.propertyNames.length; i++){
                 let name = self.$data.propertyNames[i];
+                if(this.$root.selectorPropertyMatrix.css[self.$data.propertyNames[i]]){
+                    let iVal = this.$root.selectorPropertyMatrix.css[self.$data.propertyNames[i]] != undefined ? this.$root.selectorPropertyMatrix.css[self.$data.propertyNames[i]] : '';
+                    this.$data.iVals.push(iVal);
+                }
                 if(self.$root.selectorTypeMatrix[self.$root.selectorList[self.$root.selectorIndex]].type[name]){
                     self.$data.selectePropertyTypes['type'+i.toString()] = Utilities.getValueTypeByID(self.$root.selectorTypeMatrix[self.$root.selectorList[self.$root.selectorIndex]].type[name]);
                 }
