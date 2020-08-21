@@ -1,6 +1,7 @@
 import Utilities from '../../utils/Utilities';
 import PropertyEditor from '../PropertyEditor.vue';
 import DataRepGroup from '../DataRepGroup.vue';
+import {mapState} from 'vuex';
 export default {
     components: {
         PropertyEditor,
@@ -10,14 +11,17 @@ export default {
     data () {
         return {
             values: [],
-            propertyManifest: this.$root.propertyManifest,
+            // propertyManifest: this.$root.propertyManifest,
             propertyTypes: [],
             DataReps: Utilities.DataReps
         }
     },
+    computed: {
+        ...mapState(['propertyManifest', 'selectorIndex', 'selectorList'])
+    },
     methods: {
         getValueSeparator: function (name) {
-            return this.$data.propertyManifest[name].value_separator
+            return this.propertyManifest[name].value_separator
         },
         onDataTypeSelected: function (e) {
             this.$emit('data-type-selected', e);
@@ -32,7 +36,7 @@ export default {
         },
         initializeComponent: function () {
             this.$data.values = [];
-            this.$data.propertyManifest = [];
+            this.propertyManifest = [];
         }
     }
 }
