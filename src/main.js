@@ -41,16 +41,5 @@ Vue.config.productionTip = false
 new Vue({
   store,
   router,
-  render: h => h(App),
-  data () {
-    return {
-      propertyManifest: {},
-      ready: false,
-      selectorPropertyMatrix: {},
-      selectorTypeMatrix: {},
-      selectorList: [],
-      selectorIndex: 0,
-      colorPresets: {}
-    }
-  }
+  render: h => h(App)
 }).$mount('#app')

@@ -72,7 +72,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['selectorIndex', 'selectorList'])
+        ...mapState(['selectorIndex', 'selectorList', 'selectorPropertyMatrix'])
     },
     methods: {
         addSelector: function () {
@@ -92,9 +92,7 @@ export default {
         onValueChange: function (e) {
             if(!e.composited){
                 console.log('################# property page value change ######################');
-                this.$data.classManifest[this.selectorList[this.selectorIndex]] = JSON.parse(JSON.stringify(this.$root.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css));
-                // this.$data.typeManifest[this.selectorList[this.selectorIndex]] = JSON.parse(JSON.stringify(this.$root.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].type));
-
+                this.$data.classManifest[this.selectorList[this.selectorIndex]] = JSON.parse(JSON.stringify(this.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css));
                 this.$data.classStructure = this.$data.classManifest[this.selectorList[this.selectorIndex]];
                 // this.$data.typeStructure = this.$data.typeManifest[this.selectorList[this.selectorIndex]];
 
@@ -109,7 +107,7 @@ export default {
                 this.$forceUpdate();
                 console.log(e);
             }
-            console.log(this.$root.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css);
+            console.log(this.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css);
         },
         onSelectorChosen: function (index, repeat) {
             // this.selectorIndex = index;
@@ -148,9 +146,12 @@ export default {
                 cManifest[this.selectorList[i]] = this.$data.classManifest[this.selectorList[i]] ? this.$data.classManifest[this.selectorList[i]] : {};
             }
             this.$data.classManifest = cManifest;
-            // this.$root.selectorPropertyMatrix = this.$data.classManifest;
             for(let c in this.$data.classManifest){
-                this.$root.selectorPropertyMatrix[c] = {css: this.$data.classManifest[c], type: this.$data.typeManifest[c]};
+                // this.selectorPropertyMatrix[c] = {css: this.$data.classManifest[c], type: this.$data.typeManifest[c]};
+                // this.$store.dispatch('setPropertyMatrixValue', [this.selectorList[this.selectorIndex], 'css', e.name, e.value]);
+                for(let n in this.$data.classManifest[c]){
+                    this.$store.dispatch('setPropertyMatrixValue', [c, 'css', n, this.$data.classManifest[c][n]]);
+                }
             }
             // this.$root.selectorList = this.selectorList;
             

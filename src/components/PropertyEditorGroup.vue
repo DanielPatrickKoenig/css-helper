@@ -51,7 +51,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['propertyManifest', 'selectorIndex', 'selectorList'])
+        ...mapState(['propertyManifest', 'selectorIndex', 'selectorList', 'selectorPropertyMatrix', 'selectorTypeMatrix'])
     },
     methods: {
         onDataTypeSelected: function (e) {
@@ -63,7 +63,8 @@ export default {
         },
         onValueChange: function (e) {
             // this.$emit('value-change', e);
-            this.$root.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[e.name] = e.value;
+            this.$store.dispatch('setPropertyMatrixValue', [this.selectorList[this.selectorIndex], 'css', e.name, e.value]);
+            // this.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[e.name] = e.value;
             this.$emit('value-change', e);
             // this.$data.classStructure[e.name] = e.value;
             // this.$data.previewSig = Utilities.createUniqueID();
@@ -83,12 +84,13 @@ export default {
             
             for(let i = 0; i < self.$data.propertyNames.length; i++){
                 let name = self.$data.propertyNames[i];
-                if(this.$root.selectorPropertyMatrix.css[self.$data.propertyNames[i]]){
-                    let iVal = this.$root.selectorPropertyMatrix.css[self.$data.propertyNames[i]] != undefined ? this.$root.selectorPropertyMatrix.css[self.$data.propertyNames[i]] : '';
+                if(this.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[self.$data.propertyNames[i]]){
+
+                    let iVal = this.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[self.$data.propertyNames[i]] != undefined ? this.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[self.$data.propertyNames[i]] : '';
                     this.$data.iVals.push(iVal);
                 }
-                if(self.$root.selectorTypeMatrix[self.selectorList[self.selectorIndex]].type[name]){
-                    self.$data.selectePropertyTypes['type'+i.toString()] = Utilities.getValueTypeByID(self.$root.selectorTypeMatrix[self.selectorList[self.selectorIndex]].type[name]);
+                if(self.selectorTypeMatrix[self.selectorList[self.selectorIndex]].type[name]){
+                    self.$data.selectePropertyTypes['type'+i.toString()] = Utilities.getValueTypeByID(self.selectorTypeMatrix[self.selectorList[self.selectorIndex]].type[name]);
                 }
             }
             self.$forceUpdate();
