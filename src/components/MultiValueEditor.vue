@@ -20,7 +20,7 @@ export default {
     extends: BaseGroupValueEditor,
     methods: {
         addValue: function () {
-            let propertyData = this.$data.propertyManifest[this.name];
+            let propertyData = this.propertyManifest[this.name];
             this.$data.propertyTypes.push(Utilities.getValueTypeByID(propertyData.property_types[0]));
             this.$data.values.push('0');
             this.$emit('value-change', {value: this.$data.values.join(this.getValueSeparator(this.name)), name: this.name, index: this.index, type: this.$data.propertyTypes});
@@ -32,7 +32,7 @@ export default {
         },
         initializeComponent: function () {
             if(Utilities.propertyisLogged(this, this.name)){
-                this.values = this.$root.selectorPropertyMatrix[this.$root.selectorList[this.$root.selectorIndex]].css[this.name].split(this.$data.propertyManifest[this.name].value_separator);
+                this.values = this.$root.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[this.name].split(this.propertyManifest[this.name].value_separator);
             }
             else{
                 this.addValue();

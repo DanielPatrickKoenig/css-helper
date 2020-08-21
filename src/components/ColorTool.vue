@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- <ColorPicker :granularity="swatchCount" :offset="sliderData.o.value-512" /> -->
-        <Swatches :colors="colors" :size="pickerSize" v-on:color-selected="onColorSelected">
+        <Swatches :colors="colorPresets" :size="pickerSize" v-on:color-selected="onColorSelected">
             <circle :r="pickerSize*.4" :cx="pickerSize/2" :cy="pickerSize/2" :fill="'rgba('+sliderData.r.value.toString()+','+sliderData.g.value.toString()+','+sliderData.b.value.toString()+','+sliderData.a.value.toString()+')'" />
         </Swatches>
         <ul>
@@ -19,6 +19,7 @@ import BaseDataRep from './base/BaseDataRep.js';
 import SliderComponent from './SliderComponent.vue';
 import Swatches from './Swatches.vue';
 import Utilities from '../utils/Utilities';
+import {mapState} from 'vuex';
 // import ColorPicker from './ColorPicker.vue';
 export default {
     props: ['start'],
@@ -39,9 +40,11 @@ export default {
                b: {value: this.start ? Utilities.colorStringToRGB(this.start).b : 0, max: 255, name: 'blue'},
                a: {value: 1, max: 1, name: 'alpha'}
            },
-           colors: this.$root.colorPresets,
            pickerSize: 300
        }
+    },
+    computed: {
+        ...mapState(['colorPresets'])
     },
     methods: {
         emitValue: function () {

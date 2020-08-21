@@ -25,7 +25,7 @@ import PropertyEditor from '../components/PropertyEditor.vue';
 import MultiValueEditor from './MultiValueEditor.vue';
 import DataRepGroup from './DataRepGroup.vue';
 import CompositeValueEditor from './CompositeValueEditor.vue';
-
+import {mapState} from 'vuex';
 export default {
     components: {
         PropertyEditor,
@@ -39,7 +39,7 @@ export default {
             propertyNames: this.names,
             selectePropertyTypes: this.types,
             DataReps: Utilities.DataReps,
-            propertyManifest: this.$root.propertyManifest,
+            // propertyManifest: this.$root.propertyManifest,
             PropertyValueTypes: Utilities.PropertyValueTypes,
             ready: false,
             iVals: []
@@ -49,6 +49,9 @@ export default {
         sig: function () {
             this.$data.selectePropertyTypes = this.types;
         }
+    },
+    computed: {
+        ...mapState(['propertyManifest', 'selectorIndex', 'selectorList'])
     },
     methods: {
         onDataTypeSelected: function (e) {
@@ -60,17 +63,17 @@ export default {
         },
         onValueChange: function (e) {
             // this.$emit('value-change', e);
-            this.$root.selectorPropertyMatrix[this.$root.selectorList[this.$root.selectorIndex]].css[e.name] = e.value;
+            this.$root.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[e.name] = e.value;
             this.$emit('value-change', e);
             // this.$data.classStructure[e.name] = e.value;
             // this.$data.previewSig = Utilities.createUniqueID();
             // console.log(this.$data.classStructure);
         },
         getSubProperties: function (name) {
-            let subProperties = this.$data.propertyManifest[name].sub_properties;
+            let subProperties = this.propertyManifest[name].sub_properties;
             let pNames = [];
             for(let i = 0; i < subProperties.length; i++){
-                pNames.push(Utilities.getPropertyDataByIndex(this.$data.propertyManifest, subProperties[i]).name);
+                pNames.push(Utilities.getPropertyDataByIndex(this.propertyManifest, subProperties[i]).name);
             }
             return pNames;
         }
@@ -84,8 +87,8 @@ export default {
                     let iVal = this.$root.selectorPropertyMatrix.css[self.$data.propertyNames[i]] != undefined ? this.$root.selectorPropertyMatrix.css[self.$data.propertyNames[i]] : '';
                     this.$data.iVals.push(iVal);
                 }
-                if(self.$root.selectorTypeMatrix[self.$root.selectorList[self.$root.selectorIndex]].type[name]){
-                    self.$data.selectePropertyTypes['type'+i.toString()] = Utilities.getValueTypeByID(self.$root.selectorTypeMatrix[self.$root.selectorList[self.$root.selectorIndex]].type[name]);
+                if(self.$root.selectorTypeMatrix[self.selectorList[self.selectorIndex]].type[name]){
+                    self.$data.selectePropertyTypes['type'+i.toString()] = Utilities.getValueTypeByID(self.$root.selectorTypeMatrix[self.selectorList[self.selectorIndex]].type[name]);
                 }
             }
             self.$forceUpdate();

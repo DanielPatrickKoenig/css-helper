@@ -12,28 +12,33 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
+import {mapState} from 'vuex';
 export default {
   name: 'App',
   data () {
     return {
-      menuOpen: false,
-      ready: false
+      menuOpen: false
     }
   },
+  computed: {
+    ...mapState(['ready'])
+  },
   mounted: function () {
-    let self = this;
-    axios.get('preset-colors.json').then((response) => {
-      self.$root.colorPresets = response.data;
-      axios.get('property-manifest.json').then((response) => {
-        self.$root.propertyManifest = response.data;
-        for(let p in self.$root.propertyManifest){
-          self.$root.propertyManifest[p].property_types.push(0);
-        }
-        self.$root.ready = true;
-        self.$data.ready = self.$root.ready;
-      });
-    });
+    this.$store.dispatch('pullPropertyManifest');
+    this.$store.dispatch('pullColorPresets');
+    // let self = this;
+    // axios.get('preset-colors.json').then((response) => {
+    //   self.$root.colorPresets = response.data;
+    //   axios.get('property-manifest.json').then((response) => {
+    //     self.$root.propertyManifest = response.data;
+    //     for(let p in self.$root.propertyManifest){
+    //       self.$root.propertyManifest[p].property_types.push(0);
+    //     }
+    //     self.$root.ready = true;
+    //     self.$data.ready = self.$root.ready;
+    //   });
+    // });
   }
 }
 </script>

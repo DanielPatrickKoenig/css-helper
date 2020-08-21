@@ -1,11 +1,11 @@
 <template>
     <div>
         <PropertyEditorGroup v-if="showEditors" :names="propertyNames" :types="selectePropertyTypes" sig="a" v-on:data-type-selected="onDataTypeSelected" v-on:value-change="onValueChange" multiples="true" />
-        <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectionInfo.selectors" :selector="selectionInfo.selectors[selectionInfo.selectorIndex]" :sig="previewSig" />
+        <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectorList[selectorIndex]" :sig="previewSig" />
         <textarea v-model="markup" />
         <div class="drag-order-list">
-            <DragOrderList class="drag-order-inner-list" :count="selectionInfo.selectors.length" v-on:order-changed="onSelectorOrderChanged">
-                <div v-for="(v, i) in selectionInfo.selectors" :key="'selector-'+i.toString()" :slot="'item-'+i.toString()">
+            <DragOrderList class="drag-order-inner-list" :count="selectorList.length" v-on:order-changed="onSelectorOrderChanged">
+                <div v-for="(v, i) in selectorList" :key="'selector-'+i.toString()" :slot="'item-'+i.toString()">
                     <button v-on:click="onSelectorChosen(i, true)">
                         {{i}} / {{v}}
                     </button>
@@ -13,7 +13,7 @@
                         EDIT
                         <!-- <font-awesome-icon icon="pencil-square-o" /> -->
                     </button>
-                    <button v-on:click="selectionInfo.selectors.splice(i, 1)">
+                    <button v-on:click="removeSelector(v)">
                         Delete
                         <!-- <font-awesome-icon icon="pencil-square-o" /> -->
                     </button>
@@ -25,12 +25,12 @@
         <ModalWindow v-if="selectionInfo.selectorEditorOpen" title="Selector Editor" v-on:modal-close-clicked="selectionInfo.selectorEditorOpen = false; selectionInfo.adding = false;" >
             <div v-if="selectionInfo.adding">
                 <input v-model="selectionInfo.tempSelector" type="text" />
-                <button v-on:click="selectionInfo.selectors.push(selectionInfo.tempSelector);selectionInfo.selectorEditorOpen = false; selectionInfo.adding = false;"><font-awesome-icon icon="plus" /></button>
+                <button v-on:click="addSelector"><font-awesome-icon icon="plus" /></button>
             </div>
             <div v-else>
-                <input v-model="selectionInfo.selectors[selectionInfo.selectorEditIndex]" type="text" />
+                <input v-model="selectorList[selectionInfo.selectorEditIndex]" type="text" />
             </div>
-            <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectionInfo.selectors" :selector="selectionInfo.adding ? selectionInfo.tempSelector : selectionInfo.selectors[selectionInfo.selectorEditIndex]" highlighting="true" :sig="previewSig" />
+            <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectionInfo.adding ? selectionInfo.tempSelector : selectorList[selectionInfo.selectorEditIndex]" highlighting="true" :sig="previewSig" />
         </ModalWindow>
     </div>
 </template>
@@ -40,7 +40,7 @@ import PropertyEditorGroup from '../components/PropertyEditorGroup.vue';
 import HTMLPreview from '../components/HTMLPreview.vue';
 import DragOrderList from '../components/DragOrderList.vue';
 import ModalWindow from '../components/ModalWindow.vue';
-
+import {mapState} from 'vuex';
 export default {
     components: {
         PropertyEditorGroup,
@@ -71,7 +71,18 @@ export default {
             }
         }
     },
+    computed: {
+        ...mapState(['selectorIndex', 'selectorList'])
+    },
     methods: {
+        addSelector: function () {
+            this.$store.dispatch('addSelector', this.$data.selectionInfo.tempSelector);
+            this.$data.selectionInfo.selectorEditorOpen = false;
+            this.$data.selectionInfo.adding = false;
+        },
+        removeSelector: function (selector) {
+            this.$store.dispatch('removeSelector', selector);
+        },
         onDataTypeSelected: function (e) {
             this.$data.selectePropertyTypes['type'+e.index.toString()] = Utilities.getValueTypeByID(e.pt);
             // console.log(this.$data.selectePropertyTypes);
@@ -81,28 +92,29 @@ export default {
         onValueChange: function (e) {
             if(!e.composited){
                 console.log('################# property page value change ######################');
-                this.$data.classManifest[this.$data.selectionInfo.selectors[this.$data.selectionInfo.selectorIndex]] = JSON.parse(JSON.stringify(this.$root.selectorPropertyMatrix[this.$data.selectionInfo.selectors[this.$data.selectionInfo.selectorIndex]].css));
-                // this.$data.typeManifest[this.$data.selectionInfo.selectors[this.$data.selectionInfo.selectorIndex]] = JSON.parse(JSON.stringify(this.$root.selectorPropertyMatrix[this.$data.selectionInfo.selectors[this.$data.selectionInfo.selectorIndex]].type));
+                this.$data.classManifest[this.selectorList[this.selectorIndex]] = JSON.parse(JSON.stringify(this.$root.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css));
+                // this.$data.typeManifest[this.selectorList[this.selectorIndex]] = JSON.parse(JSON.stringify(this.$root.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].type));
 
-                this.$data.classStructure = this.$data.classManifest[this.$data.selectionInfo.selectors[this.$data.selectionInfo.selectorIndex]];
-                // this.$data.typeStructure = this.$data.typeManifest[this.$data.selectionInfo.selectors[this.$data.selectionInfo.selectorIndex]];
+                this.$data.classStructure = this.$data.classManifest[this.selectorList[this.selectorIndex]];
+                // this.$data.typeStructure = this.$data.typeManifest[this.selectorList[this.selectorIndex]];
 
                 // this.$data.classStructure[e.name] = e.value;
                 this.$data.typeStructure[e.name] = e.type;
                 // console.log(this.$data.classStructure);
                 this.$data.previewSig = Utilities.createUniqueID();
-                // this.$data.classManifest[this.$data.selectionInfo.selectors[this.$data.selectionInfo.selectorIndex]] = JSON.parse(JSON.stringify(this.$data.classStructure));
-                // this.$data.typeManifest[this.$data.selectionInfo.selectors[this.$data.selectionInfo.selectorIndex]] = JSON.parse(JSON.stringify(this.$data.typeStructure));
+                // this.$data.classManifest[this.selectorList[this.selectorIndex]] = JSON.parse(JSON.stringify(this.$data.classStructure));
+                // this.$data.typeManifest[this.selectorList[this.selectorIndex]] = JSON.parse(JSON.stringify(this.$data.typeStructure));
                 // console.log(this.$data.classManifest);
                 // this.updateClassManifest();
                 this.$forceUpdate();
                 console.log(e);
             }
-            console.log(this.$root.selectorPropertyMatrix[this.$data.selectionInfo.selectors[this.$data.selectionInfo.selectorIndex]].css);
+            console.log(this.$root.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css);
         },
         onSelectorChosen: function (index, repeat) {
-            this.$data.selectionInfo.selectorIndex = index;
-            this.$root.selectorIndex = this.$data.selectionInfo.selectorIndex;
+            // this.selectorIndex = index;
+            this.$store.dispatch('setSelectorInex', index);
+            // this.$root.selectorIndex = this.selectorIndex;
             this.$data.showEditors = false;
             setTimeout(function (self) {
                 self.$data.showEditors = true;
@@ -110,12 +122,13 @@ export default {
                     if(repeat){
                         _self.onSelectorChosen(index);
                     }
+                    console.log('store', _self.$store);
                 }, 50, self);
             }, 50, this);
 
         },
         onSelectorOrderChanged: function (e) {
-            Utilities.moveArrayItem(this.$data.selectionInfo.selectors, e.moved, e.target);
+            Utilities.moveArrayItem(this.selectorList, e.moved, e.target);
             this.$data.previewSig = Utilities.createUniqueID();
             this.updateClassManifest();
             this.$forceUpdate();
@@ -123,32 +136,32 @@ export default {
             // setTimeout(function (self) {self.$data.showEditors = true;}, 10, this);
             
         },
-        addSelector: function () {
-            this.$data.selectionInfo.selectors.push(this.$data.selectionInfo.tempSelector);
-            this.$data.selectionInfo.selectorEditorOpen = false;
-            this.$data.selectionInfo.adding = false;
-            // this.updateClassManifest();
-        },
+        // addSelector: function () {
+        //     this.selectorList.push(this.selectorList.tempSelector);
+        //     this.selectorList.selectorEditorOpen = false;
+        //     this.selectorList.adding = false;
+        //     // this.updateClassManifest();
+        // },
         updateClassManifest: function () {
             let cManifest = {};
-            for(let i = 0; i < this.$data.selectionInfo.selectors.length; i++){
-                cManifest[this.$data.selectionInfo.selectors[i]] = this.$data.classManifest[this.$data.selectionInfo.selectors[i]] ? this.$data.classManifest[this.$data.selectionInfo.selectors[i]] : {};
+            for(let i = 0; i < this.selectorList.length; i++){
+                cManifest[this.selectorList[i]] = this.$data.classManifest[this.selectorList[i]] ? this.$data.classManifest[this.selectorList[i]] : {};
             }
             this.$data.classManifest = cManifest;
             // this.$root.selectorPropertyMatrix = this.$data.classManifest;
             for(let c in this.$data.classManifest){
                 this.$root.selectorPropertyMatrix[c] = {css: this.$data.classManifest[c], type: this.$data.typeManifest[c]};
             }
-            this.$root.selectorList = this.$data.selectionInfo.selectors;
+            // this.$root.selectorList = this.selectorList;
             
             // 
         }
     },
     mounted: function () {
-        this.$data.selectionInfo.selectors.push('');
-        this.$data.selectionInfo.selectors.push(' > span');
-        this.$data.selectionInfo.selectors.push(' > table th');
-        this.$data.selectionInfo.selectors.push(' > table td');
+        this.$store.dispatch('addSelector', '');
+        this.$store.dispatch('addSelector', ' > span');
+        this.$store.dispatch('addSelector', ' > table th');
+        this.$store.dispatch('addSelector', ' > table td');
         this.updateClassManifest();
     }
 }

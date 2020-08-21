@@ -39,7 +39,7 @@
     </div>    
 </template>
 <script>
-import Utilities from '../utils/Utilities'
+import Utilities from '../utils/Utilities';
 export default {
     props: ['data'],
     data () {
@@ -47,8 +47,7 @@ export default {
             searchTerm: '',
             valueTypes: Utilities.PropertyValueTypes,
             selectionMatrix: {},
-            selections: [],
-            ready: this.$root.ready
+            selections: []
         }
     },
     methods: {

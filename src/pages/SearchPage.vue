@@ -1,12 +1,13 @@
 <template>
   <div id="search-content">
-    <PropertyTable v-if="ready" :data="searchItems"></PropertyTable>
+    <PropertyTable v-if="ready" :data="propertyManifest"></PropertyTable>
   </div>
 </template>
 
 <script>
 // import axios from 'axios';
 import PropertyTable from '../components/PropertyTable.vue';
+import {mapState} from 'vuex';
 export default {
   name: 'Search',
   components: {
@@ -14,9 +15,12 @@ export default {
   },
   data () {
     return {
-      searchItems: this.$root.propertyManifest,
-      ready: this.$root.ready
+      // searchItems: this.$root.propertyManifest,
+      // ready: this.$root.ready
     }
+  },
+  computed: {
+    ...mapState(['propertyManifest', 'ready'])
   }
 }
 </script>

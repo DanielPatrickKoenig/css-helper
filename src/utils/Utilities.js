@@ -1,6 +1,13 @@
+import {mapState} from 'vuex';
+
 function createUniqueID () {
     return 'sig-' + Math.random().toString().split('.').join('') + '-' + Math.random().toString().split('.').join('') + '-' + Math.random().toString().split('.').join('');
 }
+
+function mappedState (){
+    return mapState(['propertyManifest', 'ready']);
+}
+
 function getArrayIndexByValue (array ,value, property) {
     let index = -1;
     for (let i = 0; i < array.length; i++) {
@@ -274,72 +281,74 @@ function moveArrayItem(arr, old_index, new_index) {
 
 function propertyisLogged(scope, name, composited){
     let logged = false;
-    if(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]]){
-        if(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css){
-            if(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css[name]){
+    console.log('propertyisLogged - ', scope.$store.state.selectorIndex);
+    if(scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]]){
+        if(scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].css){
+            if(scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].css[name]){
                 // hasValue = true;
-                // console.log(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css[name]);
+                // console.log(scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].css[name]);
                 logged = true;
-                // scope.$data.value = scope.parseValue(scope.$root.propertyManifest[name].value_separator ? scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css[name].split(scope.$root.propertyManifest[name].value_separator)[scope.index] : scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css[name]);
+                // scope.$data.value = scope.parseValue(scope.$root.propertyManifest[name].value_separator ? scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].css[name].split(scope.$root.propertyManifest[name].value_separator)[scope.index] : scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].css[name]);
             }
             else{
                 if(!composited){
-                    scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css[name] = {};   
+                    scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].css[name] = {};   
                 }
             }
         }
         else{
-            scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css = {};
+            scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].css = {};
         }
-        // if(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type){
-        //     console.log(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type[name]);
-        //     if(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type.join){
-        //         scope.data = scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type[scope.index];
+        // if(scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].type){
+        //     console.log(scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].type[name]);
+        //     if(scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].type.join){
+        //         scope.data = scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].type[scope.index];
         //     }
         //     else {
-        //         scope.data = scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type;
+        //         scope.data = scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].type;
         //     }
-        //     if(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css){
-        //         if(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css[name]){
-        //             console.log(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css[name]);
-        //             scope.$data.value = scope.processValue(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].css[name]);
+        //     if(scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].css){
+        //         if(scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].css[name]){
+        //             console.log(scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].css[name]);
+        //             scope.$data.value = scope.processValue(scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].css[name]);
         //         }
         //     }
             
         // }
-        // console.log(scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type[name]);
+        // console.log(scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].type[name]);
     }
     else{
-        scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]] = {};
+        scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]] = {};
     }
     return logged;
 }
 
 function hasPropertyTypeList(scope, name){
-    console.log(name);
-    return scope.$root.propertyManifest[name].sub_properties || scope.$root.propertyManifest[name].value_max;
+    console.log('mapped state = ', scope.$store);
+    // return mappedState().propertyManifest[name].sub_properties || mappedState().propertyManifest[name].value_max;
+    return scope.$store.state.propertyManifest[name].sub_properties || scope.$store.state.propertyManifest[name].value_max;
 }
 
 function startTypeLog(scope, name){
-    if(!scope.$root.selectorTypeMatrix[scope.$root.selectorList[scope.$root.selectorIndex]]){
-        scope.$root.selectorTypeMatrix[scope.$root.selectorList[scope.$root.selectorIndex]] = {};
+    if(!scope.$root.selectorTypeMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]]){
+        scope.$root.selectorTypeMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]] = {};
     }
-    if(!scope.$root.selectorTypeMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type){
-        scope.$root.selectorTypeMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type = {};
+    if(!scope.$root.selectorTypeMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].type){
+        scope.$root.selectorTypeMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].type = {};
     }
-    if(!scope.$root.selectorTypeMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type[name]){
-        scope.$root.selectorTypeMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type[name] = {};
+    if(!scope.$root.selectorTypeMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].type[name]){
+        scope.$root.selectorTypeMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].type[name] = {};
     }
-    console.log('what the fuck is going on!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', scope.$root.selectorPropertyMatrix[scope.$root.selectorList[scope.$root.selectorIndex]]);
+    console.log('what the fuck is going on!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]]);
 }
 
 function addToTypeLog(scope, name, index, value){
     startTypeLog(scope, name);
     if(hasPropertyTypeList(scope, name)){
-        scope.$root.selectorTypeMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type[name]['type_'+index.toString()] = value;
+        scope.$root.selectorTypeMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].type[name]['type_'+index.toString()] = value;
     }
     else {
-        scope.$root.selectorTypeMatrix[scope.$root.selectorList[scope.$root.selectorIndex]].type[name] = value;
+        scope.$root.selectorTypeMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].type[name] = value;
     }
 
 }
@@ -382,6 +391,7 @@ const Utilities = {
     colorStringToRGB: colorStringToRGB,
     GradientTypes: GradientTypes,
     PositionDirectives: PositionDirectives,
-    TransformFunctions: TransformFunctions
+    TransformFunctions: TransformFunctions,
+    mappedState: mappedState
 }
 export default Utilities;
