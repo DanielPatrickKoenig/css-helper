@@ -20,7 +20,7 @@ import {mapState} from 'vuex';
 export default {
     props: ['name', 'index', 'listed'],
     computed: {
-        ...mapState(['propertyManifest', 'selectorIndex', 'selectorList'])
+        ...mapState(['propertyManifest', 'selectorIndex', 'selectorList', 'selectorPropertyMatrix', 'selectorTypeMatrix'])
         // propertyDetails: function () {
         //     return this.$store.propertyManifest[this.name];
         // }
@@ -35,37 +35,21 @@ export default {
         console.log('manifest - ',this.propertyManifest);
         let firstSelection = 0;
         // this.onPropertyTypeSelected(firstSelection);
-        
-        if(this.$root.selectorTypeMatrix[this.selectorList[this.selectorIndex]]){
-            if(this.$root.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type){
-                if(this.$root.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type[this.name]){
-                    if(this.$root.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type[this.name]){
-                        console.log('this should be the index', this.index.toString());
-                        console.log('this should show types', this.$root.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type[this.name]);
-                        console.log('this should show type', this.$root.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type[this.name]['type_'+this.index.toString()]);
-                        console.log('this should show type object', Utilities.getValueTypeByID(this.$root.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type[this.name]['type_'+this.index.toString()]));
-                    }
-                    this.$root.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type[this.name]['type_'+this.index.toString()]
-                    let propertyType = Utilities.hasPropertyTypeList(this, this.name) ? Utilities.getValueTypeByID(this.$root.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type[this.name]['type_'+this.index.toString()]) : Utilities.getValueTypeByID(this.$root.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type[this.name]);
+        // scope.$store.dispatch('setTypeMatrixValue', [scope.$store.state.selectorList[scope.$store.state.selectorIndex], 'type', name]);
+        if(this.selectorTypeMatrix[this.selectorList[this.selectorIndex]]){
+            if(this.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type){
+                if(this.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type[this.name]){
+                    this.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type[this.name]['type_'+this.index.toString()]
+                    let propertyType = Utilities.hasPropertyTypeList(this, this.name) ? Utilities.getValueTypeByID(this.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type[this.name]['type_'+this.index.toString()]) : Utilities.getValueTypeByID(this.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type[this.name]);
                     for(let i = 0; i < this.propertyManifest[this.name].property_types.length; i++) {
                         if (propertyType.id == Utilities.getValueTypeByID(this.propertyManifest[this.name].property_types[i]).id){
                             firstSelection = i;
                         }
                     }
-                    if(Utilities.hasPropertyTypeList(this, this.name)){
-                        console.log(Utilities.getValueTypeByID(this.$root.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type[this.name]['type_'+this.index.toString()]));
-                    }
-                    else{
-                        console.log(Utilities.getValueTypeByID(this.$root.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type[this.name]));
-                    }
-                    
                 }
             }
         }
-        
         this.$emit('data-type-selected', {pt: this.propertyManifest[this.name].property_types[firstSelection], index: this.index, name: this.name});
-        console.log(this.$root.selectorPropertyMatrix);
-        console.log(this.$root.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type[this.name]);
     }
 }
 </script>

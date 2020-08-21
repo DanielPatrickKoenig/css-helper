@@ -17,7 +17,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['propertyManifest', 'selectorIndex', 'selectorList'])
+        ...mapState(['propertyManifest', 'selectorIndex', 'selectorList', 'selectorPropertyMatrix'])
     },
     methods: {
         getValueSeparator: function (name) {

@@ -41,7 +41,7 @@ export default {
         
         if(Utilities.propertyisLogged(this, this.name)){
             let targetSeparator = Utilities.ValueSeparatorMatrix['default'].proxy;
-            let currentValue = this.$root.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[this.name];
+            let currentValue = this.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[this.name];
             for(let v in Utilities.ValueSeparatorMatrix){
                 currentValue = currentValue.split(Utilities.ValueSeparatorMatrix[v].proxy).join(targetSeparator);
             }

@@ -39,6 +39,61 @@ export default new Vuex.Store({
             if(index > -1){
                 state.selectorList.splice(index, 1);
             }
+        },
+        SET_PROPERTY_MATRIX_VALUE(state, payload){
+            switch(payload.length){
+                case 0:{
+                    break;
+                }
+                case 1:{
+                    state.selectorPropertyMatrix[payload[0]] = {};
+                    break;
+                }
+                case 2:{
+                    state.selectorPropertyMatrix[payload[0]][payload[1]] = {};
+                    break;
+                }
+                case 3:{
+                    state.selectorPropertyMatrix[payload[0]][payload[1]][payload[2]] = {};
+                    break;
+                }
+                case 4:{
+                    state.selectorPropertyMatrix[payload[0]][payload[1]][payload[2]] = payload[3];
+                    break;
+                }
+            }
+        },
+        SET_TYPE_MATRIX_VALUE(state, payload){
+            switch(payload.length){
+                case 0:{
+                    break;
+                }
+                case 1:{
+                    state.selectorTypeMatrix[payload[0]] = {};
+                    break;
+                }
+                case 2:{
+                    state.selectorTypeMatrix[payload[0]][payload[1]] = {};
+                    break;
+                }
+                case 3:{
+                    state.selectorTypeMatrix[payload[0]][payload[1]][payload[2]] = {};
+                    break;
+                }
+                case 4:{
+                    if(payload[3].toString().split('type_').length > 1){
+                        state.selectorTypeMatrix[payload[0]][payload[1]][payload[2]][payload[3]] = {}
+                    }
+                    else {
+                        state.selectorTypeMatrix[payload[0]][payload[1]][payload[2]] = payload[3];
+                    }
+                    break;
+                }
+                case 5:{
+                    state.selectorTypeMatrix[payload[0]][payload[1]][payload[2]][payload[3]] = payload[4];
+                    break;
+                }
+            }
         }
     },
     actions: {
@@ -60,6 +115,12 @@ export default new Vuex.Store({
         },
         removeSelector: function ({commit}, payload){
             commit('REMOVE_SELECTOR', payload);
+        },
+        setPropertyMatrixValue: function ({commit}, payload) {
+            commit('SET_PROPERTY_MATRIX_VALUE', payload);
+        },
+        setTypeMatrixValue: function ({commit}, payload) {
+            commit('SET_TYPE_MATRIX_VALUE', payload);
         }
     }
 });

@@ -32,7 +32,7 @@ export default {
         },
         initializeComponent: function () {
             if(Utilities.propertyisLogged(this, this.name)){
-                this.values = this.$root.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[this.name].split(this.propertyManifest[this.name].value_separator);
+                this.values = this.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[this.name].split(this.propertyManifest[this.name].value_separator);
             }
             else{
                 this.addValue();
