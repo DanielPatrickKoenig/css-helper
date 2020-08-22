@@ -48,7 +48,7 @@ export default {
     },
     methods: {
         emitValue: function () {
-            this.$emit('value-change', {value: `rgba(${this.$data.sliderData.r.value},${this.$data.sliderData.g.value},${this.$data.sliderData.b.value},${this.$data.sliderData.a.value})`, name: this.name, index: this.index, type: this.data, composited: this.composited});
+            this.$emit('value-change', {value: `rgba(${this.$data.sliderData.r.value},${this.$data.sliderData.g.value},${this.$data.sliderData.b.value},${this.$data.sliderData.a.value})`, name: this.name, index: this.index, type: this.data, composited: this.composited, sindex: this.sindex});
         },
         onSliderMoved: function (e) {
             this.$data.sliderData[e.sig].value = e.x;

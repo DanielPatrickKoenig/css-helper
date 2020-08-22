@@ -1,7 +1,7 @@
 import Utilities from "../../utils/Utilities";
 import {mapState} from 'vuex';
 export default {
-    props: ['data', 'name', 'index', 'composited', 'initval'],
+    props: ['data', 'name', 'index', 'composited', 'initval', 'sindex'],
     data () {
         return {
             value: this.getDefaultValue()
@@ -9,7 +9,7 @@ export default {
     },
     methods: {
         onValueChange: function(e){
-            this.$emit('value-change', {value: this.processValue(this.deriveValue(e)), name: this.name, index: this.index, type: this.data, composited: this.composited});
+            this.$emit('value-change', {value: this.processValue(this.deriveValue(e)), name: this.name, index: this.index, type: this.data, composited: this.composited, sindex: this.sindex});
         },
         deriveValue: function(e){
             return e.target.value;
@@ -32,14 +32,11 @@ export default {
         ...mapState(['propertyManifest', 'selectorIndex', 'selectorList', 'selectorPropertyMatrix'])
     },
     mounted: function () {
-        console.log(this.selectorPropertyMatrix);
-        console.log(this.selectorIndex);
-        console.log(this.initval);
         if(this.initval){
             this.$data.value = this.parseValue(this.initval);
         }
-        else if(Utilities.propertyisLogged(this, this.name, this.csomposited)){
-            this.$data.value = this.parseValue(this.propertyManifest[this.name].value_separator ? this.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[this.name].split(this.propertyManifest[this.name].value_separator)[this.index] : this.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[this.name]);
+        else if(Utilities.propertyisLogged(this, this.name, this.sindex, this.csomposited)){
+            this.$data.value = this.parseValue(this.propertyManifest[this.name].value_separator ? this.selectorPropertyMatrix[this.selectorList[this.sindex]].css[this.name].split(this.propertyManifest[this.name].value_separator)[this.index] : this.selectorPropertyMatrix[this.selectorList[this.sindex]].css[this.name]);
         }
     }
 }

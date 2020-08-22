@@ -3,13 +3,13 @@
         <div>
             <div v-for="(n, i) in propertyNames" :key="'property-'+i.toString()">
                 <div v-if="propertyManifest[n].property_types[0] == PropertyValueTypes.CSS_CLASS_UI.id">
-                    <CompositeValueEditor :names="getSubProperties(n)" :name="n" v-on:value-change="onValueChange" />
+                    <CompositeValueEditor :sindex="sindex" :names="getSubProperties(n)" :name="n" v-on:value-change="onValueChange" />
                 </div>
-                <PropertyEditor v-else-if="propertyManifest[n].value_max == undefined" :name="n" :index="i" v-on:data-type-selected="onDataTypeSelected">
-                    <DataRepGroup :type="selectePropertyTypes['type'+i]" :name="n" :index="i" v-on:value-change="onValueChange" :initval="iVals[i]" />
+                <PropertyEditor v-else-if="propertyManifest[n].value_max == undefined" :name="n" :sindex="sindex" :index="i" v-on:data-type-selected="onDataTypeSelected">
+                    <DataRepGroup :sindex="sindex" :type="selectePropertyTypes['type'+i]" :name="n" :index="i" v-on:value-change="onValueChange" :initval="iVals[i]" />
                 </PropertyEditor>
                 <div v-else>
-                    <MultiValueEditor :name="n" v-on:value-change="onValueChange" />
+                    <MultiValueEditor :sindex="sindex" :name="n" v-on:value-change="onValueChange" />
                 </div>
             </div>
             <button v-if="!multiples">
@@ -33,7 +33,7 @@ export default {
         DataRepGroup,
         CompositeValueEditor
     },
-    props: ['names', 'types', 'sig', 'multiples'],
+    props: ['names', 'types', 'sig', 'multiples', 'sindex'],
     data () {
         return {
             propertyNames: this.names,
@@ -58,13 +58,12 @@ export default {
             this.$emit('data-type-selected', e);
             this.$data.selectePropertyTypes['type'+e.index.toString()] = Utilities.getValueTypeByID(e.pt);
             // console.log(this.$data.selectePropertyTypes);
-            Utilities.addToTypeLog(this, e.name, e.index, e.pt);
+            Utilities.addToTypeLog(this, e.name, e.index, e.sindex, e.pt);
             this.$forceUpdate();
         },
         onValueChange: function (e) {
             // this.$emit('value-change', e);
-            this.$store.dispatch('setPropertyMatrixValue', [this.selectorList[this.selectorIndex], 'css', e.name, e.value]);
-            // this.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[e.name] = e.value;
+            this.$store.dispatch('setPropertyMatrixValue', [this.selectorList[this.sindex], 'css', e.name, e.value]);
             this.$emit('value-change', e);
             // this.$data.classStructure[e.name] = e.value;
             // this.$data.previewSig = Utilities.createUniqueID();
@@ -84,13 +83,13 @@ export default {
             
             for(let i = 0; i < self.$data.propertyNames.length; i++){
                 let name = self.$data.propertyNames[i];
-                if(this.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[self.$data.propertyNames[i]]){
+                if(this.selectorPropertyMatrix[this.selectorList[this.sindex]].css[self.$data.propertyNames[i]]){
 
-                    let iVal = this.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[self.$data.propertyNames[i]] != undefined ? this.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[self.$data.propertyNames[i]] : '';
+                    let iVal = this.selectorPropertyMatrix[this.selectorList[this.sindex]].css[self.$data.propertyNames[i]] != undefined ? this.selectorPropertyMatrix[this.selectorList[this.sindex]].css[self.$data.propertyNames[i]] : '';
                     this.$data.iVals.push(iVal);
                 }
-                if(self.selectorTypeMatrix[self.selectorList[self.selectorIndex]].type[name]){
-                    self.$data.selectePropertyTypes['type'+i.toString()] = Utilities.getValueTypeByID(self.selectorTypeMatrix[self.selectorList[self.selectorIndex]].type[name]);
+                if(self.selectorTypeMatrix[self.selectorList[self.sindex]].type[name]){
+                    self.$data.selectePropertyTypes['type'+i.toString()] = Utilities.getValueTypeByID(self.selectorTypeMatrix[self.selectorList[self.sindex]].type[name]);
                 }
             }
             self.$forceUpdate();

@@ -1,6 +1,9 @@
 <template>
     <div>
-        <PropertyEditorGroup v-if="showEditors" :names="propertyNames" :types="selectePropertyTypes" sig="a" v-on:data-type-selected="onDataTypeSelected" v-on:value-change="onValueChange" multiples="true" />
+        <div v-if="showEditors">
+            <PropertyEditorGroup v-for="(s, i) in selectorList" :key="'selector-'+i.toString()" :names="propertyNames" :types="selectePropertyTypes" sig="a" v-on:data-type-selected="onDataTypeSelected" v-on:value-change="onValueChange" multiples="true" :sindex="i" />
+        </div>
+        
         <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectorList[selectorIndex]" :sig="previewSig" />
         <textarea v-model="markup" />
         <div class="drag-order-list">
@@ -90,24 +93,19 @@ export default {
             this.$forceUpdate();
         },
         onValueChange: function (e) {
+            console.log(e);
             if(!e.composited){
                 console.log('################# property page value change ######################');
-                this.$data.classManifest[this.selectorList[this.selectorIndex]] = JSON.parse(JSON.stringify(this.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css));
-                this.$data.classStructure = this.$data.classManifest[this.selectorList[this.selectorIndex]];
-                // this.$data.typeStructure = this.$data.typeManifest[this.selectorList[this.selectorIndex]];
+                this.$data.classManifest[this.selectorList[e.sindex]] = JSON.parse(JSON.stringify(this.selectorPropertyMatrix[this.selectorList[e.sindex]].css));
+                this.$data.classStructure = this.$data.classManifest[this.selectorList[e.sindex]];
 
                 // this.$data.classStructure[e.name] = e.value;
                 this.$data.typeStructure[e.name] = e.type;
                 // console.log(this.$data.classStructure);
                 this.$data.previewSig = Utilities.createUniqueID();
-                // this.$data.classManifest[this.selectorList[this.selectorIndex]] = JSON.parse(JSON.stringify(this.$data.classStructure));
-                // this.$data.typeManifest[this.selectorList[this.selectorIndex]] = JSON.parse(JSON.stringify(this.$data.typeStructure));
-                // console.log(this.$data.classManifest);
-                // this.updateClassManifest();
                 this.$forceUpdate();
                 console.log(e);
             }
-            console.log(this.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css);
         },
         onSelectorChosen: function (index, repeat) {
             // this.selectorIndex = index;

@@ -33,15 +33,15 @@ export default {
                 }
                 valString += this.$data.values[i].toString();
             }
-            this.$emit('value-change', {value: valString, name: this.name, index: e.index, type: this.$data.propertyTypes});
+            this.$emit('value-change', {value: valString, name: this.name, index: e.index, type: this.$data.propertyTypes, sindex: this.sindex});
         }
     },
     mounted: function () {
         let valueList = [];
         
-        if(Utilities.propertyisLogged(this, this.name)){
+        if(Utilities.propertyisLogged(this, this.name, this.sindex)){
             let targetSeparator = Utilities.ValueSeparatorMatrix['default'].proxy;
-            let currentValue = this.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[this.name];
+            let currentValue = this.selectorPropertyMatrix[this.selectorList[this.sindex]].css[this.name];
             for(let v in Utilities.ValueSeparatorMatrix){
                 currentValue = currentValue.split(Utilities.ValueSeparatorMatrix[v].proxy).join(targetSeparator);
             }

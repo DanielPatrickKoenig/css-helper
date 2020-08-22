@@ -72,7 +72,7 @@ export default {
     },
     methods: {
         emitValue: function () {
-            this.$emit('value-change', {value: this.getStyleString(), name: this.name, index: this.index, type: this.data, composited: this.composited});
+            this.$emit('value-change', {value: this.getStyleString(), name: this.name, index: this.index, type: this.data, composited: this.composited, sindex: this.sindex});
         },
         addColor: function () {
             this.$data.colors.push({hue: '#000000', position: 1});
