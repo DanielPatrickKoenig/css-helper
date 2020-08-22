@@ -50,14 +50,32 @@ export default new Vuex.Store({
                     break;
                 }
                 case 2:{
+                    if(!state.selectorPropertyMatrix[payload[0]]){
+                        state.selectorPropertyMatrix[payload[0]] = {};
+                    }
                     state.selectorPropertyMatrix[payload[0]][payload[1]] = {};
                     break;
                 }
                 case 3:{
+                    if(!state.selectorPropertyMatrix[payload[0]]){
+                        state.selectorPropertyMatrix[payload[0]] = {};
+                    }
+                    if(!state.selectorPropertyMatrix[payload[0]][payload[1]]){
+                        state.selectorPropertyMatrix[payload[0]][payload[1]] = {};
+                    }
                     state.selectorPropertyMatrix[payload[0]][payload[1]][payload[2]] = {};
                     break;
                 }
                 case 4:{
+                    if(!state.selectorPropertyMatrix[payload[0]]){
+                        state.selectorPropertyMatrix[payload[0]] = {};
+                    }
+                    if(!state.selectorPropertyMatrix[payload[0]][payload[1]]){
+                        state.selectorPropertyMatrix[payload[0]][payload[1]] = {};
+                    }
+                    if(!state.selectorPropertyMatrix[payload[0]][payload[1]][payload[2]]){
+                        state.selectorPropertyMatrix[payload[0]][payload[1]][payload[2]] = {};
+                    }
                     state.selectorPropertyMatrix[payload[0]][payload[1]][payload[2]] = payload[3];
                     break;
                 }
