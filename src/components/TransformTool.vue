@@ -46,7 +46,7 @@ export default {
         }
       }
       this.$data.valueString = valueList.join(' ');
-      this.$emit('value-change', {value: this.$data.valueString, name: this.name, index: this.index, type: this.data, composited: this.composited});
+      this.$emit('value-change', {value: this.$data.valueString, name: this.name, index: this.index, type: this.data, composited: this.composited, sindex: this.sindex});
     }
   },
   created: function () {

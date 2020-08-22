@@ -18,7 +18,7 @@
 import Utilities from '../utils/Utilities';
 import {mapState} from 'vuex';
 export default {
-    props: ['name', 'index', 'listed'],
+    props: ['name', 'index', 'listed', 'sindex'],
     computed: {
         ...mapState(['propertyManifest', 'selectorIndex', 'selectorList', 'selectorPropertyMatrix', 'selectorTypeMatrix'])
         // propertyDetails: function () {
@@ -28,19 +28,17 @@ export default {
     methods: {
         getValueTypeByID: Utilities.getValueTypeByID,
         onPropertyTypeSelected: function (pt) {
-            this.$emit('data-type-selected', {pt: pt, index: this.index, name: this.name});
+            this.$emit('data-type-selected', {pt: pt, index: this.index, name: this.name, sindex: this.sindex});
         }
     },
     mounted: function () {
         console.log('manifest - ',this.propertyManifest);
         let firstSelection = 0;
-        // this.onPropertyTypeSelected(firstSelection);
-        // scope.$store.dispatch('setTypeMatrixValue', [scope.$store.state.selectorList[scope.$store.state.selectorIndex], 'type', name]);
-        if(this.selectorTypeMatrix[this.selectorList[this.selectorIndex]]){
-            if(this.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type){
-                if(this.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type[this.name]){
-                    this.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type[this.name]['type_'+this.index.toString()]
-                    let propertyType = Utilities.hasPropertyTypeList(this, this.name) ? Utilities.getValueTypeByID(this.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type[this.name]['type_'+this.index.toString()]) : Utilities.getValueTypeByID(this.selectorTypeMatrix[this.selectorList[this.selectorIndex]].type[this.name]);
+        if(this.selectorTypeMatrix[this.selectorList[this.sindex]]){
+            if(this.selectorTypeMatrix[this.selectorList[this.sindex]].type){
+                if(this.selectorTypeMatrix[this.selectorList[this.sindex]].type[this.name]){
+                    this.selectorTypeMatrix[this.selectorList[this.sindex]].type[this.name]['type_'+this.index.toString()]
+                    let propertyType = Utilities.hasPropertyTypeList(this, this.name) ? Utilities.getValueTypeByID(this.selectorTypeMatrix[this.selectorList[this.sindex]].type[this.name]['type_'+this.index.toString()]) : Utilities.getValueTypeByID(this.selectorTypeMatrix[this.selectorList[this.sindex]].type[this.name]);
                     for(let i = 0; i < this.propertyManifest[this.name].property_types.length; i++) {
                         if (propertyType.id == Utilities.getValueTypeByID(this.propertyManifest[this.name].property_types[i]).id){
                             firstSelection = i;
@@ -49,7 +47,7 @@ export default {
                 }
             }
         }
-        this.$emit('data-type-selected', {pt: this.propertyManifest[this.name].property_types[firstSelection], index: this.index, name: this.name});
+        this.$emit('data-type-selected', {pt: this.propertyManifest[this.name].property_types[firstSelection], index: this.index, name: this.name, sindex: this.sindex});
     }
 }
 </script>

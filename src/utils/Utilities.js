@@ -279,27 +279,26 @@ function moveArrayItem(arr, old_index, new_index) {
     arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
 }
 
-function propertyisLogged(scope, name, composited){
+function propertyisLogged(scope, name, sindex, composited){
     let logged = false;
     let dispatchPayload = [];
-    console.log('propertyisLogged - ', scope.$store.state.selectorIndex);
-    if(scope.$store.state.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]]){
-        if(scope.$store.state.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].css){
-            if(scope.$store.state.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].css[name]){
+    if(scope.$store.state.selectorPropertyMatrix[scope.$store.state.selectorList[sindex]]){
+        if(scope.$store.state.selectorPropertyMatrix[scope.$store.state.selectorList[sindex]].css){
+            if(scope.$store.state.selectorPropertyMatrix[scope.$store.state.selectorList[sindex]].css[name]){
                 logged = true;
             }
             else{
                 if(!composited){
-                    dispatchPayload = [scope.$store.state.selectorList[scope.$store.state.selectorIndex], 'css', name]; 
+                    dispatchPayload = [scope.$store.state.selectorList[sindex], 'css', name]; 
                 }
             }
         }
         else{
-            dispatchPayload = [scope.$store.state.selectorList[scope.$store.state.selectorIndex], 'css']; 
+            dispatchPayload = [scope.$store.state.selectorList[sindex], 'css']; 
         }
     }
     else{
-        dispatchPayload = [scope.$store.state.selectorList[scope.$store.state.selectorIndex]]; 
+        dispatchPayload = [scope.$store.state.selectorList[sindex]]; 
     }
     scope.$store.dispatch('setPropertyMatrixValue', dispatchPayload);
     return logged;
@@ -311,31 +310,28 @@ function hasPropertyTypeList(scope, name){
     return scope.$store.state.propertyManifest[name].sub_properties || scope.$store.state.propertyManifest[name].value_max;
 }
 
-function startTypeLog(scope, name){
-    if(!scope.$store.state.selectorTypeMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]]){
-        scope.$store.dispatch('setTypeMatrixValue', [scope.$store.state.selectorList[scope.$store.state.selectorIndex]]);
+function startTypeLog(scope, name, sindex){
+    if(!scope.$store.state.selectorTypeMatrix[scope.$store.state.selectorList[sindex]]){
+        scope.$store.dispatch('setTypeMatrixValue', [scope.$store.state.selectorList[sindex]]);
     }
-    if(!scope.$store.state.selectorTypeMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].type){
-        scope.$store.dispatch('setTypeMatrixValue', [scope.$store.state.selectorList[scope.$store.state.selectorIndex], 'type']);
+    if(!scope.$store.state.selectorTypeMatrix[scope.$store.state.selectorList[sindex]].type){
+        scope.$store.dispatch('setTypeMatrixValue', [scope.$store.state.selectorList[sindex], 'type']);
     }
-    if(!scope.$store.state.selectorTypeMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].type[name]){
-        scope.$store.dispatch('setTypeMatrixValue', [scope.$store.state.selectorList[scope.$store.state.selectorIndex], 'type', name]);
+    if(!scope.$store.state.selectorTypeMatrix[scope.$store.state.selectorList[sindex]].type[name]){
+        scope.$store.dispatch('setTypeMatrixValue', [scope.$store.state.selectorList[sindex], 'type', name]);
     }
-    // console.log('what the fuck is going on!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', scope.$root.selectorPropertyMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]]);
 }
 
-function addToTypeLog(scope, name, index, value){
-    startTypeLog(scope, name);
+function addToTypeLog(scope, name, index, sindex, value){
+    startTypeLog(scope, name, sindex);
     if(hasPropertyTypeList(scope, name)){
-        if(!scope.$store.state.selectorTypeMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].type[name]['type_'+index.toString()]){
-            scope.$store.dispatch('setTypeMatrixValue', [scope.$store.state.selectorList[scope.$store.state.selectorIndex], 'type', name, 'type_'+index.toString()]);
+        if(!scope.$store.state.selectorTypeMatrix[scope.$store.state.selectorList[sindex]].type[name]['type_'+index.toString()]){
+            scope.$store.dispatch('setTypeMatrixValue', [scope.$store.state.selectorList[sindex], 'type', name, 'type_'+index.toString()]);
         }
-        scope.$store.dispatch('setTypeMatrixValue', [scope.$store.state.selectorList[scope.$store.state.selectorIndex], 'type', name, 'type_'+index.toString(), value]);
-        // scope.$store.state.selectorTypeMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].type[name]['type_'+index.toString()] = value;
+        scope.$store.dispatch('setTypeMatrixValue', [scope.$store.state.selectorList[sindex], 'type', name, 'type_'+index.toString(), value]);
     }
     else {
-        scope.$store.dispatch('setTypeMatrixValue', [scope.$store.state.selectorList[scope.$store.state.selectorIndex], 'type', name, value]);
-        // scope.$store.state.selectorTypeMatrix[scope.$store.state.selectorList[scope.$store.state.selectorIndex]].type[name] = value;
+        scope.$store.dispatch('setTypeMatrixValue', [scope.$store.state.selectorList[sindex], 'type', name, value]);
     }
 
 }

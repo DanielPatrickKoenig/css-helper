@@ -23,16 +23,16 @@ export default {
             let propertyData = this.propertyManifest[this.name];
             this.$data.propertyTypes.push(Utilities.getValueTypeByID(propertyData.property_types[0]));
             this.$data.values.push('0');
-            this.$emit('value-change', {value: this.$data.values.join(this.getValueSeparator(this.name)), name: this.name, index: this.index, type: this.$data.propertyTypes});
+            this.$emit('value-change', {value: this.$data.values.join(this.getValueSeparator(this.name)), name: this.name, index: this.index, type: this.$data.propertyTypes, sindex: this.sindex});
         },
         removeValue: function (index) {
             this.$data.values.splice(index, 1);
             this.$data.propertyTypes.splice(index, 1);
-            this.$emit('value-change', {value: this.$data.values.join(this.getValueSeparator(this.name)), name: this.name, index: this.index, type: this.$data.propertyTypes});
+            this.$emit('value-change', {value: this.$data.values.join(this.getValueSeparator(this.name)), name: this.name, index: this.index, type: this.$data.propertyTypes, sindex: this.sindex});
         },
         initializeComponent: function () {
-            if(Utilities.propertyisLogged(this, this.name)){
-                this.values = this.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[this.name].split(this.propertyManifest[this.name].value_separator);
+            if(Utilities.propertyisLogged(this, this.name, this.sindex)){
+                this.values = this.selectorPropertyMatrix[this.selectorList[this.sindex]].css[this.name].split(this.propertyManifest[this.name].value_separator);
             }
             else{
                 this.addValue();
