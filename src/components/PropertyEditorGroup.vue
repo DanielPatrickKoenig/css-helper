@@ -63,8 +63,10 @@ export default {
         },
         onValueChange: function (e) {
             // this.$emit('value-change', e);
+            console.log(this.$store.state);
             this.$store.dispatch('setPropertyMatrixValue', [this.selectorList[this.sindex], 'css', e.name, e.value]);
             this.$emit('value-change', e);
+            
             // this.$data.classStructure[e.name] = e.value;
             // this.$data.previewSig = Utilities.createUniqueID();
             // console.log(this.$data.classStructure);
