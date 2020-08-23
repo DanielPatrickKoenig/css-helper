@@ -6,6 +6,7 @@
         <GradientTool  v-else-if="type.rep == DataReps.TOOL && name == 'background-image'" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex" />
         <TransformTool  v-else-if="type.rep == DataReps.TOOL && name == 'transform'" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex" />
         <ShadowTool v-else-if="type.rep == DataReps.TOOL && (name == 'box-shadow' || name == 'text-shadow')" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex" />
+        <TransformOriginTool v-else-if="type.rep == DataReps.TOOL && name == 'transform-origin'" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex" />
         <StringDataRep v-else :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex" />
     </div>
 </template>
@@ -18,6 +19,7 @@ import StringDataRep from '../components/StringDataRep.vue';
 import Utilities from '../utils/Utilities';
 import GradientTool from './GradientTool.vue';
 import TransformTool from './TransformTool.vue';
+import TransformOriginTool from './TransformOriginTool.vue';
 import ShadowTool from './ShadowTool.vue';
 export default {
     props: ['type', 'name', 'index', 'composited', 'initval', 'sig', 'sindex'],
@@ -28,7 +30,8 @@ export default {
         ColorTool,
         GradientTool,
         TransformTool,
-        ShadowTool
+        ShadowTool,
+        TransformOriginTool
     },
     data () {
         return {
