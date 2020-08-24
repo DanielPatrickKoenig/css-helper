@@ -1,7 +1,7 @@
 <template>
     <div>
         HOME
-        <EllipseTool :circular="false" :width="300" :height="300" v-on:ellipse-changed="onColorSelected" />
+        <InsetTool :width="300" :height="300" v-on:ellipse-changed="onColorSelected" />
         <!-- <GradientTool :name="gProps.name" :type="gProps.type" :initval="gProps.startVals[2]" /> -->
         <!-- <ColorSelector style="width:300px;" :cols="20" :incrament="incrament" v-on:color-selected="onColorSelected" />
         <div :style="'position:relative;left:200px;top:120px;box-shadow:0 -1px 0 #000000;height:1px;width:' + dimensions.width + 'px;'">
@@ -15,13 +15,13 @@
 <script>
 // import GradientTool from '../components/GradientTool.vue';
 import Utilities from '../utils/Utilities.js';
-import EllipseTool from '../components/EllipseTool.vue';
+import InsetTool from '../components/InsetTool.vue';
 // import TransformTool from '../components/TransformTool.vue';
 //'type', 'name', 'index', 'composited', 'initval', 'sig'
 // import SliderComponent from '../components/SliderComponent.vue';
 export default {
     components: {
-        EllipseTool
+        InsetTool
         // GradientTool
     },
     data () {
