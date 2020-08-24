@@ -53,7 +53,7 @@ export default {
             this.$data.high = e.y;
             this.emitValue();
         },
-        getOugptu: function () {
+        getOutput: function () {
             return this.circular ? `circle(${this.$data.wide*100}% at ${this.$data.x*100}% ${this.$data.y*100}%)` : `ellipse(${this.$data.wide*100}% ${this.$data.high*100}% at ${this.$data.x*100}% ${this.$data.y*100}%)`;
         }
     }

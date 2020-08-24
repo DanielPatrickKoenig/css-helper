@@ -29,7 +29,7 @@ export default {
         },
         emitValue: function () {
             const output = this.getOutput();
-            this.$emit('ellipse-changed', output);
+            this.$emit('shape-changed', output);
         }
     }
 }

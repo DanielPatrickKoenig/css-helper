@@ -28,12 +28,21 @@ export default {
             else{
                 this.$data.points.push({x: x, y: y});
             }
+            this.emitValue();
         },
         onPointMoved: function (e) {
             console.log(e);
             this.$data.points[e.sig].x = e.x;
             this.$data.points[e.sig].y = e.y;
             this.$forceUpdate();
+            this.emitValue();
+        },
+        getOutput: function () {
+            let valueList = [];
+            for(let i = 0; i < this.$data.points.length;i++){
+                valueList.push(`${this.$data.points[i].x*100}% ${this.$data.points[i].y*100}%`);
+            }
+            return `polygon(${valueList.join(',')})`;
         }
     },
     computed: {
