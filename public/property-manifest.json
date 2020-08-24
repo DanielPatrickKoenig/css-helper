@@ -1569,7 +1569,7 @@
         "css3": true,
         "description": "Defines the origin of transformation for an element.",
         "property_types": [
-            71
+            72
         ],
         "index": 142
     },
@@ -1775,7 +1775,7 @@
         ],
         "index": 161
     },
-    "clip": {
+    "clip-path": {
         "css3": false,
         "description": "Defines the clipping region.",
         "property_types": [
