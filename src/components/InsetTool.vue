@@ -37,18 +37,22 @@ export default {
     methods: {
         onLeftMoved: function (e) {
             this.$data.left = e.x;
+            this.emitValue();
         },
         onTopMoved: function (e) {
             this.$data.top = e.y;
+            this.emitValue();
         },
         onRightMoved: function (e) {
             this.$data.right = e.x;
+            this.emitValue();
         },
         onBottomMoved: function (e) {
             this.$data.bottom = e.y;
+            this.emitValue();
         },
         getOutput: function () {
-            return `inset(${this.$data.top*100}% ${this.$data.right*100}% ${this.$data.bottom*100}% ${this.$data.left*100}%)`;
+            return `inset(${this.$data.top*100}% ${(1-this.$data.right)*100}% ${(1-this.$data.bottom)*100}% ${this.$data.left*100}%)`;
         }
     },
     computed: {

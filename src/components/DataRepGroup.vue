@@ -7,6 +7,7 @@
         <TransformTool  v-else-if="type.rep == DataReps.TOOL && name == 'transform'" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex" />
         <ShadowTool v-else-if="type.rep == DataReps.TOOL && (name == 'box-shadow' || name == 'text-shadow')" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex" />
         <TransformOriginTool v-else-if="type.rep == DataReps.TOOL && name == 'transform-origin'" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex" />
+        <ShapeTool v-else-if="type.rep == DataReps.TOOL && name == 'clip-path'" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex"/>
         <StringDataRep v-else :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex" />
     </div>
 </template>
@@ -21,6 +22,7 @@ import GradientTool from './GradientTool.vue';
 import TransformTool from './TransformTool.vue';
 import TransformOriginTool from './TransformOriginTool.vue';
 import ShadowTool from './ShadowTool.vue';
+import ShapeTool from './ShapeTool.vue';
 export default {
     props: ['type', 'name', 'index', 'composited', 'initval', 'sig', 'sindex'],
     components: {
@@ -31,7 +33,8 @@ export default {
         GradientTool,
         TransformTool,
         ShadowTool,
-        TransformOriginTool
+        TransformOriginTool,
+        ShapeTool
     },
     data () {
         return {
