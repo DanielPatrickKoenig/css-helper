@@ -1,0 +1,94 @@
+<template>
+    <div class="path-tool" :style="cssStyle">
+        <svg>
+            <path :d="pathString" stroke="rgba(0,0,0,.5)" stroke-width="1" fill="transparent" />
+        </svg>
+        <SliderComponent v-for="(p, i) in points" :key="'point-'+i.toString()" :width="size.width" :height="size.height" :max="max" :ratiox="points[i].x" :ratioy="points[i].y" v-on:slider-moved="onPointMoved" :sig="i">
+            <div style="width:20px;height:20px;margin-left:-10px;margin-top:-10px;background-color:#000000;border-radius:20px;"></div>
+        </SliderComponent>
+        <div v-for="(a, i) in inserters" :key="'inserter-'+i.toString()" :class="'inserter insertion-item-'+(i+1).toString()" :style="'left:'+(inserters[i].x*100).toString()+'%;top:'+(inserters[i].y*100).toString()+'%;'" v-on:click="addPoint(inserters[i].x, inserters[i].y, i)">
+        </div>
+    </div>
+</template>
+
+<script>
+import BaseShapeSubTool from './base/BaseShapeSubTool.js';
+export default {
+    extends: BaseShapeSubTool,
+    data () {
+        return {
+            points: []
+        }
+    },
+    methods: {
+        addPoint: function (x, y, index) {
+            if(index){
+                this.$data.points.splice(index, 0, {x: x, y: y});
+            }
+            else{
+                this.$data.points.push({x: x, y: y});
+            }
+        },
+        onPointMoved: function (e) {
+            console.log(e);
+            this.$data.points[e.sig].x = e.x;
+            this.$data.points[e.sig].y = e.y;
+            this.$forceUpdate();
+        }
+    },
+    computed: {
+        inserters: function () {
+            let insertionList = [];
+            for(let i = 0; i < this.$data.points.length; i++){
+                const prevPoint = i == 0 ? this.$data.points[this.$data.points.length-1] : this.$data.points[i-1];
+                insertionList.push({x: prevPoint.x + ((this.$data.points[i].x - prevPoint.x) / 2), y: prevPoint.y + ((this.$data.points[i].y - prevPoint.y) / 2)});
+            }
+            return insertionList;
+        },
+        pathString: function () {
+            let pString = '';
+            for(let i = 0; i < this.$data.points.length;i++){
+                let prefix = i == 0 ? 'M ' : ' L ';
+                pString+=prefix + (this.$data.size.width*this.$data.points[i].x).toString() + ' ' + (this.$data.size.height*this.$data.points[i].y).toString();
+            }
+            pString+=' Z';
+            return pString;
+        },
+        cssStyle: function () {
+            return {
+                '--width':`${this.$data.size.width}px`,
+                '--height':`${this.$data.size.height}px`
+            };
+        }
+    },
+    mounted: function () {
+        this.addPoint(0,0);
+        this.addPoint(1,0);
+        this.addPoint(.5,1);
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+div.path-tool{
+    box-shadow: 0 0 0 1px rgba(0,0,0,.5);
+    position: relative;
+    width:var(--width);
+    height:var(--height);
+    svg{
+        width:100%;
+        height:100%;
+        position:absolute;
+    }
+    div.inserter{
+        width: 12px;
+        height: 12px;
+        margin-left:-6px;
+        margin-top:-6px;
+        display:inline-block;
+        border-radius: 20px;
+        background-color:#cc0000;
+        position:absolute;
+    }
+}
+</style>
