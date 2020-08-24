@@ -47,7 +47,7 @@ export default {
         onBottomMoved: function (e) {
             this.$data.bottom = e.y;
         },
-        getOugptu: function () {
+        getOutput: function () {
             return `inset(${this.$data.top*100}% ${this.$data.right*100}% ${this.$data.bottom*100}% ${this.$data.left*100}%)`;
         }
     },
