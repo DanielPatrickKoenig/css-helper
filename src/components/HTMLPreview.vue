@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div v-if="shouldDisplay">
         <!-- <span v-for="(v, k, i) in selectorManifest" :key="'style-'+i.toString()" v-html="'<style>#' + mainElementID + selectorConnecion + selectors[i]+'{'+selectorManifest['#' + mainElementID + selectorConnecion + selectors[i]]+'}</style>'"></span> -->
-        <span v-for="(v, k, i) in selectorManifest" :key="'style-'+i.toString()" v-html="'<style>#' + mainElementID + selectorConnecion + selectors[i]+'{'+getStyleString(i)+'}</style>'"></span>
+        <span v-for="(v, k, i) in selectorManifest" :key="'style-'+i.toString()" v-html="'<style>'+(supplimentData[selectors[i]] != undefined ? supplimentData[selectors[i]] : '')+'#' + mainElementID + selectorConnecion + selectors[i]+'{'+getStyleString(i)+'}</style>'"></span>
         <span v-html="getHighlightStyle()"></span>
         <!-- <span :id="mainElementID+'-style-container'" v-html="'<style>#'+this.getInitialID()+'{'+getCSSString()+'}</style>'"></span> -->
         <div v-html="markup" :id="mainElementID"></div>
@@ -10,14 +10,16 @@
 <script>
 import Utilities from '../utils/Utilities';
 export default {
-    props: ['markup', 'matrix', 'selector', 'selectors', 'highlighting', 'sig'],
+    props: ['markup', 'matrix', 'selector', 'selectors', 'highlighting', 'suppliments', 'sig'],
     data () {
         return {
             mainElementID: this.getInitialID(),
             selectorString: '',
             selectorStr: this.selector,
             selectorManifest: {},
-            selectorConnecion: ' '
+            selectorConnecion: ' ',
+            supplimentData: this.suppliments,
+            shouldDisplay: true
         }
     },
     methods: {
@@ -60,6 +62,12 @@ export default {
         sig: function () {
             this.$data.selectorStr = this.selector;
             this.$data.selectorString = this.$data.selectorStr;
+            this.$data.shouldDisplay = false;
+            setTimeout(() => {
+                this.$data.shouldDisplay = true;
+            }, 10);
+            
+            this.$data.supplimentData = this.suppliments;
             this.applyStyles();
             // this.applyStyle();
         }
