@@ -183,6 +183,13 @@ const PropertyValueTypes = {
     BOX_SIZING_OPTIONS: {id: 80, options: BoxSizingOptions, label: 'Box Sizing Options', rep: DataReps.SELECT}
 };
 
+const FontList = [
+    'Arial',
+    'Helvetica',
+    'Times New Roman',
+    'Verdana'
+];
+
 const TransformFunctions = {
     matrix: [{type: DataReps.NUMBER, suffix: [], repeats: 6}],
     translate: [{type: DataReps.NUMBER, suffix: ['px', '%', 'em'], repeats: 2}],
@@ -375,6 +382,7 @@ const Utilities = {
     GradientTypes: GradientTypes,
     PositionDirectives: PositionDirectives,
     TransformFunctions: TransformFunctions,
-    mappedState: mappedState
+    mappedState: mappedState,
+    FontList: FontList
 }
 export default Utilities;
