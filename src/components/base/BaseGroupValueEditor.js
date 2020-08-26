@@ -32,7 +32,7 @@ export default {
         },
         onValueChange: function (e) {
             this.$data.values.splice(e.index, 1, e.value.toString());
-            this.$emit('value-change', {value: this.$data.values.join(this.getValueSeparator(this.name)), name: this.name, index: e.index, type: this.$data.propertyTypes, sindex: this.sindex});
+            this.$emit('value-change', {value: this.$data.values.join(this.getValueSeparator(this.name)), name: this.name, index: e.index, type: this.$data.propertyTypes, sindex: this.sindex, suppliment: e.suppliment});
         },
         initializeComponent: function () {
             this.$data.values = [];

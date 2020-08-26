@@ -4,7 +4,7 @@
             <PropertyEditorGroup v-for="(s, i) in selectorList" :key="'selector-'+i.toString()" :names="propertyNames" :types="selectePropertyTypes" sig="a" v-on:data-type-selected="onDataTypeSelected" v-on:value-change="onValueChange" multiples="true" :sindex="i" />
         </div>
         
-        <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectorList[selectorIndex]" :sig="previewSig" />
+        <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectorList[selectorIndex]" :suppliments="supplimentManifet" :sig="previewSig" />
         <textarea v-model="markup" />
         <div class="drag-order-list">
             <DragOrderList class="drag-order-inner-list" :count="selectorList.length" v-on:order-changed="onSelectorOrderChanged">
@@ -33,7 +33,7 @@
             <div v-else>
                 <input v-model="selectorList[selectionInfo.selectorEditIndex]" type="text" />
             </div>
-            <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectionInfo.adding ? selectionInfo.tempSelector : selectorList[selectionInfo.selectorEditIndex]" highlighting="true" :sig="previewSig" />
+            <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectionInfo.adding ? selectionInfo.tempSelector : selectorList[selectionInfo.selectorEditIndex]" highlighting="true" :suppliments="supplimentManifet" :sig="previewSig" />
         </ModalWindow>
     </div>
 </template>
@@ -57,6 +57,7 @@ export default {
             selectePropertyTypes: {},
             DataReps: Utilities.DataReps,
             classManifest: {},
+            supplimentManifet: {},
             typeManifest: {},
             classStructure: {},
             typeStructure: {},
@@ -97,6 +98,7 @@ export default {
             if(!e.composited){
                 console.log('################# property page value change ######################');
                 this.$data.classManifest[this.selectorList[e.sindex]] = JSON.parse(JSON.stringify(this.selectorPropertyMatrix[this.selectorList[e.sindex]].css));
+                this.$data.supplimentManifet[this.selectorList[e.sindex]] = e.suppliment;
                 this.$data.classStructure = this.$data.classManifest[this.selectorList[e.sindex]];
 
                 // this.$data.classStructure[e.name] = e.value;
@@ -104,7 +106,7 @@ export default {
                 // console.log(this.$data.classStructure);
                 this.$data.previewSig = Utilities.createUniqueID();
                 this.$forceUpdate();
-                console.log(e);
+                console.log('suppliment manifest', this.$data.supplimentManifet);
             }
         },
         onSelectorChosen: function (index, repeat) {

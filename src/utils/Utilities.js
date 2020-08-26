@@ -364,6 +364,28 @@ function colorStringToRGB(color){
     return output;
 }
 
+const Animatables = [
+    'color',
+    'background-color',
+    'opacity',
+    'padding',
+    'padding-left',
+    'padding-right',
+    'padding-top',
+    'padding-bottom',
+    'width',
+    'height',
+    'left',
+    'top',
+    'right',
+    'bottom',
+    'margin',
+    'margin-left',
+    'margin-right',
+    'margin-top',
+    'margin-bottom'
+];
+
 const Utilities = {
     createUniqueID: createUniqueID,
     getArrayIndexByValue: getArrayIndexByValue,
@@ -383,6 +405,7 @@ const Utilities = {
     PositionDirectives: PositionDirectives,
     TransformFunctions: TransformFunctions,
     mappedState: mappedState,
-    FontList: FontList
+    FontList: FontList,
+    Animatables: Animatables
 }
 export default Utilities;
