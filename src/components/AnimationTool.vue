@@ -1,14 +1,25 @@
 <template>
     <div>
         <label>Using Steps <input type="checkbox" v-model="useSteps" v-on:change="emitValue()" /></label>
+        <div v-if="useSteps">
+            <button v-on:click="addRatio()">Add Step</button>
+            <ul>
+                <li v-for="(ratio, i) in ratios" :key="'ratio-'+i.toString()">
+                    <button v-if="ratios.length > 2" v-on:click="removeRatio(i)">Remove Step</button>
+                    <SliderComponent :width="sliderParams.width" :max="sliderParams.max" :ratiox="ratios[i]" constraint="horizontal" v-on:slider-moved="onSliderMoved" :sig="i">
+                        <div style="width:20px;height:20px;margin-left:-10px;margin-top:-10px;background-color:#000000;border-radius:20px;"></div>
+                    </SliderComponent>
+                </li>
+            </ul>
+        </div>
         <ul>
             <li v-for="(property, i) in properties" :key="'property-'+i.toString()">
                 <button v-on:click="removeProperty(i)">remove</button>
                 <label>{{property.name}}</label>
                 <ul>
-                    <li v-for="(value, j) in properties[i].values" :key="'value-'+i.toString()+'-'+j.toString()">
+                    <li v-for="(value, j) in properties[i].values" :key="'value-'+i.toString()+'-'+j.toString()" :style="!useSteps && j >= 2 ? 'display:none;' : ''">
                         <label>
-                            <span v-if="useSteps">step-{{j}}: </span> 
+                            <span v-if="useSteps">{{Math.round(ratios[j]*100)}}%: </span> 
                             <span v-else>{{j == 0 ? 'from' : 'to'}}: </span> 
                             <input type="text" v-model="properties[i].values[j]" v-on:change="emitValue()" />
                         </label>
@@ -34,8 +45,12 @@
 <script>
 import Utilities from '../utils/Utilities.js';
 import BaseDataRep from './base/BaseDataRep.js';
+import SliderComponent from './SliderComponent.vue';
 export default {
     extends: BaseDataRep,
+    components: {
+        SliderComponent
+    },
     data () {
         return {
             useSteps: false,
@@ -44,12 +59,21 @@ export default {
             propertyIndexToAdd: 0,
             properties: [],
             addMode: false,
-            keyframeName: `frame-${Math.random().toString().split('.').join('')}-${Math.random().toString().split('.').join('')}-${Math.random().toString().split('.').join('')}` 
+            keyframeName: `frame-${Math.random().toString().split('.').join('')}-${Math.random().toString().split('.').join('')}-${Math.random().toString().split('.').join('')}`,
+            ratios: [0, 1],
+            sliderParams: {
+                width: 200,
+                max: 1
+            }
         }
     },
     methods: {
         getInitialValues: function () {
-            return [0,0];
+            let iVals = [];
+            for(let i = 0; i < this.$data.ratios.length; i++) {
+                iVals.push(0);
+            }
+            return iVals;
         },
         confirmAdd: function () {
             this.$data.properties.push(
@@ -74,10 +98,17 @@ export default {
             */
             let frameString = '';
             if(this.$data.useSteps){
-                console.log('sup')
-                // for(let i = 0; i < this.$data.steps.length; i++){
-
-                // }
+                let unitStrings = [];
+                console.log('sup');
+                for(let i = 0; i < this.$data.ratios.length; i++){
+                    let currentString = `${Math.round(this.$data.ratios[i]*100)}%{`;
+                    for(let j = 0; j < this.$data.properties.length; j++){
+                        currentString+=`${this.$data.properties[j].name}: ${this.$data.properties[j].values[i]};`;
+                    }
+                    currentString += '}';
+                    unitStrings.push(currentString);
+                }
+                frameString = unitStrings.join('');
             }
             else{
                 let fromString = '';
@@ -92,7 +123,26 @@ export default {
         },
         emitValue: function () {
             this.$emit('value-change', {value: this.$data.keyframeName, name: this.name, index: this.index, type: this.data, composited: this.composited, sindex: this.sindex, suppliment: this.getKeyframeString()});
-            // console.log(this.getKeyframeString());
+            console.log(this.getKeyframeString());
+        },
+        addRatio: function () {
+            this.$data.ratios.push(0);
+            for(let i = 0; i < this.$data.properties.length; i++){
+                this.$data.properties[i].values.push(0);
+            }
+            this.emitValue();
+        },
+        removeRatio: function (index) {
+            this.$data.ratios.splice(index, 1);
+            for(let i = 0; i < this.$data.properties.length; i++){
+                this.$data.properties[i].values.splice(index, 1);
+            }
+            this.emitValue();
+        },
+        onSliderMoved: function (e) {
+            this.$data.ratios[e.sig] = e.x;
+            this.$forceUpdate();
+            this.emitValue();
         }
     }
 }
