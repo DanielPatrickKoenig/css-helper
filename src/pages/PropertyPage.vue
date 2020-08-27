@@ -98,7 +98,10 @@ export default {
             if(!e.composited){
                 console.log('################# property page value change ######################');
                 this.$data.classManifest[this.selectorList[e.sindex]] = JSON.parse(JSON.stringify(this.selectorPropertyMatrix[this.selectorList[e.sindex]].css));
-                this.$data.supplimentManifet[this.selectorList[e.sindex]] = e.suppliment;
+                if(e.suppliment != '' && e.suppliment != undefined && e.suppliment != null){
+                    this.$data.supplimentManifet[this.selectorList[e.sindex]] = e.suppliment;
+                }
+                // this.$state.setSupplimentMatrixValue({name: this.selectorList[e.sindex], value: e.suppliment});
                 this.$data.classStructure = this.$data.classManifest[this.selectorList[e.sindex]];
 
                 // this.$data.classStructure[e.name] = e.value;
