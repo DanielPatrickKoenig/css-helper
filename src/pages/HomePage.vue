@@ -1,7 +1,7 @@
 <template>
     <div>
         HOME
-        <AnimationTool />
+        <EaseTool />
         <!-- <GradientTool :name="gProps.name" :type="gProps.type" :initval="gProps.startVals[2]" /> -->
         <!-- <ColorSelector style="width:300px;" :cols="20" :incrament="incrament" v-on:color-selected="onColorSelected" />
         <div :style="'position:relative;left:200px;top:120px;box-shadow:0 -1px 0 #000000;height:1px;width:' + dimensions.width + 'px;'">
@@ -16,13 +16,13 @@
 // import GradientTool from '../components/GradientTool.vue';
 import Utilities from '../utils/Utilities.js';
 // import ShapeTool from '../components/ShapeTool.vue';
-import AnimationTool from '../components/AnimationTool.vue';
+import EaseTool from '../components/EaseTool.vue';
 // import TransformTool from '../components/TransformTool.vue';
 //'type', 'name', 'index', 'composited', 'initval', 'sig'
 // import SliderComponent from '../components/SliderComponent.vue';
 export default {
     components: {
-        AnimationTool
+        EaseTool
         // GradientTool
     },
     data () {

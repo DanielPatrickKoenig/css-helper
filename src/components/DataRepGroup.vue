@@ -10,11 +10,11 @@
         <ShapeTool v-else-if="type.rep == DataReps.TOOL && name == 'clip-path'" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex"/>
         <FontTool v-else-if="type.rep == DataReps.TOOL && name == 'font-family'" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex"/>
         <AnimationTool v-else-if="type.rep == DataReps.TOOL && name == 'animation-name'" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex"/>
+        <EaseTool v-else-if="type.rep == DataReps.TOOL && name == 'animation-timing-function'" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex"/>
         <StringDataRep v-else :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex" />
     </div>
 </template>
 <script>
-
 import SelectDataRep from '../components/SelectDataRep.vue';
 import NumberDataRep from '../components/NumberDataRep.vue';
 import ColorTool from './ColorTool.vue';
@@ -27,6 +27,7 @@ import ShadowTool from './ShadowTool.vue';
 import ShapeTool from './ShapeTool.vue';
 import FontTool from './FontTool.vue';
 import AnimationTool from './AnimationTool.vue';
+import EaseTool from './EaseTool.vue';
 export default {
     props: ['type', 'name', 'index', 'composited', 'initval', 'sig', 'sindex'],
     components: {
@@ -40,7 +41,8 @@ export default {
         TransformOriginTool,
         ShapeTool,
         FontTool,
-        AnimationTool
+        AnimationTool,
+        EaseTool
     },
     data () {
         return {
