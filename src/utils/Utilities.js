@@ -100,7 +100,7 @@ const CursorOptions = ['auto', 'default', 'none', 'context-menu', 'help', 'point
 const BoxSizingOptions = ['content-box', 'padding-box', 'border-box'];
 
 const PropertyValueTypes = {
-    DEFAULTS: {id: 0, options: DefaultOptions, label: 'Default Options', rep: DataReps.SELECT},
+    DEFAULTS: {id: 0, options: DefaultOptions, label: 'Other', rep: DataReps.TOOL},
     STRING: {id: 1, label: 'String', rep: DataReps.TEXT_FEILD},
     CSS_CLASS_UI: {id: 2, label: 'Composite', rep: DataReps.COMPOSITE},
     PX: {id: 3, suffix: 'px', label: 'Pixels', rep: DataReps.NUMBER},
