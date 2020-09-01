@@ -1,0 +1,1833 @@
+{
+    "animation": {
+        "css3": true,
+        "description": "Specifies the keyframe-based animations.",
+        "property_types": [
+            2
+        ],
+        "index": 0,
+        "sub_properties": [6, 3, 8, 1, 5, 2, 4, 7]
+    },
+    "animation-delay": {
+        "css3": true,
+        "description": "Specifies when the animation will start.",
+        "property_types": [
+            4
+        ],
+        "index": 1
+    },
+    "animation-direction": {
+        "css3": true,
+        "description": "Specifies whether the animation should play in reverse on alternate cycles or not.",
+        "property_types": [
+            12
+        ],
+        "index": 2
+    },
+    "animation-duration": {
+        "css3": true,
+        "description": "Specifies the number of seconds or milliseconds an animation should take to complete one cycle.",
+        "property_types": [
+            4
+        ],
+        "index": 3
+    },
+    "animation-fill-mode": {
+        "css3": true,
+        "description": "Specifies how a CSS animation should apply styles to its target before and after it is executing.",
+        "property_types": [
+            13
+        ],
+        "index": 4
+    },
+    "animation-iteration-count": {
+        "css3": true,
+        "description": "Specifies the number of times an animation cycle should be played before stopping.",
+        "property_types": [
+            14
+        ],
+        "index": 5,
+        "booleans": ["infinite"]
+    },
+    "animation-name": {
+        "css3": true,
+        "description": "Specifies the name of @keyframes defined animations that should be applied to the selected element.",
+        "property_types": [
+            16
+        ],
+        "index": 6,
+        "booleans": ["none"]
+    },
+    "animation-play-state": {
+        "css3": true,
+        "description": "Specifies whether the animation is running or paused.",
+        "property_types": [
+            18
+        ],
+        "index": 7
+    },
+    "animation-timing-function": {
+        "css3": true,
+        "description": "Specifies how a CSS animation should progress over the duration of each cycle.",
+        "property_types": [
+            19
+        ],
+        "index": 8
+    },
+    "background": {
+        "css3": false,
+        "description": "Defines a variety of background properties within one declaration.",
+        "property_types": [
+            2
+        ],
+        "index": 9,
+        "sub_properties": [13, 15, 17, 16, 10, 14, 11, 12]
+    },
+    "background-attachment": {
+        "css3": false,
+        "description": "Specify whether the background image is fixed in the viewport or scrolls.",
+        "property_types": [
+            21
+        ],
+        "index": 10
+    },
+    "background-clip": {
+        "css3": true,
+        "description": "Specifies the painting area of the background.",
+        "property_types": [
+            22
+        ],
+        "index": 11
+    },
+    "background-color": {
+        "css3": false,
+        "description": "Defines an element's background color.",
+        "property_types": [
+            20
+        ],
+        "index": 12,
+        "booleans": ["transparent"]
+    },
+    "background-image": {
+        "css3": false,
+        "description": "Defines an element's background image.",
+        "property_types": [
+            33,
+            11
+        ],
+        "index": 13,
+        "booleans": ["none"]
+    },
+    "background-origin": {
+        "css3": true,
+        "description": "Specifies the positioning area of the background images.",
+        "property_types": [
+            22
+        ],
+        "index": 14
+    },
+    "background-position": {
+        "css3": false,
+        "description": "Defines the origin of a background image.",
+        "property_types": [
+            23,
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "value_separator": " ",
+        "value_max": 2,
+        "index": 15
+    },
+    "background-repeat": {
+        "css3": false,
+        "description": "Specify whether/how the background image is tiled.",
+        "property_types": [
+            24
+        ],
+        "index": 16
+    },
+    "background-size": {
+        "css3": true,
+        "description": "Specifies the size of the background images.",
+        "property_types": [
+            25,
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "index": 17
+    },
+    "border": {
+        "css3": false,
+        "description": "Sets the width, style, and color for all four sides of an element's border.",
+        "property_types": [
+            2
+        ],
+        "index": 18,
+        "sub_properties": [48, 41, 25]
+    },
+    "border-bottom": {
+        "css3": false,
+        "description": "Sets the width, style, and color of the bottom border of an element.",
+        "property_types": [
+            2
+        ],
+        "index": 19,
+        "sub_properties": [24, 27, 20]
+    },
+    "border-bottom-color": {
+        "css3": false,
+        "description": "Sets the color of the bottom border of an element.",
+        "property_types": [
+            20
+        ],
+        "index": 20,
+        "booleans": ["transparent"]
+    },
+    "border-bottom-left-radius": {
+        "css3": true,
+        "description": "Defines the shape of the bottom-left border corner of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "index": 21
+    },
+    "border-bottom-right-radius": {
+        "css3": true,
+        "description": "Defines the shape of the bottom-right border corner of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "index": 22
+    },
+    "border-bottom-style": {
+        "css3": false,
+        "description": "Sets the style of the bottom border of an element.",
+        "property_types": [
+            27
+        ],
+        "index": 23
+    },
+    "border-bottom-width": {
+        "css3": false,
+        "description": "Sets the width of the bottom border of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "index": 24
+    },
+    "border-color": {
+        "css3": false,
+        "description": "Sets the color of the border on all the four sides of an element.",
+        "property_types": [
+            20
+        ],
+        "index": 25,
+        "booleans": ["transparent"]
+    },
+    "border-image": {
+        "css3": true,
+        "description": "Specifies how an image is to be used in place of the border styles.",
+        "property_types": [
+            2
+        ],
+        "index": 26,
+        "sub_properties": [30, 29, 31, 27, 28]
+    },
+    "border-image-outset": {
+        "css3": true,
+        "description": "Specifies the amount by which the border image area extends beyond the border box.",
+        "property_types": [
+            3,
+            5,
+            6,
+            7,
+            8
+        ],
+        "index": 27
+    },
+    "border-image-repeat": {
+        "css3": true,
+        "description": "Specifies whether the image-border should be repeated, rounded or stretched.",
+        "property_types": [
+            28
+        ],
+        "value_separator": " ",
+        "value_max": 2,
+        "index": 28
+    },
+    "border-image-slice": {
+        "css3": true,
+        "description": "Specifies the inward offsets of the image-border.",
+        "property_types": [
+            3,
+            5,
+            6,
+            7,
+            8
+        ],
+        "booleans": [
+            "fill"
+        ],
+        "index": 29
+    },
+    "border-image-source": {
+        "css3": true,
+        "description": "Specifies the location of the image to be used as a border.",
+        "property_types": [
+            11
+        ],
+        "booleans": [
+            "none"
+        ],
+        "index": 30
+    },
+    "border-image-width": {
+        "css3": true,
+        "description": "Specifies the width of the image-border.",
+        "property_types": [
+            3,
+            5,
+            6,
+            7,
+            8
+        ],
+        "booleans": [
+            "auto"
+        ],
+        "index": 31
+    },
+    "border-left": {
+        "css3": false,
+        "description": "Sets the width, style, and color of the left border of an element.",
+        "property_types": [
+            2
+        ],
+        "index": 32,
+        "sub_properties": [35, 34, 33]
+    },
+    "border-left-color": {
+        "css3": false,
+        "description": "Sets the color of the left border of an element.",
+        "property_types": [
+            20
+        ],
+        "index": 33,
+        "booleans": ["transparent"]
+    },
+    "border-left-style": {
+        "css3": false,
+        "description": "Sets the style of the left border of an element.",
+        "property_types": [
+            27
+        ],
+        "index": 34
+    },
+    "border-left-width": {
+        "css3": false,
+        "description": "Sets the width of the left border of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "index": 35
+    },
+    "border-radius": {
+        "css3": true,
+        "description": "Defines the shape of the border corners of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "value_separator": " ",
+        "value_max": 4,
+        "index": 36
+    },
+    "border-right": {
+        "css3": false,
+        "description": "Sets the width, style, and color of the right border of an element.",
+        "property_types": [
+            2
+        ],
+        "index": 37,
+        "sub_properties": [40, 39, 38]
+    },
+    "border-right-color": {
+        "css3": false,
+        "description": "Sets the color of the right border of an element.",
+        "property_types": [
+            20
+        ],
+        "index": 38
+    },
+    "border-right-style": {
+        "css3": false,
+        "description": "Sets the style of the right border of an element.",
+        "property_types": [
+            27
+        ],
+        "index": 39
+    },
+    "border-right-width": {
+        "css3": false,
+        "description": "Sets the width of the right border of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "index": 40
+    },
+    "border-style": {
+        "css3": false,
+        "description": "Sets the style of the border on all the four sides of an element.",
+        "property_types": [
+            27
+        ],
+        "value_separator": " ",
+        "value_max": 4,
+        "index": 41
+    },
+    "border-top": {
+        "css3": false,
+        "description": "Sets the width, style, and color of the top border of an element.",
+        "property_types": [
+            2
+        ],
+        "index": 42,
+        "sub_properties": [47, 46, 43]
+    },
+    "border-top-color": {
+        "css3": false,
+        "description": "Sets the color of the top border of an element.",
+        "property_types": [
+            20
+        ],
+        "index": 43
+    },
+    "border-top-left-radius": {
+        "css3": true,
+        "description": "Defines the shape of the top-left border corner of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "index": 44
+    },
+    "border-top-right-radius": {
+        "css3": true,
+        "description": "Defines the shape of the top-right border corner of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "index": 45
+    },
+    "border-top-style": {
+        "css3": false,
+        "description": "Sets the style of the top border of an element.",
+        "property_types": [
+            27
+        ],
+        "index": 46
+    },
+    "border-top-width": {
+        "css3": false,
+        "description": "Sets the width of the top border of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "index": 47
+    },
+    "border-width": {
+        "css3": false,
+        "description": "Sets the width of the border on all the four sides of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "value_separator": " ",
+        "value_max": 4,
+        "index": 48
+    },
+    "color": {
+        "css3": false,
+        "description": "Specify the color of the text of an element.",
+        "property_types": [
+            20
+        ],
+        "index": 49
+    },
+    "opacity": {
+        "css3": true,
+        "description": "Specifies the transparency of an element.",
+        "property_types": [
+            29
+        ],
+        "index": 50
+    },
+    "height": {
+        "css3": false,
+        "description": "Specify the height of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26,
+            30
+        ],
+        "booleans": [
+            "auto"
+        ],
+        "index": 51
+    },
+    "max-height": {
+        "css3": false,
+        "description": "Specify the maximum height of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26,
+            30
+        ],
+        "booleans": [
+            "none"
+        ],
+        "index": 52
+    },
+    "max-width": {
+        "css3": false,
+        "description": "Specify the maximum width of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26,
+            31
+        ],
+        "booleans": [
+            "none"
+        ],
+        "index": 53
+    },
+    "min-height": {
+        "css3": false,
+        "description": "Specify the minimum height of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26,
+            30
+        ],
+        "booleans": [
+            "none"
+        ],
+        "index": 54
+    },
+    "min-width": {
+        "css3": false,
+        "description": "Specify the minimum width of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26,
+            31
+        ],
+        "booleans": [
+            "none"
+        ],
+        "index": 55
+    },
+    "width": {
+        "css3": false,
+        "description": "Specify the width of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26,
+            31
+        ],
+        "booleans": [
+            "auto"
+        ],
+        "index": 56
+    },
+    "content": {
+        "css3": false,
+        "description": "Inserts generated content.",
+        "property_types": [
+            32,
+            33,
+            1,
+            34
+        ],
+        "booleans": [
+            "normal",
+            "none",
+            "counter"
+        ],
+        "index": 57
+    },
+    "quotes": {
+        "css3": false,
+        "description": "Specifies quotation marks for embedded quotations.",
+        "property_types": [
+            1
+        ],
+        "booleans": [
+            "none"
+        ],
+        "value_separator": " ",
+        "value_max": 2,
+        "index": 58
+    },
+    "counter-reset": {
+        "css3": false,
+        "description": "Creates or resets one or more counters.",
+        "property_types": [
+            14
+        ],
+        "booleans": [
+            "none"
+        ],
+        "value_separator": " ",
+        "value_max": -1,
+        "index": 59
+    },
+    "counter-increment": {
+        "css3": false,
+        "description": "Increments one or more counter values.",
+        "property_types": [
+            14
+        ],
+        "booleans": [
+            "none"
+        ],
+        "value_separator": " ",
+        "value_max": -1,
+        "index": 60
+    },
+    "align-content": {
+        "css3": true,
+        "description": "Specifies the alignment of flexible container's items within the flex container.",
+        "property_types": [
+            35
+        ],
+        "index": 61
+    },
+    "align-items": {
+        "css3": true,
+        "description": "Specifies the default alignment for items within the flex container.",
+        "property_types": [
+            36
+        ],
+        "index": 62
+    },
+    "align-self": {
+        "css3": true,
+        "description": "Specifies the alignment for selected items within the flex container.",
+        "property_types": [
+            36
+        ],
+        "booleans": [
+            "auto"
+        ],
+        "index": 63
+    },
+    "flex": {
+        "css3": true,
+        "description": "Specifies the components of a flexible length.",
+        "property_types": [
+            2
+        ],
+        "booleans": [
+            "none",
+            "auto"
+        ],
+        "index": 64,
+        "sub_properties": [68, 69, 65]
+    },
+    "flex-basis": {
+        "css3": true,
+        "description": "Specifies the initial main size of the flex item.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "booleans": [
+            "auto"
+        ],
+        "index": 65
+    },
+    "flex-direction": {
+        "css3": true,
+        "description": "Specifies the direction of the flexible items.",
+        "property_types": [
+            37
+        ],
+        "index": 66
+    },
+    "flex-flow": {
+        "css3": true,
+        "description": "A shorthand property for the flex-direction and the flex-wrap properties.",
+        "property_types": [
+            2
+        ],
+        "index": 67,
+        "sub_properties": [66, 70]
+    },
+    "flex-grow": {
+        "css3": true,
+        "description": "Specifies how the flex item will grow relative to the other items inside the flex container.",
+        "property_types": [
+            14
+        ],
+        "index": 68
+    },
+    "flex-shrink": {
+        "css3": true,
+        "description": "Specifies how the flex item will shrink relative to the other items inside the flex container.",
+        "property_types": [
+            14
+        ],
+        "index": 69
+    },
+    "flex-wrap": {
+        "css3": true,
+        "description": "Specifies whether the flexible items should wrap or not.",
+        "property_types": [
+            38
+        ],
+        "index": 70
+    },
+    "justify-content": {
+        "css3": true,
+        "description": "Specifies how flex items are aligned along the main axis of the flex container after any flexible lengths and auto margins have been resolved.",
+        "property_types": [
+            39
+        ],
+        "index": 71
+    },
+    "order": {
+        "css3": true,
+        "description": "Specifies the order in which a flex items are displayed and laid out within a flex container.",
+        "property_types": [
+            14
+        ],
+        "index": 72
+    },
+    "font": {
+        "css3": false,
+        "description": "Defines a variety of font properties within one declaration.",
+        "property_types": [
+            2
+        ],
+        "index": 73,
+        "sub_properties": [78, 79, 80, 75, 131, 74]
+    },
+    "font-family": {
+        "css3": false,
+        "description": "Defines a list of fonts for element.",
+        "property_types": [
+            1,
+            41
+        ],
+        "value_separator": " ",
+        "value_max": -1,
+        "index": 74
+    },
+    "font-size": {
+        "css3": false,
+        "description": "Defines the font size for the text.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26,
+            42
+        ],
+        "index": 75
+    },
+    "font-size-adjust": {
+        "css3": true,
+        "description": "Preserves the readability of text when font fallback occurs.",
+        "property_types": [
+            29
+        ],
+        "booleans": [
+            "none"
+        ],
+        "index": 76
+    },
+    "font-stretch": {
+        "css3": true,
+        "description": "Selects a normal, condensed, or expanded face from a font.",
+        "property_types": [
+            43
+        ],
+        "index": 77
+    },
+    "font-style": {
+        "css3": false,
+        "description": "Defines the font style for the text.",
+        "property_types": [
+            44
+        ],
+        "index": 78
+    },
+    "font-variant": {
+        "css3": false,
+        "description": "Specify the font variant.",
+        "property_types": [
+            45
+        ],
+        "index": 79
+    },
+    "font-weight": {
+        "css3": false,
+        "description": "Specify the font weight of the text.",
+        "property_types": [
+            46
+        ],
+        "index": 80
+    },
+    "list-style": {
+        "css3": false,
+        "description": "Defines the display style for a list and list elements.",
+        "property_types": [
+            2
+        ],
+        "index": 81,
+        "sub_properties": [84, 83, 82]
+    },
+    "list-style-image": {
+        "css3": false,
+        "description": "Specifies the image to be used as a list-item marker.",
+        "property_types": [
+            33
+        ],
+        "booleans": [
+            "none"
+        ],
+        "index": 82
+    },
+    "list-style-position": {
+        "css3": false,
+        "description": "Specifies the position of the list-item marker.",
+        "property_types": [
+            47
+        ],
+        "index": 83
+    },
+    "list-style-type": {
+        "css3": false,
+        "description": "Specifies the marker style for a list-item.",
+        "property_types": [
+            48
+        ],
+        "index": 84
+    },
+    "margin": {
+        "css3": false,
+        "description": "Sets the margin on all four sides of the element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "value_separator": " ",
+        "value_max": 4,
+        "booleans": [
+            "auto"
+        ],
+        "index": 85
+    },
+    "margin-bottom": {
+        "css3": false,
+        "description": "Sets the bottom margin of the element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "booleans": [
+            "auto"
+        ],
+        "index": 86
+    },
+    "margin-left": {
+        "css3": false,
+        "description": "Sets the left margin of the element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "booleans": [
+            "auto"
+        ],
+        "index": 87
+    },
+    "margin-right": {
+        "css3": false,
+        "description": "Sets the right margin of the element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "booleans": [
+            "auto"
+        ],
+        "index": 88
+    },
+    "margin-top": {
+        "css3": false,
+        "description": "Sets the top margin of the element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "booleans": [
+            "auto"
+        ],
+        "index": 89
+    },
+    "column-count": {
+        "css3": true,
+        "description": "Specifies the number of columns in a multi-column element.",
+        "property_types": [
+            14
+        ],
+        "booleans": [
+            "auto"
+        ],
+        "index": 90
+    },
+    "column-fill": {
+        "css3": true,
+        "description": "Specifies how columns will be filled.",
+        "property_types": [
+            49
+        ],
+        "index": 91
+    },
+    "column-gap": {
+        "css3": true,
+        "description": "Specifies the gap between the columns in a multi-column element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "booleans": [
+            "normal"
+        ],
+        "index": 92
+    },
+    "column-rule": {
+        "css3": true,
+        "description": "Specifies a straight line, or \"rule\", to be drawn between each column in a multi-column element.",
+        "property_types": [
+            2
+        ],
+        "index": 93,
+        "sub_properties": [96, 95, 94]
+    },
+    "column-rule-color": {
+        "css3": true,
+        "description": "Specifies the color of the rules drawn between columns in a multi-column layout.",
+        "property_types": [
+            20
+        ],
+        "index": 94
+    },
+    "column-rule-style": {
+        "css3": true,
+        "description": "Specifies the style of the rule drawn between the columns in a multi-column layout.",
+        "property_types": [
+            27
+        ],
+        "index": 95
+    },
+    "column-rule-width": {
+        "css3": true,
+        "description": "Specifies the width of the rule drawn between the columns in a multi-column layout.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26,
+            50
+        ],
+        "index": 96
+    },
+    "column-span": {
+        "css3": true,
+        "description": "Specifies how many columns an element spans across in a multi-column layout.",
+        "property_types": [
+            51
+        ],
+        "index": 97
+    },
+    "column-width": {
+        "css3": true,
+        "description": "Specifies the optimal width of the columns in a multi-column element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "booleans": [
+            "auto"
+        ],
+        "index": 98
+    },
+    "columns": {
+        "css3": true,
+        "description": "A shorthand property for setting column-width and column-count properties.",
+        "property_types": [
+            2
+        ],
+        "index": 99
+    },
+    "outline": {
+        "css3": false,
+        "description": "Sets the width, style, and color for all four sides of an element's outline.",
+        "property_types": [
+            2
+        ],
+        "index": 100,
+        "sub_properties": [104, 103, 101]
+    },
+    "outline-color": {
+        "css3": false,
+        "description": "Sets the color of the outline.",
+        "property_types": [
+            20
+        ],
+        "booleans": [
+            "invert"
+        ],
+        "index": 101
+    },
+    "outline-offset": {
+        "css3": true,
+        "description": "Set the space between an outline and the border edge of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "index": 102
+    },
+    "outline-style": {
+        "css3": false,
+        "description": "Sets a style for an outline.",
+        "property_types": [
+            27
+        ],
+        "index": 103
+    },
+    "outline-width": {
+        "css3": false,
+        "description": "Sets the width of the outline.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26,
+            50
+        ],
+        "index": 104
+    },
+    "padding": {
+        "css3": false,
+        "description": "Sets the padding on all four sides of the element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "value_separator": " ",
+        "value_max": 4,
+        "index": 105
+    },
+    "padding-bottom": {
+        "css3": false,
+        "description": "Sets the padding to the bottom side of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "index": 106
+    },
+    "padding-left": {
+        "css3": false,
+        "description": "Sets the padding to the left side of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "index": 107
+    },
+    "padding-right": {
+        "css3": false,
+        "description": "Sets the padding to the right side of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "index": 108
+    },
+    "padding-top": {
+        "css3": false,
+        "description": "Sets the padding to the top side of an element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "index": 109
+    },
+    "page-break-after": {
+        "css3": false,
+        "description": "Insert a page breaks after an element.",
+        "property_types": [
+            52
+        ],
+        "index": 110
+    },
+    "page-break-before": {
+        "css3": false,
+        "description": "Insert a page breaks before an element.",
+        "property_types": [
+            52
+        ],
+        "index": 111
+    },
+    "page-break-inside": {
+        "css3": false,
+        "description": "Insert a page breaks inside an element.",
+        "property_types": [
+            40
+        ],
+        "index": 112
+    },
+    "border-collapse": {
+        "css3": false,
+        "description": "Specifies whether table cell borders are connected or separated.",
+        "property_types": [
+            53
+        ],
+        "index": 113
+    },
+    "border-spacing": {
+        "css3": false,
+        "description": "Sets the spacing between the borders of adjacent table cells.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "value_separator": " ",
+        "value_max": 2,
+        "index": 114
+    },
+    "caption-side": {
+        "css3": false,
+        "description": "Specify the position of table's caption.",
+        "property_types": [
+            54
+        ],
+        "index": 115
+    },
+    "empty-cells": {
+        "css3": false,
+        "description": "Show or hide borders and backgrounds of empty table cells.",
+        "property_types": [
+            55
+        ],
+        "index": 116
+    },
+    "table-layout": {
+        "css3": false,
+        "description": "Specifies a table layout algorithm.",
+        "property_types": [
+            56
+        ],
+        "index": 117
+    },
+    "direction": {
+        "css3": false,
+        "description": "Define the text direction/writing direction.",
+        "property_types": [
+            57
+        ],
+        "index": 118
+    },
+    "tab-size": {
+        "css3": true,
+        "description": "Specifies the length of the tab character.",
+        "property_types": [
+            14,
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "index": 119
+    },
+    "text-align": {
+        "css3": false,
+        "description": "Sets the horizontal alignment of inline content.",
+        "property_types": [
+            58
+        ],
+        "index": 120
+    },
+    "text-align-last": {
+        "css3": true,
+        "description": "Specifies how the last line of a block or a line right before a forced line break is aligned when text-align is justify.",
+        "property_types": [
+            59
+        ],
+        "index": 121
+    },
+    "text-decoration": {
+        "css3": false,
+        "description": "Specifies the decoration added to text.",
+        "property_types": [
+            60
+        ],
+        "value_separator": " ",
+        "value_max": -1,
+        "index": 122
+    },
+    "text-decoration-color": {
+        "css3": true,
+        "description": "Specifies the color of the text-decoration-line.",
+        "property_types": [
+            20
+        ],
+        "index": 123
+    },
+    "text-decoration-line": {
+        "css3": true,
+        "description": "Specifies what kind of line decorations are added to the element.",
+        "property_types": [
+            60
+        ],
+        "value_separator": " ",
+        "value_max": -1,
+        "index": 124
+    },
+    "text-decoration-style": {
+        "css3": true,
+        "description": "Specifies the style of the lines specified by the text-decoration-line property",
+        "property_types": [
+            61
+        ],
+        "value_separator": " ",
+        "value_max": -1,
+        "index": 125
+    },
+    "text-indent": {
+        "css3": false,
+        "description": "Indent the first line of text.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "index": 126
+    },
+    "text-justify": {
+        "css3": true,
+        "description": "Specifies the justification method to use when the text-align property is set to justify.",
+        "property_types": [
+            62
+        ],
+        "index": 127
+    },
+    "text-overflow": {
+        "css3": true,
+        "description": "Specifies how the text content will be displayed, when it overflows the block containers.",
+        "property_types": [
+            63,
+            1
+        ],
+        "index": 128
+    },
+    "text-shadow": {
+        "css3": true,
+        "description": "Applies one or more shadows to the text content of an element.",
+        "property_types": [
+            64
+        ],
+        "index": 129
+    },
+    "text-transform": {
+        "css3": false,
+        "description": "Transforms the case of the text.",
+        "property_types": [
+            65
+        ],
+        "index": 130
+    },
+    "line-height": {
+        "css3": false,
+        "description": "Sets the height between lines of text.",
+        "property_types": [
+            15,
+            29
+        ],
+        "booleans": [
+            "normal"
+        ],
+        "index": 131
+    },
+    "vertical-align": {
+        "css3": false,
+        "description": "Sets the vertical positioning of an element relative to the current text baseline.",
+        "property_types": [
+            66,
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "index": 132
+    },
+    "letter-spacing": {
+        "css3": false,
+        "description": "Sets the extra spacing between letters.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "booleans": [
+            "normal"
+        ],
+        "index": 133
+    },
+    "word-spacing": {
+        "css3": false,
+        "description": "Sets the spacing between words.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "booleans": [
+            "normal"
+        ],
+        "index": 134
+    },
+    "white-space": {
+        "css3": false,
+        "description": "Specifies how white space inside the element is handled.",
+        "property_types": [
+            67
+        ],
+        "index": 135
+    },
+    "word-break": {
+        "css3": true,
+        "description": "Specifies how to break lines within words.",
+        "property_types": [
+            69
+        ],
+        "index": 136
+    },
+    "word-wrap": {
+        "css3": true,
+        "description": "Specifies whether to break words when the content overflows the boundaries of its container.",
+        "property_types": [
+            68
+        ],
+        "index": 137
+    },
+    "backface-visibility": {
+        "css3": true,
+        "description": "Specifies whether or not the \"back\" side of a transformed element is visible when facing the user.",
+        "property_types": [
+            70
+        ],
+        "index": 138
+    },
+    "perspective": {
+        "css3": true,
+        "description": "Defines the perspective from which all child elements of the object are viewed.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "index": 139
+    },
+    "perspective-origin": {
+        "css3": true,
+        "description": "Defines the origin (the vanishing point for the 3D space) for the perspective property.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "value_separator": " ",
+        "value_max": 2,
+        "index": 140
+    },
+    "transform": {
+        "css3": true,
+        "description": "Applies a 2D or 3D transformation to an element.",
+        "property_types": [
+            71
+        ],
+        "index": 141
+    },
+    "transform-origin": {
+        "css3": true,
+        "description": "Defines the origin of transformation for an element.",
+        "property_types": [
+            72
+        ],
+        "index": 142
+    },
+    "transform-style": {
+        "css3": true,
+        "description": "Specifies how nested elements are rendered in 3D space.",
+        "property_types": [
+            72
+        ],
+        "index": 143
+    },
+    "transition": {
+        "css3": true,
+        "description": "Defines the transition between two states of an element.",
+        "property_types": [
+            2
+        ],
+        "value_separator": " ",
+        "value_max": -1,
+        "index": 144,
+        "sub_properties": [147, 146, 148, 145]
+    },
+    "transition-delay": {
+        "css3": true,
+        "description": "Specifies when the transition effect will start.",
+        "property_types": [
+            4
+        ],
+        "index": 145
+    },
+    "transition-duration": {
+        "css3": true,
+        "description": "Specifies the number of seconds or milliseconds a transition effect should take to complete.",
+        "property_types": [
+            4
+        ],
+        "index": 146
+    },
+    "transition-property": {
+        "css3": true,
+        "description": "Specifies the names of the CSS properties to which a transition effect should be applied.",
+        "property_types": [
+            1
+        ],
+        "booleans": [
+            "all",
+            "none"
+        ],
+        "value_separator": " ",
+        "value_max": -1,
+        "index": 147
+    },
+    "transition-timing-function": {
+        "css3": true,
+        "description": "Specifies the speed curve of the transition effect.",
+        "property_types": [
+            19
+        ],
+        "index": 148
+    },
+    "display": {
+        "css3": false,
+        "description": "Specifies how an element is displayed onscreen.",
+        "property_types": [
+            10
+        ],
+        "index": 149
+    },
+    "position": {
+        "css3": false,
+        "description": "Specifies how an element is positioned.",
+        "property_types": [
+            9
+        ],
+        "index": 150
+    },
+    "top": {
+        "css3": false,
+        "description": "Specify the location of the top edge of the positioned element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "booleans": [
+            "auto"
+        ],
+        "index": 151
+    },
+    "right": {
+        "css3": false,
+        "description": "Specify the location of the right edge of the positioned element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "booleans": [
+            "auto"
+        ],
+        "index": 152
+    },
+    "bottom": {
+        "css3": false,
+        "description": "Specify the location of the bottom edge of the positioned element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "booleans": [
+            "auto"
+        ],
+        "index": 153
+    },
+    "left": {
+        "css3": false,
+        "description": "Specify the location of the left edge of the positioned element.",
+        "property_types": [
+            15,
+            3,
+            5,
+            6,
+            7,
+            8,
+            26
+        ],
+        "booleans": [
+            "auto"
+        ],
+        "index": 154
+    },
+    "float": {
+        "css3": false,
+        "description": "Specifies whether or not a box should float.",
+        "property_types": [
+            74
+        ],
+        "index": 155
+    },
+    "clear": {
+        "css3": false,
+        "description": "Specifies the placement of an element in relation to floating elements.",
+        "property_types": [
+            75
+        ],
+        "index": 156
+    },
+    "z-index": {
+        "css3": false,
+        "description": "Specifies a layering or stacking order for positioned elements.",
+        "property_types": [
+            14
+        ],
+        "booleans": [
+            "auto"
+        ],
+        "index": 157
+    },
+    "overflow": {
+        "css3": false,
+        "description": "Specifies the treatment of content that overflows the element's box.",
+        "property_types": [
+            76
+        ],
+        "value_separator": " ",
+        "value_max": 2,
+        "index": 158
+    },
+    "overflow-x": {
+        "css3": true,
+        "description": "Specifies how to manage the content when it overflows the width of the element's content area.",
+        "property_types": [
+            76
+        ],
+        "index": 159
+    },
+    "overflow-y": {
+        "css3": true,
+        "description": "Specifies how to manage the content when it overflows the height of the element's content area.",
+        "property_types": [
+            76
+        ],
+        "index": 160
+    },
+    "resize": {
+        "css3": true,
+        "description": "Specifies whether or not an element is resizable by the user.",
+        "property_types": [
+            77
+        ],
+        "index": 161
+    },
+    "clip-path": {
+        "css3": false,
+        "description": "Defines the clipping region.",
+        "property_types": [
+            78
+        ],
+        "booleans": [
+            "auto"
+        ],
+        "index": 162
+    },
+    "visibility": {
+        "css3": false,
+        "description": "Specifies whether or not an element is visible.",
+        "property_types": [
+            17
+        ],
+        "booleans": [
+            "auto"
+        ],
+        "index": 163
+    },
+    "cursor": {
+        "css3": false,
+        "description": "Specify the type of cursor.",
+        "property_types": [
+            79,
+            33
+        ],
+        "index": 164
+    },
+    "box-shadow": {
+        "css3": true,
+        "description": "Applies one or more drop-shadows to the element's box.",
+        "property_types": [
+            64
+        ],
+        "value_separator": ",",
+        "value_max": -1,
+        "index": 165
+    },
+    "box-sizing": {
+        "css3": true,
+        "description": "Alter the default CSS box model.",
+        "property_types": [
+            80
+        ],
+        "index": 166
+    }
+}

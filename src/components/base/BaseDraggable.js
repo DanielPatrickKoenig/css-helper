@@ -28,6 +28,7 @@ export default{
         },
         onDown: function (e) {
             // console.log('onDown start');
+            e.preventDefault();
             this.$data.dragging = true;
             this.initDrag(e);
             // this.calculateComponentPosition();
@@ -45,8 +46,10 @@ export default{
         onUp: function () {
             this.$data.dragging = false;
         },
-        onMove: function (e) {
+        onMove: function (e) { 
             if(this.$data.dragging){
+                console.log('touch', e);
+                e.preventDefault();
                 this.processDrag(e);   
             }
         },
@@ -72,7 +75,7 @@ export default{
             return {x: xVal, y: yVal};
         },
         processMouseEvent: function (e) {
-            return {x: e.pageX, y: e.pageY};
+            return {x: e.touches ? e.touches[0].pageX : e.pageX, y: e.touches ? e.touches[0].pageY : e.pageY};
         },
         calculateComponentPosition: function () {
             this.$data.componentPosition = {x: document.querySelector(`#${this.$data.uniqueID}`).getBoundingClientRect().left, y: document.querySelector(`#${this.$data.uniqueID}`).getBoundingClientRect().top};
