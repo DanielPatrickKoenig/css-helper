@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="showEditors">
-            <PropertyEditorGroup v-for="(s, i) in selectorList" :key="'selector-'+i.toString()" :names="propertyNames" :types="selectePropertyTypes" sig="a" v-on:data-type-selected="onDataTypeSelected" v-on:value-change="onValueChange" multiples="true" :sindex="i" />
+            <PropertyEditorGroup v-for="(s, i) in selectorList" :key="'selector-'+i.toString()" :names="propertyNames" :types="selectePropertyTypes" sig="a" v-on:data-type-selected="onDataTypeSelected" v-on:value-change="onValueChange" multiples="true" :sindex="i" :style="selectorIndex == i ? '' : 'display:none;'" />
         </div>
         
         <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectorList[selectorIndex]" :suppliments="supplimentManifet" :sig="previewSig" />
@@ -9,7 +9,7 @@
         <div class="drag-order-list">
             <DragOrderList class="drag-order-inner-list" :count="selectorList.length" v-on:order-changed="onSelectorOrderChanged">
                 <div v-for="(v, i) in selectorList" :key="'selector-'+i.toString()" :slot="'item-'+i.toString()">
-                    <button v-on:click="onSelectorChosen(i, true)">
+                    <button v-on:click="onSelectorChosen(i)">
                         {{i}} / {{v}}
                     </button>
                     <button v-on:click="selectionInfo.selectorEditorOpen = true; selectionInfo.selectorEditIndex = i;">
@@ -112,20 +112,20 @@ export default {
                 console.log('suppliment manifest', this.$data.supplimentManifet);
             }
         },
-        onSelectorChosen: function (index, repeat) {
+        onSelectorChosen: function (index) {
             // this.selectorIndex = index;
             this.$store.dispatch('setSelectorInex', index);
             // this.$root.selectorIndex = this.selectorIndex;
-            this.$data.showEditors = false;
-            setTimeout(function (self) {
-                self.$data.showEditors = true;
-                setTimeout(function (_self) {
-                    if(repeat){
-                        _self.onSelectorChosen(index);
-                    }
-                    console.log('store', _self.$store);
-                }, 50, self);
-            }, 50, this);
+            // this.$data.showEditors = false;
+            // setTimeout(function (self) {
+            //     self.$data.showEditors = true;
+            //     setTimeout(function (_self) {
+            //         if(repeat){
+            //             _self.onSelectorChosen(index);
+            //         }
+            //         console.log('store', _self.$store);
+            //     }, 50, self);
+            // }, 50, this);
 
         },
         onSelectorOrderChanged: function (e) {
