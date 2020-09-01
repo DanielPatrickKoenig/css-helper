@@ -1,6 +1,7 @@
 <template>
     <div v-if="type">
-        <SelectDataRep v-if="type.rep == DataReps.SELECT" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex" />
+        <DefaultsTool v-if="type.rep == DataReps.TOOL && type == propertyTypes.DEFAULTS" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex"/>
+        <SelectDataRep v-else-if="type.rep == DataReps.SELECT" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex" />
         <NumberDataRep v-else-if="type.rep == DataReps.NUMBER" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex" />
         <ColorTool v-else-if="type.rep == DataReps.TOOL && (name == 'color' || name == 'background-color' || name == 'border-color')" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex" />
         <GradientTool  v-else-if="type.rep == DataReps.TOOL && name == 'background-image'" :data="type" :composited="composited" :name="name" :initval="initval" v-on:value-change="onValueChange" :index="index" :sindex="sindex" />
@@ -28,6 +29,7 @@ import ShapeTool from './ShapeTool.vue';
 import FontTool from './FontTool.vue';
 import AnimationTool from './AnimationTool.vue';
 import EaseTool from './EaseTool.vue';
+import DefaultsTool from './DefaultsTool.vue';
 export default {
     props: ['type', 'name', 'index', 'composited', 'initval', 'sig', 'sindex'],
     components: {
@@ -42,11 +44,13 @@ export default {
         ShapeTool,
         FontTool,
         AnimationTool,
-        EaseTool
+        EaseTool,
+        DefaultsTool
     },
     data () {
         return {
-            DataReps: Utilities.DataReps
+            DataReps: Utilities.DataReps,
+            propertyTypes: Utilities.PropertyValueTypes
         }
     },
     methods: {

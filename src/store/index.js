@@ -16,6 +16,9 @@ export default new Vuex.Store({
     },
     mutations: {
         SET_PROPERTY_MANIFEST(state, payload){
+            for(let p in payload){
+                payload[p].property_types.push(0);
+            }
             state.propertyManifest = payload;
             state.ready = state.colorPresets != null;
         },
