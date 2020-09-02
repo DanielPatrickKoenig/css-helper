@@ -3,6 +3,7 @@ export default{
     data () {
         return{
             dragging: false,
+            mDragging: false,
             position: {x: 0, y: 0},
             offset: {x: 0, y: 0},
             uniqueID: 'element-' + Math.random().toString().split('.').join('') + '-' + Math.random().toString().split('.').join('') + '-' + Math.random().toString().split('.').join(''),
@@ -30,6 +31,7 @@ export default{
             // console.log('onDown start');
             e.preventDefault();
             this.$data.dragging = true;
+            this.$data.mDragging = !e.touches;
             this.initDrag(e);
             // this.calculateComponentPosition();
             // const ofs = this.processMouseEvent(e);
@@ -45,8 +47,9 @@ export default{
         },
         onUp: function () {
             this.$data.dragging = false;
+            this.$data.mDragging = false;
         },
-        onMove: function (e) { 
+        onMove: function (e) {
             if(this.$data.dragging){
                 console.log('touch', e);
                 e.preventDefault();
