@@ -1,9 +1,9 @@
 <template>
     <div :id="uniqueID" class="drag-container" :style="cssParams">
-        <div v-on:mousedown="onDown" v-on:touchstart="onDown" :class="'drag-element'" :style="cssParams">
+        <div v-on:mousedown="onDown" v-on:touchstart="onDown" v-on:touchmove="onMove" v-on:touchend="onUp" :class="'drag-element'" :style="cssParams">
             <slot>Insert Content</slot>
         </div>
-        <div v-on:mousemove="onMove" v-on:touchmove="onMove" v-on:mouseup="onUp" v-on:touchend="onUp" class="drag-blocker" v-if="dragging"></div>
+        <div v-on:mousemove="onMove" v-on:mouseup="onUp" class="drag-blocker" v-if="dragging"></div>
     </div>
 </template>
 <script>
