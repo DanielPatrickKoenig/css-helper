@@ -162,8 +162,61 @@ ul.property-type-selector{
 div.property-editor-ui{
   width:280px;
   margin: 0 auto;
+  ul{
+    margin:0;
+    padding:0;
+    > li{
+      display:flex;
+      flex-direction: row;
+      padding:8px 0;
+      margin:0;
+      > label{
+        flex-grow: 1;
+        width: 30px;
+      }
+      > div.drag-container{
+        margin-top:11px;
+        display:inline-flex;
+        flex-grow: 16;
+        box-shadow:0 -1px 0 rgba(0,0,0,.5);
+      }
+      > div.drag-container + input{
+        width: 20px;
+        display:inline-flex;
+        flex-grow: 1;
+      }
+    }  
+  }
+}
+.angle-control{
+  box-shadow:0 0 0 1px rgba(0,0,0,.5);
+}
+.editor-section-sub-header{
+  margin: 12px 0;
 }
 @include min(850px){
+  div.property-editor-ui{
+    margin:0;
+    display:block !important;
+  }
+  div.main-preview{
+    display:block !important;
+    width:600px;
+    position:fixed;
+    top:90px;
+    left:50%;
+    margin-left:-180px;
+  }
+  .preview-options{
+    display:flex !important;
+    position:fixed;
+    top:40px;
+    left:50%;
+    margin-left:-180px !important;
+  }
+  .main-mode-selector{
+    display:none !important;
+  }
   .main-content{
     margin-top:5.5em;
   }

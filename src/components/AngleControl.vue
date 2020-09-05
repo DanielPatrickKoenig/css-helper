@@ -58,10 +58,15 @@ export default {
 div.drag-container{
     padding: var(--padding);
     position: relative;
+    width:0;
+    height:0;
+    border-radius: var(--padding);
+    margin: 10px auto;
     > div.drag-element{
         position:absolute;
         left: var(--x);
         top: var(--y);
+        
     }
     > div.drag-element-vertical{
         position:absolute;
