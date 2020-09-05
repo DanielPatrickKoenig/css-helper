@@ -3,9 +3,10 @@
         <h3 v-if="!listed || index == 0">{{name}}</h3>
         <p v-if="!listed || index == 0">{{propertyManifest.description}}</p>
         <p v-if="listed">Value {{(index + 1).toString()}}</p>
-        <ul>
-            <li v-for="(v, i) in propertyManifest[this.name].property_types" :key="'type-'+i.toString()">
-                <a v-on:click="onPropertyTypeSelected(v)">{{getValueTypeByID(v).label}}</a>
+        <label><input type="checkbox" v-model="showTypeMenu" style="display:none;" /> <font-awesome-icon icon="wrench" /></label>
+        <ul class="property-type-selector" :style="showTypeMenu ? '' : 'display:none;'">
+            <li v-for="(v, i) in propertyManifest[this.name].property_types" :key="'type-'+i.toString()" :class="selectionIndex == i ? 'selected-type' : ''">
+                <a v-on:click="onPropertyTypeSelected(v, i)">{{getValueTypeByID(v).label}}</a>
             </li>
         </ul>
         <slot></slot>
@@ -19,6 +20,12 @@ import Utilities from '../utils/Utilities';
 import {mapState} from 'vuex';
 export default {
     props: ['name', 'index', 'listed', 'sindex'],
+    data () {
+        return {
+            selectionIndex: 0,
+            showTypeMenu: false
+        }
+    },
     computed: {
         ...mapState(['propertyManifest', 'selectorIndex', 'selectorList', 'selectorPropertyMatrix', 'selectorTypeMatrix'])
         // propertyDetails: function () {
@@ -27,8 +34,9 @@ export default {
     },
     methods: {
         getValueTypeByID: Utilities.getValueTypeByID,
-        onPropertyTypeSelected: function (pt) {
+        onPropertyTypeSelected: function (pt, n) {
             this.$emit('data-type-selected', {pt: pt, index: this.index, name: this.name, sindex: this.sindex});
+            this.$data.selectionIndex = n;
         }
     },
     mounted: function () {

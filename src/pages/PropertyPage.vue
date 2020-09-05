@@ -1,14 +1,27 @@
 <template>
     <div>
-        <div v-if="showEditors">
+        <OptionSelector v-if="!selectionInfo.show" :options="modes" width="60%" class="main-mode-selector">
+            <buton v-for="(mode, i) in modes" :key="'mode-'+i.toString()" :slot="'option-'+i.toString()" v-on:click="currentMode=i;"><font-awesome-icon :icon="mode" /></buton>
+        </OptionSelector>
+        <div v-if="showEditors" :class="currentMode == 0 ? '' : 'm-hidden-content'">
             <PropertyEditorGroup v-for="(s, i) in selectorList" :key="'selector-'+i.toString()" :names="propertyNames" :types="selectePropertyTypes" sig="a" v-on:data-type-selected="onDataTypeSelected" v-on:value-change="onValueChange" multiples="true" :sindex="i" :style="selectorIndex == i ? '' : 'display:none;'" />
         </div>
         
-        <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectorList[selectorIndex]" :suppliments="supplimentManifet" :sig="previewSig" />
-        <textarea v-model="markup" />
-        <div class="drag-order-list">
-            <DragOrderList class="drag-order-inner-list" :count="selectorList.length" v-on:order-changed="onSelectorOrderChanged">
-                <div v-for="(v, i) in selectorList" :key="'selector-'+i.toString()" :slot="'item-'+i.toString()">
+        <OptionSelector v-if="!selectionInfo.show" :options="modes" width="88px" :class="currentMode == 0 ? 'm-hidden-content preview-options' : 'preview-options'">
+            <buton v-for="(preview, i) in previewOptions" :key="'preview-'+i.toString()" :slot="'option-'+i.toString()" v-on:click="currentPreviewOption=i;"><font-awesome-icon :icon="preview" /></buton>
+        </OptionSelector>
+        <div :class="currentMode == 0 ? 'm-hidden-content' : ''">
+            <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectorList[selectorIndex]" :suppliments="supplimentManifet" :sig="previewSig" :style="currentPreviewOption == 0 ? '' : 'display:none;'" />
+            <textarea v-model="markup" :style="currentPreviewOption == 0 ? 'display:none;' : ''" />
+        </div>
+        
+        <div class="selector-menu">
+            <button :class="selectionInfo.show ? 'selector-button selectors-open' : 'selector-button'" v-on:click="selectionInfo.show = !selectionInfo.show;">
+                <font-awesome-icon icon="sitemap" />
+            </button>
+            
+            <ul :class="selectionInfo.show ? 'selectors-open' : ''">
+                <li v-for="(v, i) in selectorList" :key="'selector-'+i.toString()" :slot="'item-'+i.toString()">
                     <button v-on:click="onSelectorChosen(i)">
                         {{i}} / {{v}}
                     </button>
@@ -20,9 +33,12 @@
                         Delete
                         <!-- <font-awesome-icon icon="pencil-square-o" /> -->
                     </button>
-                </div>
-            </DragOrderList>
-            <button v-on:click="selectionInfo.selectorEditorOpen = true;selectionInfo.adding = true;selectionInfo.tempSelector = '';"><font-awesome-icon icon="plus" /></button>
+                </li>
+                <li>
+                    <button v-on:click="selectionInfo.selectorEditorOpen = true;selectionInfo.adding = true;selectionInfo.tempSelector = '';"><font-awesome-icon icon="plus" /></button>
+                </li>
+            </ul>
+            
         </div>
         
         <ModalWindow v-if="selectionInfo.selectorEditorOpen" title="Selector Editor" v-on:modal-close-clicked="selectionInfo.selectorEditorOpen = false; selectionInfo.adding = false;" >
@@ -41,15 +57,17 @@
 import Utilities from '../utils/Utilities.js';
 import PropertyEditorGroup from '../components/PropertyEditorGroup.vue';
 import HTMLPreview from '../components/HTMLPreview.vue';
-import DragOrderList from '../components/DragOrderList.vue';
+// import DragOrderList from '../components/DragOrderList.vue';
 import ModalWindow from '../components/ModalWindow.vue';
+import OptionSelector from '../components/OptionSelector.vue';
 import {mapState} from 'vuex';
 export default {
     components: {
         PropertyEditorGroup,
         HTMLPreview,
-        DragOrderList,
-        ModalWindow
+        // DragOrderList,
+        ModalWindow,
+        OptionSelector
     },
     data () {
         return {
@@ -71,8 +89,13 @@ export default {
                 selectorEditorOpen: false,
                 selectorEditIndex: -1,
                 adding: false,
-                tempSelector: ''
-            }
+                tempSelector: '',
+                show: false
+            },
+            modes: ['sliders-h', 'eye'],
+            currentMode: 0,
+            previewOptions: ['image', 'code'],
+            currentPreviewOption: 0
         }
     },
     computed: {
