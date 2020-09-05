@@ -10,7 +10,7 @@
         <OptionSelector v-if="!selectionInfo.show" :options="modes" width="88px" :class="currentMode == 0 ? 'm-hidden-content preview-options' : 'preview-options'">
             <buton v-for="(preview, i) in previewOptions" :key="'preview-'+i.toString()" :slot="'option-'+i.toString()" v-on:click="currentPreviewOption=i;"><font-awesome-icon :icon="preview" /></buton>
         </OptionSelector>
-        <div :class="currentMode == 0 ? 'm-hidden-content' : ''">
+        <div :class="currentMode == 0 ? 'm-hidden-content main-preview' : 'main-preview'">
             <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectorList[selectorIndex]" :suppliments="supplimentManifet" :sig="previewSig" :style="currentPreviewOption == 0 ? '' : 'display:none;'" />
             <textarea v-model="markup" :style="currentPreviewOption == 0 ? 'display:none;' : ''" />
         </div>

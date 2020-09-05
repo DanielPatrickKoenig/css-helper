@@ -6,6 +6,7 @@
         </Swatches>
         <ul>
             <li v-for="(v, k, i) in sliderData" :key="'slider-container-'+i.toString()">
+                <label>{{k}}</label>
                 <SliderComponent :width="width" :max="v.max" :ratiox="sliderData[k].value" constraint="horizontal" v-on:slider-moved="onSliderMoved" :sig="k" :noinit="k == 'a'">
                     <div style="width:20px;height:20px;margin-left:-10px;margin-top:-10px;background-color:#000000;border-radius:20px;"></div>
                 </SliderComponent>
@@ -32,7 +33,7 @@ export default {
        return {
            selectorGranularity: 2,
            colorOffset: -144,
-           width: 200,
+           width: 180,
            swatchCount: 64,
            sliderData: {
                r: {value: this.start ? Utilities.colorStringToRGB(this.start).r : 0, max: 255, name: 'red'},
@@ -40,7 +41,7 @@ export default {
                b: {value: this.start ? Utilities.colorStringToRGB(this.start).b : 0, max: 255, name: 'blue'},
                a: {value: 1, max: 1, name: 'alpha'}
            },
-           pickerSize: 300
+           pickerSize: 280
        }
     },
     computed: {

@@ -1,15 +1,18 @@
 <template>
     <div v-if="shouldDisplay">
-        <select v-model="gradientType">
-            <option v-for="(g, k, i) in gradientTypes" :key="'type-'+i.toString()" :value="g">
-                {{k}}
-            </option>
-        </select>
+        <div class="editor-section-sub-header">
+            Gradient Type: 
+            <select v-model="gradientType">
+                <option v-for="(g, k, i) in gradientTypes" :key="'type-'+i.toString()" :value="g">
+                    {{k}}
+                </option>
+            </select>
+        </div>
         <div v-if="gradientType == gradientTypes.LINEAR">
             <AngleControl width="100" :max="360" :angle="angle" class="angle-control" v-on:slider-moved="onAngleChange">
                 <div style="width:20px;height:20px;margin-left:-10px;margin-top:-10px;background-color:#000000;border-radius:20px;"></div>
             </AngleControl>
-            <input type="number" v-model="angle" />
+            <div>Angle <input type="number" v-model="angle" /></div>
         </div>
         <PositionDirectiveSelector v-else v-on:selection-change="onRadialSelectionChange" :shape="radialData.shape" :position1="radialData.positions[0].position" :position2="radialData.positions[1].position" :ratio1="radialData.positions[0].ratio" :ratio2="radialData.positions[1].ratio" />
         <ul class="gradient-position-sliders" :style="'background-image:'+getStyleString(true)+';width:'+gradiantPositionParams.width.toString()+'px;'">
@@ -58,7 +61,7 @@ export default {
                 positions: [{position: Utilities.PositionDirectives.CENTER, ratio: 50},{position: Utilities.PositionDirectives.CENTER, ratio: 50}]
             },
             gradiantPositionParams: {
-                width: 200,
+                width: 280,
                 max: 1,
                 constraint: 'horizontal'
             }
@@ -183,6 +186,14 @@ export default {
 .angle-control{
     margin: 12px 0;
 }
+.angle-control + div{
+    width:40px;
+    text-align: center;
+    margin: -82px auto 60px auto;
+    > input{
+        width:100%;
+    }
+}
 .gradient-preview{
     width:100px;
     height:100px;
@@ -190,11 +201,14 @@ export default {
 .gradient-position-sliders{
     display:block;
     padding: 3em 0;
-    margin:0;
+    margin:0 !important;
     > li{
         display:block;
         margin:0;
         padding:0;
+        > div{
+            display:inline !important;
+        }
     }
 }
 </style>
