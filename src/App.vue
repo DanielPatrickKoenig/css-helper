@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="main-container" v-if="ready">
-    <nav class="full-width-content">
+    <nav :class="menuOpen ? 'full-width-content full-width-content-open' : 'full-width-content'">
       <button :class="menuOpen ? 'hamberger-menu hamberger-menu-open' : 'hamberger-menu'"><font-awesome-icon icon="bars" v-on:click="menuOpen = !menuOpen" /></button>
       <div :class="menuOpen ? 'main-nav main-nav-open' : 'main-nav'">
         <router-link to="/">Home</router-link>
@@ -13,6 +13,7 @@
 
 <script>
 // import axios from 'axios';
+import ActivityRecorder from './utils/ActivityRecorder.js';
 import {mapState} from 'vuex';
 export default {
   name: 'App',
@@ -27,6 +28,7 @@ export default {
   mounted: function () {
     this.$store.dispatch('pullPropertyManifest');
     this.$store.dispatch('pullColorPresets');
+    ActivityRecorder.init();
     // let self = this;
     // axios.get('preset-colors.json').then((response) => {
     //   self.$root.colorPresets = response.data;
@@ -88,6 +90,78 @@ nav.full-width-content{
 }
 .main-content{
     margin-top:3.5em;
+}
+
+div.selector-menu{
+  
+  > button{
+    position:fixed;
+    top:0;
+    right:0;
+    left:auto;
+    z-index: 10;
+  }
+  > ul{
+    display: none;
+    position:fixed;
+    width:80%;
+    height: 100%;
+    right:0;
+    top:0;
+    margin-top:45px;
+    background-color: rgba(255,255,255,.85);
+  }
+  > button.selectors-open{
+    right:auto;
+    left:21%;
+  }
+  > ul.selectors-open{
+    display: block;
+  }
+}
+
+nav.full-width-content-open + div.main-content{
+  > .main-mode-selector{
+    display:none;
+  }
+
+}
+.main-mode-selector{
+  margin-top: -51px !important;
+  position: fixed;
+  z-index: 10;
+  left:50%;
+  transform:translate(-50%,0);
+}
+.m-hidden-content{
+  display:none !important;
+}
+.preview-options{
+  margin:0 !important;
+  float:right;
+}
+
+.preview-options + div{
+  position: relative;
+  top:40px;
+}
+ul.property-type-selector{
+  margin:0;
+  padding:0;
+  > li{
+    display:block;
+    padding:12px 6px;
+    box-shadow:0 0 0 1px rgba(0,0,0,.4);
+    color:#333333;
+  }
+  > li.selected-type{
+    background-color:#333333;
+    color:#ffffff;
+  }
+}
+div.property-editor-ui{
+  width:280px;
+  margin: 0 auto;
 }
 @include min(850px){
   .main-content{

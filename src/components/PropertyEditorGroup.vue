@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div>
+        <div class="property-editor-ui">
             <div v-for="(n, i) in propertyNames" :key="'property-'+i.toString()">
                 <div v-if="propertyManifest[n].property_types[0] == PropertyValueTypes.CSS_CLASS_UI.id">
                     <CompositeValueEditor :sindex="sindex" :names="getSubProperties(n)" :name="n" v-on:value-change="onValueChange" />

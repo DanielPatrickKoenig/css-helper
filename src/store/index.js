@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import ActivityRecorder from '../utils/ActivityRecorder.js'; 
 
 Vue.use(Vuex);
 
@@ -12,7 +13,8 @@ export default new Vuex.Store({
         selectorTypeMatrix: {},
         selectorList: [],
         selectorIndex: 0,
-        colorPresets: null
+        colorPresets: null,
+        recorder: ActivityRecorder
     },
     mutations: {
         SET_PROPERTY_MANIFEST(state, payload){

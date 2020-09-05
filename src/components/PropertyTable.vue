@@ -40,6 +40,7 @@
 </template>
 <script>
 import Utilities from '../utils/Utilities';
+import {mapState} from 'vuex';
 export default {
     props: ['data'],
     data () {
@@ -52,13 +53,14 @@ export default {
     },
     methods: {
         getPropertyValueType: Utilities.getValueTypeByID,
-        onPropertyCheckChange: function () {
+        onPropertyCheckChange: function (e) {
              this.$data.selections = [];
             for(let s in this.$data.selectionMatrix){
                 if(this.$data.selectionMatrix[s]){
                     this.$data.selections.push(s);
                 }
             }
+            this.recorder.logClick(e.currentTarget);
         }
     },
     computed: {
@@ -70,7 +72,8 @@ export default {
                 }
             }
             return items;
-        }
+        },
+        ...mapState(['recorder'])
     },
     mounted: function (){
         for(let d in this.data){
