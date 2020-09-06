@@ -15,7 +15,7 @@
                 {{p}}
             </option>
         </select>
-        <div v-if="selectedPositions[i].position == positions.PERCENTAGE">
+        <div v-if="selectedPositions[i].position == positions.PERCENTAGE" class="position-percentage-container">
             <SliderComponent :width="sliderParams.width" :max="sliderParams.max" :ratiox="selectedPositions[i].ratio" :constraint="sliderParams.constraint" v-on:slider-moved="onSliderMoved" :sig="i">
                 <div style="width:20px;height:20px;margin-left:-10px;margin-top:-10px;background-color:#000000;border-radius:20px;"></div>
             </SliderComponent>
@@ -40,7 +40,7 @@ export default {
             shapes: ['circle', 'ellipse'],
             selectedShapeIndex: this.shape == 'circle' ? 0 : 1,
             sliderParams: {
-                width:200,
+                width:160,
                 max: 100,
                 constraint: 'horizontal'
             }

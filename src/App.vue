@@ -177,8 +177,10 @@ div.property-editor-ui{
       > div.drag-container{
         margin-top:11px;
         display:inline-flex;
-        flex-grow: 16;
         box-shadow:0 -1px 0 rgba(0,0,0,.5);
+        width: 160px;
+        margin-left: -30px;
+        margin-right: 30px;
       }
       > div.drag-container + input{
         width: 20px;
@@ -188,11 +190,34 @@ div.property-editor-ui{
     }  
   }
 }
+.position-percentage-container{
+  display:flex;
+  flex-direction: row;
+  > div{
+    margin-top:11px;
+    display:inline-flex;
+    margin-right: 25px;
+    box-shadow:0 -1px 0 rgba(0,0,0,.5);
+    width:160px;
+  }
+  > div + input{
+    width: 50px;
+    display:inline-flex;
+    flex-grow: 1;
+  }
+}
 .angle-control{
   box-shadow:0 0 0 1px rgba(0,0,0,.5);
 }
+.editor-section-header{
+  padding: 14px 0;
+  display:block;
+}
 .editor-section-sub-header{
   margin: 12px 0;
+}
+.property-type-selector{
+  margin-bottom: 14px !important;
 }
 @include min(850px){
   div.property-editor-ui{
