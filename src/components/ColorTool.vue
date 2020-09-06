@@ -33,7 +33,7 @@ export default {
        return {
            selectorGranularity: 2,
            colorOffset: -144,
-           width: 180,
+           width: 160,
            swatchCount: 64,
            sliderData: {
                r: {value: this.start ? Utilities.colorStringToRGB(this.start).r : 0, max: 255, name: 'red'},

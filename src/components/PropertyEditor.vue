@@ -1,15 +1,22 @@
 <template>
     <div v-if="propertyManifest">
-        <h3 v-if="!listed || index == 0">{{name}}</h3>
-        <p v-if="!listed || index == 0">{{propertyManifest.description}}</p>
-        <p v-if="listed">Value {{(index + 1).toString()}}</p>
-        <label><input type="checkbox" v-model="showTypeMenu" style="display:none;" /> <font-awesome-icon icon="wrench" /></label>
-        <ul class="property-type-selector" :style="showTypeMenu ? '' : 'display:none;'">
-            <li v-for="(v, i) in propertyManifest[this.name].property_types" :key="'type-'+i.toString()" :class="selectionIndex == i ? 'selected-type' : ''">
-                <a v-on:click="onPropertyTypeSelected(v, i)">{{getValueTypeByID(v).label}}</a>
-            </li>
-        </ul>
-        <slot></slot>
+        <h3 v-if="!listed || index == 0">
+            <label><input type="checkbox" v-model="expand" style="display:none;" />{{name}}</label>
+        </h3>
+        <div :style="expand ? '' : 'display:none;'">
+            <p v-if="!listed || index == 0">{{propertyManifest.description}}</p>
+            <p v-if="listed">Value {{(index + 1).toString()}}</p>
+            <label class="editor-section-header">
+                <input type="checkbox" v-model="showTypeMenu" style="display:none;" />
+                <font-awesome-icon icon="wrench" /> {{getValueTypeByID(propertyManifest[this.name].property_types[selectionIndex]).label}}
+            </label>
+            <ul class="property-type-selector" :style="showTypeMenu ? '' : 'display:none;'">
+                <li v-for="(v, i) in propertyManifest[this.name].property_types" :key="'type-'+i.toString()" :class="selectionIndex == i ? 'selected-type' : ''">
+                    <a v-on:click="onPropertyTypeSelected(v, i)">{{getValueTypeByID(v).label}}</a>
+                </li>
+            </ul>
+            <slot></slot>
+        </div>
         <!-- <select>
             <option v-for="(v, i) in propertyManifest[this.name].property_types" :key="'type-'+i.toString()" :value="v">{{getValueTypeByID(v).label}}</option>
         </select> -->
@@ -23,7 +30,8 @@ export default {
     data () {
         return {
             selectionIndex: 0,
-            showTypeMenu: false
+            showTypeMenu: false,
+            expand: false
         }
     },
     computed: {

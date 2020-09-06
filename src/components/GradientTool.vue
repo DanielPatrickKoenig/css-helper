@@ -208,6 +208,7 @@ export default {
         padding:0;
         > div{
             display:inline !important;
+            margin:0 !important;
         }
     }
 }
