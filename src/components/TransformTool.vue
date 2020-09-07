@@ -1,9 +1,9 @@
 <template>
   <ul v-if="ready">
-    <li v-for="(t, k, i) in methods" :key="'method-'+i.toString()">
+    <li v-for="(t, k, i) in methods" :key="'method-'+i.toString()" style="display:block;">
       <label><input type="checkbox" v-model="methods[k].enabled" v-on:change="$forceUpdate()"> {{methods[k].name}}</label>
       <input v-if="methods[k].enabled" class="expanded-toggle" :id="uniqueCheckboxId+'-'+k" type="checkbox"/>
-      <label v-if="methods[k].enabled" :for="uniqueCheckboxId+'-'+k">
+      <label v-if="methods[k].enabled" :for="uniqueCheckboxId+'-'+k" style="float:right;">
         <span class="open-row">
           <font-awesome-icon icon="chevron-up" />
         </span>

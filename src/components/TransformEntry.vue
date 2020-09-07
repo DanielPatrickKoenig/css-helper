@@ -9,17 +9,18 @@
           </option>
       </select>
       <ul v-if="selectedFunction != 'none'">
-          <li v-for="(v, i) in transformFunctions[selectedFunction]" :key="'option-'+i.toString()">
+          <li v-for="(v, i) in transformFunctions[selectedFunction]" :key="'option-'+i.toString()" style="display:block;">
               <div v-for="(q, j) in valueMatrix[i]" :key="'repeat-'+j.toString()+'-'+i.toString()">
+                  
+                  <input v-if="v.type == types.NUMBER" type="number" v-model="valueMatrix[i][j].n" v-on:change="dispatchValue()" v-on:keyup="dispatchValue()" style="width:110px;" />
+                  <AngleControl v-else width="100" :max="360" :angle="valueMatrix[i][j].n" class="angle-control" v-on:slider-moved="onAngleChange" :sig="i.toString()+'.'+j.toString()">
+                    <div style="width:20px;height:20px;margin-left:-10px;margin-top:-10px;background-color:#000000;border-radius:20px;"></div>
+                  </AngleControl>
                   <select v-if="v.suffix.length > 1" v-model="valueMatrix[i][j].s" v-on:change="dispatchValue()">   
                       <option v-for="(s, n) in v.suffix" :key="'suffix-'+n.toString()+'-'+j.toString()+'-'+i.toString()" :value="s">
                           {{s}}
                       </option>
                   </select>
-                  <input v-if="v.type == types.NUMBER" type="number" v-model="valueMatrix[i][j].n" v-on:change="dispatchValue()" v-on:keyup="dispatchValue()" />
-                  <AngleControl v-else width="100" :max="360" :angle="valueMatrix[i][j].n" class="angle-control" v-on:slider-moved="onAngleChange" :sig="i.toString()+'.'+j.toString()">
-                    <div style="width:20px;height:20px;margin-left:-10px;margin-top:-10px;background-color:#000000;border-radius:20px;"></div>
-                  </AngleControl>
               </div>
           </li>
       </ul>
