@@ -1,14 +1,15 @@
 <template>
     <div>
         <div v-for="(v, i) in values" :key="'property-value-'+i.toString()">
-            <button v-if="values.length > 1" v-on:click="removeValue(i)">
-                <font-awesome-icon icon="times" />
-            </button>
-            <PropertyEditor :name="name" :index="i" v-on:data-type-selected="onDataTypeSelected" listed="true">
+            
+            <PropertyEditor :name="name" :index="i" v-on:data-type-selected="onDataTypeSelected" listed="true" :open="expand" v-on:editor-expantion-change="onExpansionChange" >
+                <button v-if="values.length > 1" v-on:click="removeValue(i)" slot="value-ui" style="float:right;"> 
+                    <font-awesome-icon icon="times" />
+                </button>
                 <DataRepGroup :type="getPropertyType(i)" :name="name" :index="i" v-on:value-change="onValueChange" />
             </PropertyEditor>
         </div>
-        <button v-if="values.length < propertyManifest[name].value_max || propertyManifest[name].value_max < 0" v-on:click="addValue">
+        <button :style="expand ? '' : 'display:none;'" v-if="values.length < propertyManifest[name].value_max || propertyManifest[name].value_max < 0" v-on:click="addValue">
             <font-awesome-icon icon="plus" /> Add Entry
         </button>
     </div>

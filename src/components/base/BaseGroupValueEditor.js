@@ -13,7 +13,8 @@ export default {
             values: [],
             // propertyManifest: this.$root.propertyManifest,
             propertyTypes: [],
-            DataReps: Utilities.DataReps
+            DataReps: Utilities.DataReps,
+            expand: false
         }
     },
     computed: {
@@ -37,6 +38,9 @@ export default {
         initializeComponent: function () {
             this.$data.values = [];
             this.propertyManifest = [];
+        },
+        onExpansionChange: function (e){
+            this.$data.expand = e;
         }
     }
 }

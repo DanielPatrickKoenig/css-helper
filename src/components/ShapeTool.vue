@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="shape-editor-container">
         <select v-model="currentType" class="clip-path-type-selector">
             <option v-for="(v, k, i) in types" :key="'type-'+i.toString()" :value="types[k]">{{k}}</option>
         </select>
@@ -51,5 +51,11 @@ select.clip-path-type-selector{
     position:relative;
     z-index: 10;
     margin: 12px 0;
+}
+.shape-editor-container
+{
+    > div{
+        margin:0 auto;
+    }
 }
 </style>
