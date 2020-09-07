@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-for="(n, i) in names" :key="'property-'+i.toString()">
-            <PropertyEditor :name="n" :index="i" v-on:data-type-selected="onDataTypeSelected">
+            <PropertyEditor :name="n" :index="i" v-on:data-type-selected="onDataTypeSelected" :open="expand" v-on:editor-expantion-change="onExpansionChange">
                 <DataRepGroup :type="propertyTypes[i]" :name="n" :index="i" composited="true" :initval="values[i]" v-on:value-change="onValueChange" />
             </PropertyEditor>
         </div>

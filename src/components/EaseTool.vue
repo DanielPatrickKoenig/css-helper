@@ -189,6 +189,7 @@ div.bezier-controls{
     height: var(--height);
     box-shadow: 0 0 0 1px rgba(0,0,0,.5);
     position: relative;
+    margin:30px auto;
     > svg{
         position:absolute;
         width:100%;
