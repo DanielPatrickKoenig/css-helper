@@ -23,7 +23,9 @@
             </li>
         </ul>
         <ul>
-            <li v-for="(c, i) in colors" :key="'color-'+i.toString()">
+            <li v-for="(c, i) in colors" :key="'color-'+i.toString()" class="colapsable-section" style="display:block;">
+                <input :id="uniqueID + '-' + i.toString()" type="checkbox" style="display:none;" />
+                <label :for="uniqueID + '-' + i.toString()"><span :style="'background-color:'+c.hue+';box-shadow:0 0 0 1px rgba(0,0,0,.4);display:inline-block;padding:8px;'"></span> Color {{(i + 1).toString()}}</label>
                 <ColorTool :start="c.hue" :index="i" v-on:value-change="colorUpdate" />
                 <button v-if="colors.length>2" v-on:click="removeColor(i)">Remove Color</button>
             </li>
@@ -64,7 +66,8 @@ export default {
                 width: 280,
                 max: 1,
                 constraint: 'horizontal'
-            }
+            },
+            uniqueID: Utilities.createUniqueID()
         }
     },
     computed: {
