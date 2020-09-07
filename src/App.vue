@@ -215,9 +215,20 @@ div.property-editor-ui{
 }
 .editor-section-sub-header{
   margin: 12px 0;
+  > select{
+    float:right;
+  }
+  > select + .position-percentage-container{
+    margin-top:5px;
+  }
 }
 .property-type-selector{
   margin-bottom: 14px !important;
+}
+.colapsable-section{
+  > input:not(:checked) + label + *, > input:not(:checked) + label + * + *{
+    display:none;
+  }
 }
 @include min(850px){
   div.property-editor-ui{

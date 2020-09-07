@@ -1,27 +1,28 @@
 <template>
     <div>
-        <label>Using Steps <input type="checkbox" v-model="useSteps" v-on:change="emitValue()" /></label>
+        <label>Using Steps <input type="checkbox" v-model="useSteps" v-on:change="emitValue()" style="float:right;" /></label>
         <div v-if="useSteps">
             <button v-on:click="addRatio()">Add Step</button>
             <ul>
                 <li v-for="(ratio, i) in ratios" :key="'ratio-'+i.toString()">
-                    <button v-if="ratios.length > 2" v-on:click="removeRatio(i)">Remove Step</button>
-                    <SliderComponent :width="sliderParams.width" :max="sliderParams.max" :ratiox="ratios[i]" constraint="horizontal" v-on:slider-moved="onSliderMoved" :sig="i">
+                    <button v-if="ratios.length > 2" v-on:click="removeRatio(i)" style="float:right;margin-right:15px;margin-top:-6px;"><font-awesome-icon icon="times" /></button>
+                    <SliderComponent :width="sliderParams.width" :max="sliderParams.max" :ratiox="ratios[i]" constraint="horizontal" v-on:slider-moved="onSliderMoved" :sig="i" style="margin:6px 0;box-shadow:none;border-top:1px solid rgba(0,0,0,.5);">
                         <div style="width:20px;height:20px;margin-left:-10px;margin-top:-10px;background-color:#000000;border-radius:20px;"></div>
                     </SliderComponent>
+                    <input type="number" v-model="ratios[i]" :style="ratios.length > 2 ? 'max-width:40px;margin-left:30px;margin-top:-6px;' : 'max-width:40px;margin-left:70px;margin-top:-6px;'" />
                 </li>
             </ul>
         </div>
         <ul>
-            <li v-for="(property, i) in properties" :key="'property-'+i.toString()">
-                <button v-on:click="removeProperty(i)">remove</button>
+            <li v-for="(property, i) in properties" :key="'property-'+i.toString()" style="display:block;">
+                <button v-on:click="removeProperty(i)" style="float:right;"><font-awesome-icon icon="times" /></button>
                 <label>{{property.name}}</label>
-                <ul>
+                <ul style="margin-top:4px;">
                     <li v-for="(value, j) in properties[i].values" :key="'value-'+i.toString()+'-'+j.toString()" :style="!useSteps && j >= 2 ? 'display:none;' : ''">
                         <label>
                             <span v-if="useSteps">{{Math.round(ratios[j]*100)}}%: </span> 
                             <span v-else>{{j == 0 ? 'from' : 'to'}}: </span> 
-                            <input type="text" v-model="properties[i].values[j]" v-on:change="emitValue()" />
+                            <input type="text" v-model="properties[i].values[j]" v-on:change="emitValue()" style="width:30%;float:right;" />
                         </label>
                     </li>
                 </ul>
@@ -62,7 +63,7 @@ export default {
             keyframeName: `frame-${Math.random().toString().split('.').join('')}-${Math.random().toString().split('.').join('')}-${Math.random().toString().split('.').join('')}`,
             ratios: [0, 1],
             sliderParams: {
-                width: 200,
+                width: 160,
                 max: 1
             }
         }
