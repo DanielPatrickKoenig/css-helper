@@ -11,8 +11,9 @@
             <buton v-for="(preview, i) in previewOptions" :key="'preview-'+i.toString()" :slot="'option-'+i.toString()" v-on:click="currentPreviewOption=i;"><font-awesome-icon :icon="preview" /></buton>
         </OptionSelector>
         <div :class="currentMode == 0 ? 'm-hidden-content main-preview' : 'main-preview'">
-            <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectorList[selectorIndex]" :suppliments="supplimentManifet" :sig="previewSig" :style="currentPreviewOption == 0 ? '' : 'display:none;'" />
-            <textarea v-model="markup" :style="currentPreviewOption == 0 ? 'display:none;' : ''" />
+            <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectorList[selectorIndex]" :suppliments="supplimentManifet" :sig="previewSig" :style="currentPreviewOption == 0 ? '' : 'display:none;'" v-on:style-text-change="onStyleTextUpdate" />
+            <textarea class="html-editor" v-model="markup" :style="currentPreviewOption == 0 ? 'display:none;' : ''" />
+            <textarea class="style-content" :value="styleText" :style="currentPreviewOption == 0 ? 'display:none;' : ''"></textarea>
         </div>
         
         <div class="selector-menu">
@@ -95,7 +96,8 @@ export default {
             modes: ['sliders-h', 'eye'],
             currentMode: 0,
             previewOptions: ['image', 'code'],
-            currentPreviewOption: 0
+            currentPreviewOption: 0,
+            styleText: ''
         }
     },
     computed: {
@@ -182,6 +184,9 @@ export default {
             // this.$root.selectorList = this.selectorList;
             
             // 
+        },
+        onStyleTextUpdate: function (e) {
+            this.$data.styleText = e;
         }
     },
     mounted: function () {
@@ -194,6 +199,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+
 .drag-order-list{
     position: fixed;
     top:50px;

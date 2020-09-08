@@ -56,6 +56,17 @@ export default {
             }
             console.log(styleSTR);
             return styleSTR;
+        },
+        setFullStyleData: function () {
+            let styleString = '';
+            if(document.querySelector(`#${this.$data.mainElementID}`)){
+                const styleTags = document.querySelector(`#${this.$data.mainElementID}`).parentNode.querySelectorAll('style');
+                for(let i = 0; i < styleTags.length;i++){
+                    styleString += styleTags[i].innerHTML;
+                }
+            }
+            console.log(styleString);
+            return styleString.split(';').join(';\r').split('{').join('{\r').split('}').join('}\r');
         }
     },
     watch: {
@@ -69,6 +80,10 @@ export default {
             
             this.$data.supplimentData = this.suppliments;
             this.applyStyles();
+            setTimeout(() => {
+                this.$emit('style-text-change', this.setFullStyleData());
+            }, 100);
+            
             // this.applyStyle();
         }
     },

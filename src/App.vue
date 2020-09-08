@@ -230,6 +230,14 @@ div.property-editor-ui{
     display:none;
   }
 }
+textarea.html-editor{
+    width:100%;
+    height: 400px;
+}
+textarea.style-content{
+    width:100%;
+    height: 400px;
+}
 @include min(850px){
   div.property-editor-ui{
     margin:0;
@@ -241,14 +249,14 @@ div.property-editor-ui{
     position:fixed;
     top:90px;
     left:50%;
-    margin-left:-180px;
+    margin-left:-122px;
   }
   .preview-options{
     display:flex !important;
     position:fixed;
     top:40px;
     left:50%;
-    margin-left:-180px !important;
+    margin-left:-122px !important;
   }
   .main-mode-selector{
     display:none !important;
