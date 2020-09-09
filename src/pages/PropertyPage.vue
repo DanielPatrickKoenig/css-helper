@@ -7,21 +7,14 @@
             <PropertyEditorGroup v-for="(s, i) in selectorList" :key="'selector-'+i.toString()" :names="propertyNames" :types="selectePropertyTypes" sig="a" v-on:data-type-selected="onDataTypeSelected" v-on:value-change="onValueChange" multiples="true" :sindex="i" :style="selectorIndex == i ? '' : 'display:none;'" />
         </div>
         
-        <OptionSelector v-if="!selectionInfo.show" :options="modes" width="88px" :class="currentMode == 0 ? 'm-hidden-content preview-options' : 'preview-options'">
+        <OptionSelector v-if="!selectionInfo.show" :options="previewOptions" width="150px" :class="currentMode == 0 ? 'm-hidden-content preview-options' : 'preview-options'">
             <buton v-for="(preview, i) in previewOptions" :key="'preview-'+i.toString()" :slot="'option-'+i.toString()" v-on:click="currentPreviewOption=i;"><font-awesome-icon :icon="preview" /></buton>
         </OptionSelector>
         <div :class="currentMode == 0 ? 'm-hidden-content main-preview' : 'main-preview'">
-            <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectorList[selectorIndex]" :suppliments="supplimentManifet" :sig="previewSig" :style="currentPreviewOption == 0 ? '' : 'display:none;'" v-on:style-text-change="onStyleTextUpdate" />
-            <textarea class="html-editor" v-model="markup" :style="currentPreviewOption == 0 ? 'display:none;' : ''" />
-            <textarea class="style-content" :value="styleText" :style="currentPreviewOption == 0 ? 'display:none;' : ''"></textarea>
-        </div>
-        
-        <div class="selector-menu">
-            <button :class="selectionInfo.show ? 'selector-button selectors-open' : 'selector-button'" v-on:click="selectionInfo.show = !selectionInfo.show;">
-                <font-awesome-icon icon="sitemap" />
-            </button>
-            
-            <ul :class="selectionInfo.show ? 'selectors-open' : ''">
+            <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectorList[selectorIndex]" :suppliments="supplimentManifet" :sig="previewSig" :style="currentPreviewOption != 0 ? 'display:none;' : ''" v-on:style-text-change="onStyleTextUpdate" />
+            <textarea class="html-editor" v-model="markup" :style="currentPreviewOption != 1 ? 'display:none;' : ''" />
+            <textarea class="style-content" :value="styleText" :style="currentPreviewOption != 1 ? 'display:none;' : ''"></textarea>
+            <ul :class="selectionInfo.show ? 'selectors-open' : ''" :style="currentPreviewOption != 2 ? 'display:none;' : ''">
                 <li v-for="(v, i) in selectorList" :key="'selector-'+i.toString()" :slot="'item-'+i.toString()">
                     <button v-on:click="onSelectorChosen(i)">
                         {{i}} / {{v}}
@@ -39,7 +32,6 @@
                     <button v-on:click="selectionInfo.selectorEditorOpen = true;selectionInfo.adding = true;selectionInfo.tempSelector = '';"><font-awesome-icon icon="plus" /></button>
                 </li>
             </ul>
-            
         </div>
         
         <ModalWindow v-if="selectionInfo.selectorEditorOpen" title="Selector Editor" v-on:modal-close-clicked="selectionInfo.selectorEditorOpen = false; selectionInfo.adding = false;" >
@@ -95,7 +87,7 @@ export default {
             },
             modes: ['sliders-h', 'eye'],
             currentMode: 0,
-            previewOptions: ['image', 'code'],
+            previewOptions: ['image', 'code', 'sitemap'],
             currentPreviewOption: 0,
             styleText: ''
         }
