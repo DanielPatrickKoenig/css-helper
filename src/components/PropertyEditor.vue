@@ -1,6 +1,6 @@
 <template>
     <div v-if="propertyManifest">
-        <h3 v-if="!listed || index == 0">
+        <h3 v-if="!listed || index == 0" class="property-header">
             <label><input type="checkbox" v-model="expand" style="display:none;" v-on:change="expandChange" />{{name}}</label>
         </h3>
         <div :style="expand || open ? '' : 'display:none;'">
