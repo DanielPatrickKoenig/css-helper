@@ -4,7 +4,7 @@
         <span v-for="(v, k, i) in selectorManifest" :key="'style-'+i.toString()" v-html="'<style>'+(supplimentData[selectors[i]] != undefined ? supplimentData[selectors[i]] : '')+'#' + mainElementID + selectorConnecion + selectors[i]+'{'+getStyleString(i)+'}</style>'"></span>
         <span v-html="getHighlightStyle()"></span>
         <!-- <span :id="mainElementID+'-style-container'" v-html="'<style>#'+this.getInitialID()+'{'+getCSSString()+'}</style>'"></span> -->
-        <div v-html="markup" :id="mainElementID"></div>
+        <div v-html="markup" :id="mainElementID" class="preview-display"></div>
     </div>
 </template>
 <script>
