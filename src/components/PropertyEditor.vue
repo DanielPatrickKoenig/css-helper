@@ -48,6 +48,7 @@ export default {
         onPropertyTypeSelected: function (pt, n) {
             this.$emit('data-type-selected', {pt: pt, index: this.index, name: this.name, sindex: this.sindex});
             this.$data.selectionIndex = n;
+            this.$data.showTypeMenu = false;
         },
         expandChange: function () {
             this.$emit('editor-expantion-change', this.$data.expand);

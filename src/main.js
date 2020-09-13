@@ -7,7 +7,7 @@ import VueRouter from 'vue-router';
 import store from './store' 
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPlus, faCog, faInfo, faTimes, faCaretDown, faCaretUp, faBars, faCode, faSort, faChevronUp, faChevronDown, faSitemap, faSlidersH, faEye, faWrench, faImage } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faCog, faInfo, faTimes, faCaretDown, faCaretUp, faBars, faCode, faSort, faChevronUp, faChevronDown, faSitemap, faSlidersH, faEye, faWrench, faImage, faHome, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 Vue.use(VueRouter);
@@ -37,6 +37,8 @@ library.add(faSlidersH);
 library.add(faEye);
 library.add(faWrench);
 library.add(faImage);
+library.add(faHome);
+library.add(faFilter);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
