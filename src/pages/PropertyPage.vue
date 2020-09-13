@@ -20,12 +20,11 @@
                         {{i}} / {{v}}
                     </button>
                     <button v-on:click="selectionInfo.selectorEditorOpen = true; selectionInfo.selectorEditIndex = i;">
-                        EDIT
-                        <!-- <font-awesome-icon icon="pencil-square-o" /> -->
+                        <font-awesome-icon icon="pencil-alt" />
                     </button>
                     <button v-on:click="removeSelector(v)">
-                        Delete
-                        <!-- <font-awesome-icon icon="pencil-square-o" /> -->
+                        
+                        <font-awesome-icon icon="times" />
                     </button>
                 </li>
                 <li>

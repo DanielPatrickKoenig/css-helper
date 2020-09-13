@@ -53,9 +53,11 @@ export default {
 body{
   font-family:$body-font;
   .main-preview{
-    font-family: initial;
-    *{
+    div.preview-display{
       font-family: initial;
+      *{
+        font-family: initial;
+      }
     }
   }
 }
@@ -201,10 +203,15 @@ div.property-editor-ui{
   > div{
     box-shadow:0 0 0 9px $property-header-space, 0 0 0 10px $property-header-bg;
     margin-bottom:28px;
+    border-radius:1px;
     h3 {
       background-color:$property-header-bg;
       box-shadow:0 0 0 10px $property-header-bg;
       color:$property-header-color;
+      border-radius:1px 1px 0 0;
+    }
+    h3.collapsed-header{
+      border-radius:1px;
     }
   }
   ul{
@@ -287,6 +294,27 @@ textarea.html-editor{
 textarea.style-content{
     width:100%;
     height: 400px;
+}
+.style-content + ul{
+  margin:0;
+  padding:0;
+  > li{
+    padding:6px 0;
+    box-shadow:0 1px 0 #dddddd;
+    display:flex;
+    flex-direction: row;
+    > button{
+      display:inline-flex;
+      width:15%;
+      border:none;
+      background-color:transparent;
+      justify-content: flex-end;
+    }
+    > button:first-child{
+      width: 70%;
+      justify-content: flex-start;
+    }
+  }
 }
 @include min(850px){
   div.property-editor-ui{
