@@ -179,7 +179,7 @@ div.content-row.header-row{
     div.property-table-component{
         > div.header-container{
             display:block;
-            top:2em;
+            top:4.5em;
             
         }
     }

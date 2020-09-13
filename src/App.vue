@@ -1,10 +1,12 @@
 <template>
   <div id="app" class="main-container" v-if="ready">
+    <div class="app-logo">
+      <div>LOGO</div>
+    </div>
     <nav :class="menuOpen ? 'full-width-content full-width-content-open' : 'full-width-content'">
       <button :class="menuOpen ? 'hamberger-menu hamberger-menu-open' : 'hamberger-menu'"><font-awesome-icon icon="bars" v-on:click="menuOpen = !menuOpen" /></button>
       <div :class="menuOpen ? 'main-nav main-nav-open' : 'main-nav'">
-        <router-link to="/">Home</router-link>
-        <router-link to="/search">Search</router-link>
+        <router-link to="/"><font-awesome-icon icon="home" /> Home</router-link> <span>|</span> <router-link to="/search"><font-awesome-icon icon="filter" /> Property Selector</router-link>
       </div>
     </nav>
     <router-view class="main-content"></router-view>
@@ -48,6 +50,31 @@ export default {
 <style lang="scss">
 @import './scss/variables.scss';
 @import './scss/mixins.scss';
+body{
+  font-family:$body-font;
+  .main-preview{
+    font-family: initial;
+    *{
+      font-family: initial;
+    }
+  }
+}
+div.main-container{
+  > div.app-logo{
+    height: 1.8em;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    max-width: 100%;
+    width: 30%;
+    z-index: 100;
+    right: 0px;
+    > div{
+      float:right;
+      padding:4px;
+    }
+  }
+}
 div.main-container,
 .full-width-content{
   margin: 0 auto;
@@ -55,6 +82,7 @@ div.main-container,
   max-width: 100%;
 }
 nav.full-width-content{
+  box-shadow: 0 -1px 0 rgba(0,0,0,.5) inset;
   position:fixed;
   top:0;
   background-color: $menu-bg;
@@ -77,10 +105,17 @@ nav.full-width-content{
     > a{
       display:block;
       padding: .5em .3em;
+      text-decoration: none;
+    }
+    > span{
+      display: none;
     }
   }
   > div.main-nav{
     display:none;
+    > span{
+      display: none;
+    }
   }
   > div.main-nav-open{
     display:inline-block;
@@ -127,11 +162,13 @@ nav.full-width-content-open + div.main-content{
 
 }
 .main-mode-selector{
-  margin-top: -51px !important;
-  position: fixed;
+  // margin: -61px auto 22px auto !important;
+  // margin-top: -51px !important;
+  // position: fixed;
   z-index: 10;
-  left:50%;
-  transform:translate(-50%,0);
+  margin-bottom:10px !important;
+  // left:50%;
+  // transform:translate(-50%,0);
 }
 .m-hidden-content{
   display:none !important;
@@ -176,7 +213,7 @@ div.property-editor-ui{
     > li{
       display:flex;
       flex-direction: row;
-      padding:8px 0;
+      padding:8px;
       margin:0;
       > label{
         flex-grow: 1;
@@ -253,7 +290,7 @@ textarea.style-content{
 }
 @include min(850px){
   div.property-editor-ui{
-    margin:0;
+    margin:0 10px;
     display:block !important;
   }
   div.main-preview{
@@ -276,11 +313,11 @@ textarea.style-content{
     display:none !important;
   }
   .main-content{
-    margin-top:5.5em;
+    margin-top:8em;
   }
   nav.full-width-content{
     position:fixed;
-    top:0;
+    top:2.5em;
     background-color: $menu-bg;
     height: 2em;
     z-index:10;
@@ -295,6 +332,30 @@ textarea.style-content{
       > a{
         display:inline-block;
         padding: .1em .15em;
+      }
+      > span{
+        display: initial;
+      }
+    }
+  }
+  .main-mode-selector{
+    margin-top: -51px !important;
+    position: fixed;
+    z-index: 10;
+    left:50%;
+    transform:translate(-50%,0);
+  }
+  div.main-container{
+    > div.app-logo{
+      height: 3em;
+      background-color: #ffffff;
+      position: fixed;
+      top: 0;
+      width: 60em;
+      right: auto;
+      z-index: 10;
+      > div{
+        float:left;
       }
     }
   }
