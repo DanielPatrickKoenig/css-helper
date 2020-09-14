@@ -1,5 +1,11 @@
 <template>
     <div>
+        <select class="template-selector" v-model="templateID" v-on:change="onTemplateSelected">
+            <option value="none">Select a template</option>
+            <option v-for="(t, k, i) in templates" :key="'template-'+i.toString()" :value="templates[k].id">
+                {{t.id}}
+            </option>
+        </select>
         <OptionSelector v-if="!selectionInfo.show" :options="modes" width="60%" class="main-mode-selector">
             <buton v-for="(mode, i) in modes" :key="'mode-'+i.toString()" :slot="'option-'+i.toString()" v-on:click="currentMode=i;"><font-awesome-icon :icon="mode" /></buton>
         </OptionSelector>
@@ -10,10 +16,11 @@
         <OptionSelector v-if="!selectionInfo.show" :options="previewOptions" width="150px" :class="currentMode == 0 ? 'm-hidden-content preview-options' : 'preview-options'">
             <buton v-for="(preview, i) in previewOptions" :key="'preview-'+i.toString()" :slot="'option-'+i.toString()" v-on:click="currentPreviewOption=i;"><font-awesome-icon :icon="preview" /></buton>
         </OptionSelector>
+        
         <div :class="currentMode == 0 ? 'm-hidden-content main-preview' : 'main-preview'">
             <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectorList[selectorIndex]" :suppliments="supplimentManifet" :sig="previewSig" :style="currentPreviewOption != 0 ? 'display:none;' : ''" v-on:style-text-change="onStyleTextUpdate" />
             <textarea class="html-editor" v-model="markup" :style="currentPreviewOption != 1 ? 'display:none;' : ''" />
-            <textarea class="style-content" :value="styleText" :style="currentPreviewOption != 1 ? 'display:none;' : ''"></textarea>
+            <textarea disabled class="style-content" :value="styleText" :style="currentPreviewOption != 1 ? 'display:none;' : ''"></textarea>
             <ul :class="selectionInfo.show ? 'selectors-open' : ''" :style="currentPreviewOption != 2 ? 'display:none;' : ''">
                 <li v-for="(v, i) in selectorList" :key="'selector-'+i.toString()" :slot="'item-'+i.toString()">
                     <button v-on:click="onSelectorChosen(i)">
@@ -64,6 +71,8 @@ export default {
     data () {
         return {
             propertyNames: Utilities.getParameterByName('names').split(','),
+            templateID: Utilities.getParameterByName('template'),
+            templates: Utilities.Templates,
             selectePropertyTypes: {},
             DataReps: Utilities.DataReps,
             classManifest: {},
@@ -178,13 +187,29 @@ export default {
         },
         onStyleTextUpdate: function (e) {
             this.$data.styleText = e;
+        },
+        onTemplateSelected: function () {
+            // this.$data.styleText = '';
+            const nameParamString = Utilities.getParameterByName('names').split(',') ? `names=${Utilities.getParameterByName('names')}` : '';
+            const newURL = `${document.location.href.split('?')[0]}?${nameParamString}&template=${this.$data.templateID}`
+            document.location = newURL;
         }
     },
     mounted: function () {
-        this.$store.dispatch('addSelector', '');
-        this.$store.dispatch('addSelector', ' > span');
-        this.$store.dispatch('addSelector', ' > table th');
-        this.$store.dispatch('addSelector', ' > table td');
+        // this.$store.dispatch('addSelector', '');
+        // this.$store.dispatch('addSelector', ' > span');
+        // this.$store.dispatch('addSelector', ' > table th');
+        // this.$store.dispatch('addSelector', ' > table td');
+        // let selectedTemplate = {};
+        for(let t in Utilities.Templates){
+            if(Utilities.Templates[t].id == this.$data.templateID){
+                // selectedTemplate = Utilities.Templates[t];
+                this.$store.dispatch('setSelectors', Utilities.Templates[t].selectors);
+                this.$data.markup = Utilities.Templates[t].html;
+            }
+        }
+        // const selectors = selectedTemplate.selectors;
+        // this.$store.dispatch('setSelectors', selectors);
         this.updateClassManifest();
     }
 }

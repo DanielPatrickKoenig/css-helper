@@ -386,6 +386,40 @@ const Animatables = [
     'margin-bottom'
 ];
 
+const Templates = {
+    recordList: {
+        id: 'record-list',
+        html: `<ul>
+            <li><label>Item one<label><button>Edit</button><button>Delete</button><input type="checkbox" /></li>
+            <li><label>Item two<label><button>Edit</button><button>Delete</button><input type="checkbox" /></li>
+            <li><label>Item three<label><button>Edit</button><button>Delete</button><input type="checkbox" /></li>
+            <li><label>Item four<label><button>Edit</button><button>Delete</button><input type="checkbox" /></li>
+            <li><label>Item five<label><button>Edit</button><button>Delete</button><input type="checkbox" /></li>
+            <li><label>Item six<label><button>Edit</button><button>Delete</button><input type="checkbox" /></li>
+        </ul>`,
+        selectors: ['ul', 'ul > li', 'ul > li > input[type="checkbox"]', 'ul > li > label', 'ul > li > button']
+    },
+    header: {
+        id: 'header',
+        html: `<header>
+            <img src="" />
+            <h1>Company Name</h1>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">FAQ</a>
+            </nav>
+        </header>`,
+        selectors: ['header', 'hearder > img', 'header > h1', 'header > nav', 'header > nav > a']
+    },
+    button: {
+        id: 'button',
+        html: '<button>ok</button',
+        selectors: ['button']
+    }
+}
+
 const Utilities = {
     createUniqueID: createUniqueID,
     getArrayIndexByValue: getArrayIndexByValue,
@@ -406,6 +440,7 @@ const Utilities = {
     TransformFunctions: TransformFunctions,
     mappedState: mappedState,
     FontList: FontList,
-    Animatables: Animatables
+    Animatables: Animatables,
+    Templates: Templates
 }
 export default Utilities;
