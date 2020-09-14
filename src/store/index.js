@@ -34,6 +34,9 @@ export default new Vuex.Store({
         ADD_SELECTOR(state, payload){
             state.selectorList.push(payload);
         },
+        SET_SELECTORS(state, payload){
+            state.selectorList = payload;
+        },
         REMOVE_SELECTOR(state, payload){
             let index = -1;
             for(let i = 0; i < state.selectorList.length; i++){
@@ -135,6 +138,9 @@ export default new Vuex.Store({
         },
         addSelector: function ({commit}, payload){
             commit('ADD_SELECTOR', payload);
+        },
+        setSelectors: function ({commit}, payload){
+            commit('SET_SELECTORS', payload);
         },
         removeSelector: function ({commit}, payload){
             commit('REMOVE_SELECTOR', payload);

@@ -55,9 +55,6 @@ body{
   .main-preview{
     div.preview-display{
       font-family: initial;
-      *{
-        font-family: initial;
-      }
     }
   }
 }
@@ -316,6 +313,10 @@ textarea.style-content{
     }
   }
 }
+.template-selector{
+  width: 100%;
+  margin: 0 0 16px 0;
+}
 @include min(850px){
   div.property-editor-ui{
     margin:0 10px;
@@ -325,7 +326,7 @@ textarea.style-content{
     display:block !important;
     width:600px;
     position:fixed;
-    top:130px;
+    top:120px;
     left:50%;
     margin-left:-122px;
     bottom:80px;
@@ -386,6 +387,12 @@ textarea.style-content{
         float:left;
       }
     }
+  }
+  .template-selector{
+    width: auto;
+    position: fixed;
+    top:80px;
+    margin-left:358px;
   }
 }
 </style>
