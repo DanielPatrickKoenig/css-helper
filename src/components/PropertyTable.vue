@@ -1,11 +1,15 @@
 <template>
     <div class="property-table-component">
         <div class="header-container full-width-content">
-            <input class="search-box" type="text" v-model="searchTerm" /> 
+            <input id="property_search" class="search-box" type="text" v-model="searchTerm" /> 
+            <label for="property_search"><font-awesome-icon icon="search"/></label>
             <router-link v-if="selections.length > 0" :to="'/property?names='+selections.join(',')" class="selection-link">
-                <label>Selections {{selections.length}} </label>
+                <label>{{selections.length}} </label>
                 <font-awesome-icon icon="code"/>
             </router-link>
+            <a v-else class="selection-link selection-link-disabled">
+                <font-awesome-icon icon="code"/>
+            </a>
             <div class="content-row header-row">
                 <ul>
                     <li>Name</li>
@@ -93,7 +97,54 @@ div.property-table-component{
         top:2em;
         z-index: 9;
         > .selection-link{
-            float:right;
+            position: absolute;
+            right: 14px;
+            top: 4px;
+            &.selection-link-disabled{
+                opacity: .5;
+            }
+            > label{
+                font-size: 0.3em;
+                background-color: #ff0000;
+                border-radius: 10em;
+                display: flex;
+                justify-content: center;
+                width: 2.4em;
+                padding: .2em;
+                color: #ffffff;
+                text-decoration: none !important;
+                position: absolute;
+                margin-left: 1.9em;
+                margin-top: -.6em;
+
+            }
+        }
+        > input[type="text"]{
+            
+            width: 78%;
+            padding: 6px 5px;
+            display: block;
+            background-color:transparent;
+            border:none;
+            margin-left:1.5em;
+            @include min(850px){
+                margin: 0 auto;
+                padding: 6px 0;
+                width: 90%;
+            }
+            
+            & + label{
+                position:absolute;
+                top: .1em;
+                font-size: 1.1em;
+                @include min(850px){
+                    top: -.15em;
+                    margin: 0 auto;
+                    padding: 6px 0;
+                    left: .8em;
+                }
+
+            }
         }
     }
     

@@ -6,7 +6,7 @@
     <nav :class="menuOpen ? 'full-width-content full-width-content-open' : 'full-width-content'">
       <button :class="menuOpen ? 'hamberger-menu hamberger-menu-open' : 'hamberger-menu'"><font-awesome-icon icon="bars" v-on:click="menuOpen = !menuOpen" /></button>
       <div :class="menuOpen ? 'main-nav main-nav-open' : 'main-nav'">
-        <router-link to="/"><font-awesome-icon icon="home" /> Home</router-link> <span>|</span> <router-link to="/search"><font-awesome-icon icon="filter" /> Property Selector</router-link>
+        <router-link v-on:click.native="menuOpen = false;" to="/"><font-awesome-icon icon="home" /> Home</router-link> <span>|</span> <router-link v-on:click.native="menuOpen = false;" to="/search"><font-awesome-icon icon="filter" /> Property Selector</router-link>
       </div>
     </nav>
     <router-view class="main-content"></router-view>
@@ -87,11 +87,15 @@ nav.full-width-content{
   background-color: $menu-bg;
   height: 2em;
   z-index:10;
-  .hamberger-menu{
-    
+  .hamberger-menu, .hamberger-menu-open{
+    font-size: 1.6em;
+    position: relative;
+    z-index: 20;
+    background-color: transparent;
+    border:none;
   }
   .hamberger-menu-open{
-    margin-left:60%;
+    
   }
   > div.main-nav{
     display:none;
@@ -118,12 +122,14 @@ nav.full-width-content{
   }
   > div.main-nav-open{
     display:inline-block;
+    padding-top:3em;
+    box-shadow: 0.2em 0 4px rgba(0,0,0,.5);
   }
   
   
 }
 .main-content{
-    margin-top:3.5em;
+    margin-top:3.9em;
 }
 
 div.selector-menu{
@@ -342,7 +348,7 @@ textarea.style-content{
     display:none !important;
   }
   .main-content{
-    margin-top:8em;
+    margin-top:8.3em;
   }
   nav.full-width-content{
     position:fixed;
@@ -358,12 +364,16 @@ textarea.style-content{
       display:block;
       height: auto;
       background-color: transparent;
+      padding-top:0;
       > a{
         display:inline-block;
         padding: .1em .15em;
       }
       > span{
         display: initial;
+      }
+      &.main-nav-open{
+        box-shadow:0 0 0 transparent;
       }
     }
   }
