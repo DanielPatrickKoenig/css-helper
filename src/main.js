@@ -14,6 +14,7 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
   mode: 'history',
+  base: '/css-helper/dist/',
   routes: [
     { path: '/', component: HomePage },
     { path: '/search', component: SearchPage },

@@ -115,6 +115,8 @@
             33,
             11
         ],
+        "value_separator": ",",
+        "value_max": -1,
         "index": 13,
         "booleans": ["none"]
     },
