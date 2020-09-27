@@ -231,7 +231,9 @@ div.content-row.header-row{
         > div.header-container{
             display:block;
             top:4.5em;
-            
+            > input[type="text"] {
+                padding: 6px;
+            }
         }
     }
     div.content-row{

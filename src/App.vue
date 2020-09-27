@@ -1,7 +1,11 @@
 <template>
   <div id="app" class="main-container" v-if="ready">
     <div class="app-logo">
-      <div>LOGO</div>
+      <div>
+        <img src="CSS_TrainingWheel_02.svg" />
+        
+      </div>
+      <span></span>
     </div>
     <nav :class="menuOpen ? 'full-width-content full-width-content-open' : 'full-width-content'">
       <button :class="menuOpen ? 'hamberger-menu hamberger-menu-open' : 'hamberger-menu'"><font-awesome-icon icon="bars" v-on:click="menuOpen = !menuOpen" /></button>
@@ -71,6 +75,8 @@ div.main-container{
     > div{
       float:right;
       padding:4px;
+      height:100%;
+      width:1.8em;
     }
   }
 }
@@ -356,6 +362,13 @@ textarea.style-content{
     background-color: $menu-bg;
     height: 2em;
     z-index:10;
+    position: fixed;
+    top: 2.5em;
+    background-color: #ffffff;
+    height: 2em;
+    z-index: 10;
+    margin-left: 71px;
+    width: 55.6em;
     .hamberger-menu{
       display:none;
     }
@@ -393,8 +406,26 @@ textarea.style-content{
       width: 60em;
       right: auto;
       z-index: 10;
+      background-color: #3588C9;
+      box-shadow: 35px 0 0 #ffffff inset, 0 4px 0 #ffffff inset, 0 -15px 0 #ffffff inset;
       > div{
-        float:left;
+        float: left;
+        padding: 4px;
+        height: 3.8em;
+        width: 3.8em;
+        background-color: #ffffff;
+        position: relative;
+        box-shadow: 0 0 0 3px #ffffff;
+      }
+      > span{
+        font-size: 1.3em;
+        padding: .1em .5em;
+        display: inline-block;
+        font-weight: bold;
+        color: #ffffff;
+        &::after{
+          content: "Training Wheels";
+        }
       }
     }
   }
