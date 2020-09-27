@@ -13,8 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  mode: 'history',
-  base: '/css-helper/dist/',
+  // mode: 'history',
   routes: [
     { path: '/', component: HomePage },
     { path: '/search', component: SearchPage },

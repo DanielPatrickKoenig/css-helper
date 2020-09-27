@@ -193,6 +193,7 @@ export default {
             const nameParamString = Utilities.getParameterByName('names').split(',') ? `names=${Utilities.getParameterByName('names')}` : '';
             const newURL = `${document.location.href.split('?')[0]}?${nameParamString}&template=${this.$data.templateID}`
             document.location = newURL;
+            location.reload();
         }
     },
     mounted: function () {
