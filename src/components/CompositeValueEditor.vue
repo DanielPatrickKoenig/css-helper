@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-for="(n, i) in names" :key="'property-'+i.toString()">
-            <PropertyEditor :name="n" :index="i" v-on:data-type-selected="onDataTypeSelected" :open="expand" v-on:editor-expantion-change="onExpansionChange">
+            <PropertyEditor :name="n" :pname="name" :index="i" listed="true" v-on:data-type-selected="onDataTypeSelected" :open="expand" v-on:editor-expantion-change="onExpansionChange">
                 <DataRepGroup :type="propertyTypes[i]" :name="n" :index="i" composited="true" :initval="values[i]" v-on:value-change="onValueChange" />
             </PropertyEditor>
         </div>
@@ -12,7 +12,7 @@ import Utilities from '../utils/Utilities';
 import BaseGroupValueEditor from './base/BaseGroupValueEditor.js';
 export default {
     extends: BaseGroupValueEditor,
-    props: ['names'],
+    props: ['names', 'name'],
     methods: {
         getValueSeparator: function (name) {
             let sepID = 'default';
