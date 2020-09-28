@@ -191,7 +191,7 @@ export default {
         onTemplateSelected: function () {
             // this.$data.styleText = '';
             const nameParamString = Utilities.getParameterByName('names').split(',') ? `names=${Utilities.getParameterByName('names')}` : '';
-            const newURL = `${document.location.href.split('?')[0]}?${nameParamString}&template=${this.$data.templateID}`
+            const newURL = `${document.location.href.split('?')[0]}?${nameParamString}&template=${this.$data.templateID}`;
             document.location = newURL;
             location.reload();
         }

@@ -1,11 +1,17 @@
 <template>
     <div v-if="propertyManifest">
         <h3 v-if="!listed || index == 0" :class="expand ? 'property-header' : 'property-header collapsed-header'">
-            <label><input type="checkbox" v-model="expand" style="display:none;" v-on:change="expandChange" />{{name}}</label>
+            <label><input type="checkbox" v-model="expand" style="display:none;" v-on:change="expandChange" />{{pname ? pname : name}}</label>
         </h3>
         <div :style="expand || open ? '' : 'display:none;'">
             <p v-if="!listed || index == 0">{{propertyManifest.description}}</p>
-            <p v-if="listed"><span v-on:click="vexpand = !vexpand;">Value {{(index + 1).toString()}}</span><slot name="value-ui"></slot></p>
+            <h4 v-if="listed">
+                <span v-on:click="vexpand = !vexpand;">
+                    <span v-if="pname">{{name}}</span>
+                    <span v-else>Value {{(index + 1).toString()}}</span>
+                </span>
+                <slot name="value-ui"></slot>
+            </h4>
             <label class="editor-section-header" :style="vexpand ? '' : 'display:none;'">
                 <input type="checkbox" v-model="showTypeMenu" style="display:none;" />
                 <font-awesome-icon icon="wrench" /> {{getValueTypeByID(propertyManifest[this.name].property_types[selectionIndex]).label}}
@@ -28,7 +34,7 @@
 import Utilities from '../utils/Utilities';
 import {mapState} from 'vuex';
 export default {
-    props: ['name', 'index', 'listed', 'sindex', 'open'],
+    props: ['name', 'index', 'listed', 'sindex', 'open', 'pname'],
     data () {
         return {
             selectionIndex: 0,
