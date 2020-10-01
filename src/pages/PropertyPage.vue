@@ -1,9 +1,8 @@
 <template>
     <div>
         <select class="template-selector" v-model="templateID" v-on:change="onTemplateSelected">
-            <option value="none">Select a template</option>
             <option v-for="(t, k, i) in templates" :key="'template-'+i.toString()" :value="templates[k].id">
-                {{t.id}}
+                {{templates[k].label}}
             </option>
         </select>
         <OptionSelector v-if="!selectionInfo.show" :options="modes" width="60%" class="main-mode-selector">
@@ -71,7 +70,7 @@ export default {
     data () {
         return {
             propertyNames: Utilities.getParameterByName('names').split(','),
-            templateID: Utilities.getParameterByName('template'),
+            templateID: Utilities.getParameterByName('template') ? Utilities.getParameterByName('template') : '',
             templates: Utilities.Templates,
             selectePropertyTypes: {},
             DataReps: Utilities.DataReps,
