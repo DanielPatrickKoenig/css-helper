@@ -388,7 +388,7 @@ const Animatables = [
 
 const Templates = {
     default: {
-        id: '',
+        id: 'default',
         label: 'Choose a selector',
         html: '<div>Div element</div>',
         selectors: ['div']

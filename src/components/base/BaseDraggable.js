@@ -8,7 +8,8 @@ export default{
             offset: {x: 0, y: 0},
             uniqueID: 'element-' + Math.random().toString().split('.').join('') + '-' + Math.random().toString().split('.').join('') + '-' + Math.random().toString().split('.').join(''),
             componentPosition: {x: 0, y: 0},
-            positionRatio: {x: 0, y: 0}
+            positionRatio: {x: 0, y: 0},
+            dragged: false
         }
     },
     methods: {
@@ -51,6 +52,7 @@ export default{
         },
         onMove: function (e) {
             if(this.$data.dragging){
+                this.$data.dragged = true;
                 console.log('touch', e);
                 e.preventDefault();
                 this.processDrag(e);   
@@ -87,17 +89,20 @@ export default{
             console.log(this.max);
             const total = this.max ? this.max : 1;
             return size * (r / total);
+        },
+        getComponentOffset: function () {
+            return this.dragged ? document.querySelector(`#${this.$data.uniqueID}`).getBoundingClientRect() : {left: 0, top: 0};
         }
     },
     watch: {
         ratiox: function (){
             console.log('updated ratiox');
             this.$data.positionRatio.x = this.ratiox;
-            this.$data.position.x = this.width ? this.refactorPosition(this.$data.positionRatio.x, this.width) + document.querySelector(`#${this.$data.uniqueID}`).getBoundingClientRect().left : this.$data.positionRatio.x;
+            this.$data.position.x = this.width ? this.refactorPosition(this.$data.positionRatio.x, this.width) + this.getComponentOffset().left : this.$data.positionRatio.x;
         },
         ratioy: function(){
             this.$data.positionRatio.y = this.ratioy;
-            this.$data.position.y = this.height ? this.refactorPosition(this.$data.positionRatio.y, this.height) + document.querySelector(`#${this.$data.uniqueID}`).getBoundingClientRect().top : this.$data.positionRatio.y;
+            this.$data.position.y = this.height ? this.refactorPosition(this.$data.positionRatio.y, this.height) + this.getComponentOffset().top : this.$data.positionRatio.y;
         }
     }
 }

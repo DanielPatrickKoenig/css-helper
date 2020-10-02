@@ -3,7 +3,7 @@
         <div class="header-container full-width-content">
             <input id="property_search" class="search-box" type="text" v-model="searchTerm" /> 
             <label for="property_search"><font-awesome-icon icon="search"/></label>
-            <router-link v-if="selections.length > 0" :to="'/property?names='+selections.join(',')" class="selection-link">
+            <router-link v-if="selections.length > 0" :to="'/property?names='+selections.join(',')+'&template=default'" class="selection-link">
                 <label>{{selections.length}} </label>
                 <font-awesome-icon icon="code"/>
             </router-link>
