@@ -54,6 +54,22 @@ export default {
 <style lang="scss">
 @import './scss/variables.scss';
 @import './scss/mixins.scss';
+svg.svg-inline--fa path{
+  fill:$interaction-dark;
+}
+span.selected-option{
+  svg.svg-inline--fa path{
+    fill:#000000;
+  }
+}
+
+span.collapse-toggle{
+  float: right;
+  margin-top: 1px;
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
 body{
   font-family:$body-font;
   .main-preview{
@@ -87,9 +103,9 @@ div.main-container,
   max-width: 100%;
 }
 nav.full-width-content{
-  box-shadow: 0 -1px 0 rgba(0,0,0,.5) inset;
   position:fixed;
   top:0;
+  
   background-color: $menu-bg;
   height: 2em;
   z-index:10;
@@ -207,16 +223,20 @@ ul.property-type-selector{
   }
 }
 div.property-editor-ui{
+  h4{
+    color:$interaction-dark;
+    box-shadow:0 1px 0 $interaction-light inset
+  }
   width:280px;
   margin: 0 auto;
   > div{
-    box-shadow:0 0 0 9px $property-header-space, 0 0 0 10px $property-header-bg;
+    box-shadow:0 0 0 9px $property-header-space, 0 0 0 10px $interaction-dark;
     margin-bottom:28px;
     border-radius:1px;
     h3 {
-      background-color:$property-header-bg;
-      box-shadow:0 0 0 10px $property-header-bg;
-      color:$property-header-color;
+      // background-color:$property-header-bg;
+      box-shadow:0 0 0 10px transparent;
+      color:$interaction-dark;
       border-radius:1px 1px 0 0;
     }
     h3.collapsed-header{

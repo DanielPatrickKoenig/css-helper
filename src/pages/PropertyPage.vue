@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="proprty-page">
         <select class="template-selector" v-model="templateID" v-on:change="onTemplateSelected">
             <option v-for="(t, k, i) in templates" :key="'template-'+i.toString()" :value="templates[k].id">
                 {{templates[k].label}}
@@ -13,7 +13,7 @@
         </div>
         
         <OptionSelector v-if="!selectionInfo.show" :options="previewOptions" width="150px" :class="currentMode == 0 ? 'm-hidden-content preview-options' : 'preview-options'">
-            <buton v-for="(preview, i) in previewOptions" :key="'preview-'+i.toString()" :slot="'option-'+i.toString()" v-on:click="currentPreviewOption=i;"><font-awesome-icon :icon="preview" /></buton>
+            <span v-for="(preview, i) in previewOptions" :key="'preview-'+i.toString()" :slot="'option-'+i.toString()" v-on:click="currentPreviewOption=i;" :class="currentPreviewOption == i ? 'selected-option' : ''"><font-awesome-icon :icon="preview" /></span>
         </OptionSelector>
         
         <div :class="currentMode == 0 ? 'm-hidden-content main-preview' : 'main-preview'">
@@ -224,5 +224,24 @@ export default {
     > .drag-order-inner-list{
         width:100%;
     }
+}
+</style>
+<style lang="scss">
+@import '../scss/variables.scss';
+.proprty-page input[type="number"], input[type="text"]{
+    display: block;
+    /* width: auto; */
+    padding: 5px;
+    border: none;
+    background-color: $interaction-light;
+    border-radius: 5px;
+}
+.proprty-page select{
+    display: block;
+    /* width: auto; */
+    padding: 5px;
+    border: none;
+    background-color: $interaction-light;
+    border-radius: 5px;
 }
 </style>
