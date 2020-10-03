@@ -15,8 +15,8 @@
           </li>
       </ul>
       <div class="colapsable-section">
-        <input :id="uniqueID + '-color'" type="checkbox" style="display:none;" />
-        <label :for="uniqueID + '-color'"><span :style="'background-color:'+color+';box-shadow:0 0 0 1px rgba(0,0,0,.4);display:inline-block;padding:8px;'"></span> Color</label>
+        <input :id="uniqueID + '-color-' + index.toString()" type="checkbox" style="display:none;" />
+        <label :for="uniqueID + '-color-' + index.toString()"><span :style="'background-color:'+color+';box-shadow:0 0 0 1px rgba(0,0,0,.4);display:inline-block;padding:8px;'"></span> Color</label>
         <ColorTool :start="color" :index="index" v-on:value-change="colorUpdate" />
       </div>
       <span>Invert</span><input type="checkbox" v-model="invert" v-on:change="emitValue()" style="float:right;"/>
@@ -50,7 +50,8 @@ export default {
                 blur: {value: 0, unit: Utilities.PropertyValueTypes.PX},
                 spread: {value: 0, unit: Utilities.PropertyValueTypes.PX, enabled: false}
             },
-            color: '#000000'
+            color: '#000000',
+            uniqueID: Utilities.createUniqueID()
         }
     },
     methods: {
