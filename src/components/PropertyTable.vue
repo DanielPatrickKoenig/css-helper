@@ -93,7 +93,8 @@ div.property-table-component{
     position: relative;
     > div.header-container{
         position:fixed;
-        background-color: $sub-menu-bg;
+        box-shadow: 0 1px 0 rgba(0,0,0,.1) inset;
+        background-image:linear-gradient(0deg,rgba(220,220,220,1) 15.714285714285714%,rgba(255,255,255,1) 58.214285714285715%);
         top:2em;
         z-index: 9;
         > .selection-link{
@@ -158,8 +159,11 @@ ul{
     }
 }
 div.content-row:not(.header-row){
+    &:nth-child(odd){
+        background-color: rgba(53,136,201,.05);
+    }
     > ul{
-        box-shadow:0 -1px 0 rgba(0,0,0,.5);
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
         > li{
             position:relative;
             span.text-link{
