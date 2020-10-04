@@ -1,6 +1,6 @@
 <template>
     <div>
-        <select v-model="selectedOption" v-on:change="emitValue()">
+        <select app-controll v-model="selectedOption" v-on:change="emitValue()">
             <option value="inherit">
                 inherit
             </option>

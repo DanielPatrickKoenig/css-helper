@@ -10,7 +10,7 @@
                 <SliderComponent :width="width" :max="v.max" :ratiox="sliderData[k].value" constraint="horizontal" v-on:slider-moved="onSliderMoved" :sig="k" :noinit="k == 'a'">
                     <div style="width:20px;height:20px;margin-left:-10px;margin-top:-10px;background-color:#000000;border-radius:20px;"></div>
                 </SliderComponent>
-                <input :class="v.name+'-value-input'" type="number" v-model="sliderData[k].value" />
+                <input app-controll :class="v.name+'-value-input'" type="number" v-model="sliderData[k].value" />
             </li>
         </ul>
     </div>

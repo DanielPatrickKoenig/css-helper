@@ -1,6 +1,6 @@
 <template>
     <div>
-        <select v-model="value" v-on:change="onValueChange">
+        <select app-controll v-model="value" v-on:change="onValueChange">
             <option v-for="(v, i) in data.options" :key="'option-' + i.toString()">
                 {{v}}
             </option>

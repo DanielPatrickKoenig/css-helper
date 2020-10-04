@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input v-model="value" type="number" v-on:change="onValueChange" />
+        <input app-controll v-model="value" type="number" v-on:change="onValueChange" />
     </div>
 </template>
 <script>

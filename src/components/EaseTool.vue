@@ -1,6 +1,6 @@
 <template>
     <div>
-        <select v-model="selectedType" v-on:change="typeSelected">
+        <select app-controll v-model="selectedType" v-on:change="typeSelected">
             <option v-for="(type, k, i) in types" :key="'types-'+i.toString()" :value="types[k]">
                 {{type}}
             </option>

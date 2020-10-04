@@ -1,6 +1,6 @@
 <template>
     <div class="proprty-page">
-        <select class="template-selector" v-model="templateID" v-on:change="onTemplateSelected">
+        <select app-controll class="template-selector" v-model="templateID" v-on:change="onTemplateSelected">
             <option v-for="(t, k, i) in templates" :key="'template-'+i.toString()" :value="templates[k].id">
                 {{templates[k].label}}
             </option>
@@ -22,30 +22,30 @@
             <textarea disabled class="style-content" :value="styleText" :style="currentPreviewOption != 1 ? 'display:none;' : ''"></textarea>
             <ul :class="selectionInfo.show ? 'selectors-open' : ''" :style="currentPreviewOption != 2 ? 'display:none;' : ''">
                 <li v-for="(v, i) in selectorList" :key="'selector-'+i.toString()" :slot="'item-'+i.toString()">
-                    <button v-on:click="onSelectorChosen(i)">
+                    <button app-controll v-on:click="onSelectorChosen(i)">
                         {{i}} / {{v}}
                     </button>
-                    <button v-on:click="selectionInfo.selectorEditorOpen = true; selectionInfo.selectorEditIndex = i;">
+                    <button app-controll v-on:click="selectionInfo.selectorEditorOpen = true; selectionInfo.selectorEditIndex = i;">
                         <font-awesome-icon icon="pencil-alt" />
                     </button>
-                    <button v-on:click="removeSelector(v)">
+                    <button app-controll v-on:click="removeSelector(v)">
                         
                         <font-awesome-icon icon="times" />
                     </button>
                 </li>
                 <li>
-                    <button v-on:click="selectionInfo.selectorEditorOpen = true;selectionInfo.adding = true;selectionInfo.tempSelector = '';"><font-awesome-icon icon="plus" /></button>
+                    <button app-controll v-on:click="selectionInfo.selectorEditorOpen = true;selectionInfo.adding = true;selectionInfo.tempSelector = '';"><font-awesome-icon icon="plus" /></button>
                 </li>
             </ul>
         </div>
         
         <ModalWindow v-if="selectionInfo.selectorEditorOpen" title="Selector Editor" v-on:modal-close-clicked="selectionInfo.selectorEditorOpen = false; selectionInfo.adding = false;" >
             <div v-if="selectionInfo.adding">
-                <input v-model="selectionInfo.tempSelector" type="text" />
-                <button v-on:click="addSelector"><font-awesome-icon icon="plus" /></button>
+                <input app-controll v-model="selectionInfo.tempSelector" type="text" />
+                <button app-controll v-on:click="addSelector"><font-awesome-icon icon="plus" /></button>
             </div>
             <div v-else>
-                <input v-model="selectorList[selectionInfo.selectorEditIndex]" type="text" />
+                <input app-controll v-model="selectorList[selectionInfo.selectorEditIndex]" type="text" />
             </div>
             <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectionInfo.adding ? selectionInfo.tempSelector : selectorList[selectionInfo.selectorEditIndex]" highlighting="true" :suppliments="supplimentManifet" :sig="previewSig" />
         </ModalWindow>
@@ -228,7 +228,7 @@ export default {
 </style>
 <style lang="scss">
 @import '../scss/variables.scss';
-.proprty-page input[type="number"], input[type="text"]{
+input[type="number"][app-controll], input[type="text"][app-controll]{
     display: block;
     /* width: auto; */
     padding: 5px;
@@ -236,12 +236,26 @@ export default {
     background-color: $interaction-light;
     border-radius: 5px;
 }
-.proprty-page select{
+select[app-controll]{
     display: block;
     /* width: auto; */
     padding: 5px;
     border: none;
     background-color: $interaction-light;
     border-radius: 5px;
+}
+button[app-controll]{
+    display: block;
+    /* width: auto; */
+    padding: 8px;
+    border: none;
+    background-color: #cccccc;
+    color: $interaction-dark;
+    border-radius: 8px;
+    background-image:linear-gradient(0deg, rgba(255, 255, 255, 0.75625) 0%, rgba(255, 255, 255, 0.4375) 43.9285714286%, rgba(255, 255, 255, 0.575) 47.5%, rgba(255, 255, 255, 0.7125) 85.3571428571%);
+    text-shadow: 0 -1px 0px #ffffff;
+    box-shadow: 0 0 0 1px $interaction-dark;
+    width:100%;
+    margin-top: 8px;
 }
 </style>

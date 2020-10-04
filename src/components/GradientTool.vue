@@ -2,7 +2,7 @@
     <div v-if="shouldDisplay">
         <div class="editor-section-sub-header">
             Gradient Type: 
-            <select v-model="gradientType">
+            <select app-controll v-model="gradientType">
                 <option v-for="(g, k, i) in gradientTypes" :key="'type-'+i.toString()" :value="g">
                     {{k}}
                 </option>
@@ -12,7 +12,7 @@
             <AngleControl width="100" :max="360" :angle="angle" class="angle-control" v-on:slider-moved="onAngleChange">
                 <div style="width:20px;height:20px;margin-left:-10px;margin-top:-10px;background-color:#000000;border-radius:20px;"></div>
             </AngleControl>
-            <div>Angle <input type="number" v-model="angle" /></div>
+            <div>Angle <input app-controll type="number" v-model="angle" /></div>
         </div>
         <PositionDirectiveSelector v-else v-on:selection-change="onRadialSelectionChange" :shape="radialData.shape" :position1="radialData.positions[0].position" :position2="radialData.positions[1].position" :ratio1="radialData.positions[0].ratio" :ratio2="radialData.positions[1].ratio" />
         <ul class="gradient-position-sliders" :style="'background-image:'+getStyleString(true)+';width:'+gradiantPositionParams.width.toString()+'px;'">
@@ -24,12 +24,12 @@
         </ul>
         <ul>
             <li v-for="(c, i) in colors" :key="'color-'+i.toString()" class="colapsable-section" style="display:block;">
-                <input :id="uniqueID + '-' + i.toString()" type="checkbox" style="display:none;" />
+                <input app-controll :id="uniqueID + '-' + i.toString()" type="checkbox" style="display:none;" />
                 <label :for="uniqueID + '-' + i.toString()"><span :style="'background-color:'+c.hue+';box-shadow:0 0 0 1px rgba(0,0,0,.4);display:inline-block;padding:8px;'"></span> Color {{(i + 1).toString()}}</label>
                 <ColorTool :start="c.hue" :index="i" v-on:value-change="colorUpdate" />
-                <button v-if="colors.length>2" v-on:click="removeColor(i)">Remove Color</button>
+                <button app-controll v-if="colors.length>2" v-on:click="removeColor(i)">Remove Color</button>
             </li>
-            <li><button v-on:click="addColor">Add Color</button></li>
+            <li><button app-controll v-on:click="addColor">Add Color</button></li>
         </ul>
         <div class="gradient-preview" :style="styleString"></div>
     </div>

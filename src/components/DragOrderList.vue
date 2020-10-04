@@ -2,7 +2,7 @@
     <div :id="uniqueID">
         <ul class="drag-order-items-container">
             <li v-for="(v, i) in indexList" :key="'index-'+i.toString()" :class="draggedIndex == i ? 'dragged-item' : ''" :style="itemStyle(i)">
-                <button v-on:mousedown="down" :index="i">
+                <button app-controll v-on:mousedown="down" :index="i">
                     <font-awesome-icon icon="sort" />
                 </button>
                 <div>

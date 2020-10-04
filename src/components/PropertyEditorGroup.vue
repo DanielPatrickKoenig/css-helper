@@ -12,7 +12,7 @@
                     <MultiValueEditor :sindex="sindex" :name="n" v-on:value-change="onValueChange" />
                 </div>
             </div>
-            <button v-if="!multiples">
+            <button app-controll v-if="!multiples">
                 Add
             </button>
         </div>

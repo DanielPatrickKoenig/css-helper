@@ -1,7 +1,7 @@
 <template>
     <div class="property-table-component">
         <div class="header-container full-width-content">
-            <input id="property_search" class="search-box" type="text" v-model="searchTerm" /> 
+            <input app-controll id="property_search" class="search-box" type="text" v-model="searchTerm" /> 
             <label for="property_search"><font-awesome-icon icon="search"/></label>
             <router-link v-if="selections.length > 0" :to="'/property?names='+selections.join(',')+'&template=default'" class="selection-link">
                 <label>{{selections.length}} </label>
@@ -20,7 +20,7 @@
         </div>
         
         <div class="content-row" v-for="(v, k, i) in searchables" :key="'property-'+i.toString()">
-            <input :id="'item-'+i.toString()" type="checkbox" class="expand-checkbox" />
+            <input app-controll :id="'item-'+i.toString()" type="checkbox" class="expand-checkbox" />
             <ul>
                 <li>
                     <label :for="'item-'+i.toString()">
@@ -28,7 +28,7 @@
                         <font-awesome-icon class="close-icon expansion-icon" icon="caret-up" />
                         {{k}}
                     </label>
-                    <input v-on:change="onPropertyCheckChange" type="checkbox" v-model="selectionMatrix[k]" />
+                    <input app-controll v-on:change="onPropertyCheckChange" type="checkbox" v-model="selectionMatrix[k]" />
                 </li>
                 <li>{{v.description}}</li>
                 <li>

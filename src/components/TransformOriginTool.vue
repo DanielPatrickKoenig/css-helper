@@ -2,24 +2,24 @@
     <ul>
         <li>
             <span>X</span>
-            <select v-model="xOption" v-on:change="emitValue()">
+            <select app-controll v-model="xOption" v-on:change="emitValue()">
                 <option v-for="(x, k, i) in xOptionList" :key="'x-option-'+i.toString()" :value="xOptionList[k]">
                     {{k}}
                 </option>
             </select>
-            <input v-if="xOption.split('#').length > 1" type="number" v-model="xNumber" v-on:change="emitValue()" />
+            <input app-controll v-if="xOption.split('#').length > 1" type="number" v-model="xNumber" v-on:change="emitValue()" />
         </li>
         <li>
             <span>Y</span>
-            <select v-model="yOption" v-on:change="emitValue()">
+            <select app-controll v-model="yOption" v-on:change="emitValue()">
                 <option v-for="(y, k, i) in yOptionList" :key="'y-option-'+i.toString()" :value="yOptionList[k]">
                     {{k}}
                 </option>
             </select>
-            <input v-if="yOption.split('#').length > 1" type="number" v-model="yNumber" v-on:change="emitValue()" />
+            <input app-controll v-if="yOption.split('#').length > 1" type="number" v-model="yNumber" v-on:change="emitValue()" />
         </li> 
         <li>
-            <label><span>Z</span> <input type="number" v-model="z" v-on:change="emitValue()" /></label>
+            <label><span>Z</span> <input app-controll type="number" v-model="z" v-on:change="emitValue()" /></label>
         </li> 
     </ul>
 </template>
