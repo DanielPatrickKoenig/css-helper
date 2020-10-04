@@ -1,7 +1,7 @@
 <template>
-    <div v-if="propertyManifest">
+    <div v-if="propertyManifest" class="property-editor">
         <h3 v-if="!listed || index == 0" :class="expand ? 'property-header' : 'property-header collapsed-header'">
-            <label><input type="checkbox" v-model="expand" style="display:none;" v-on:change="expandChange" />{{pname ? pname : name}}<span class="collapse-toggle"><font-awesome-icon v-if="expand" icon="caret-up" /><font-awesome-icon v-else icon="caret-down" /></span></label>
+            <label><input app-controll type="checkbox" v-model="expand" style="display:none;" v-on:change="expandChange" />{{pname ? pname : name}}<span class="collapse-toggle"><font-awesome-icon v-if="expand" icon="caret-up" /><font-awesome-icon v-else icon="caret-down" /></span></label>
         </h3>
         <div :style="expand || open ? '' : 'display:none;'">
             <p v-if="!listed || index == 0">{{propertyManifest.description}}</p>
@@ -11,10 +11,10 @@
                     <span v-else>Value {{(index + 1).toString()}}</span>
                     <span class="collapse-toggle"><font-awesome-icon v-if="vexpand" icon="caret-up" /><font-awesome-icon v-else icon="caret-down" /></span>
                 </span>
-                <slot name="value-ui"></slot>
+                <slot v-if="vexpand" name="value-ui"></slot>
             </h4>
             <label class="editor-section-header" :style="vexpand ? '' : 'display:none;'">
-                <input type="checkbox" v-model="showTypeMenu" style="display:none;" />
+                <input app-controll type="checkbox" v-model="showTypeMenu" style="display:none;" />
                 <font-awesome-icon icon="wrench" /> {{getValueTypeByID(propertyManifest[this.name].property_types[selectionIndex]).label}}
             </label>
             <ul class="property-type-selector" :style="showTypeMenu && vexpand ? '' : 'display:none;'">

@@ -1,10 +1,10 @@
 <template>
     <div class="property-selection-item">
         <span>{{name}}</span>
-        <button class="button-add" v-on:click="addClicked">
+        <button app-controll class="button-add" v-on:click="addClicked">
             <font-awesome-icon icon="plus" />
         </button>
-        <button class="button-info" v-on:click="infoClicked">
+        <button app-controll class="button-info" v-on:click="infoClicked">
             <font-awesome-icon icon="info" />
         </button>
     </div>

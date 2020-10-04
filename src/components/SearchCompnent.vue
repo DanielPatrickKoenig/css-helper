@@ -1,6 +1,6 @@
 <template>
     <div class="search-component">
-        <input class="search-box" type="text" v-model="searchTerm" />
+        <input app-controll class="search-box" type="text" v-model="searchTerm" />
         <ul>
             <li v-for="(v, k, i) in searchables" :key="'item-' + i.toString()">
                 <slot :name="'content-' + k">

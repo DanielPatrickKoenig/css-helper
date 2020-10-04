@@ -4,7 +4,7 @@
         <div class="modal-inner-widnow">
             <label>
                 {{title}}
-                <button v-on:click="closedClicked"><font-awesome-icon icon="times" /></button>
+                <button app-controll v-on:click="closedClicked"><font-awesome-icon icon="times" /></button>
             </label>
             <div>
                 <slot></slot>

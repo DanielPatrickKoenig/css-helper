@@ -1,12 +1,12 @@
 <template>
     <div class="attribute-row">
         <label>
-            <button v-on:click="options">
+            <button app-controll v-on:click="options">
                 <font-awesome-icon icon="cog" />
             </button>
             <span>{{name}}</span>
-            <input type="text" v-model="value" />
-            <button v-on:click="remove">
+            <input app-controll type="text" v-model="value" />
+            <button app-controll v-on:click="remove">
                 <font-awesome-icon icon="times" />
             </button>
         </label>

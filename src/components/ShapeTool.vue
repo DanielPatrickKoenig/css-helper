@@ -1,6 +1,6 @@
 <template>
     <div class="shape-editor-container">
-        <select v-model="currentType" class="clip-path-type-selector">
+        <select app-controll v-model="currentType" class="clip-path-type-selector">
             <option v-for="(v, k, i) in types" :key="'type-'+i.toString()" :value="types[k]">{{k}}</option>
         </select>
         <EllipseTool :width="size.width" :height="size.height" :circular="true" :style="currentType == types.CIRCLE ? '' : 'display:none;'" v-on:shape-changed="shapeChanged" />

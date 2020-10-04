@@ -2,12 +2,12 @@
   <div>
       <ul>
           <li v-for="(v, k, i) in measures" :key="'meadsure-'+i.toString()" style="display:block;position:relative;">
-              <span v-if="measures[k].enabled != undefined" style="display:block;">Include spred</span><input v-if="measures[k].enabled != undefined" type="checkbox" v-model="measures[k].enabled" v-on:change="emitValue()" class="enabler-box"/>
+              <span v-if="measures[k].enabled != undefined" style="display:block;">Include spred</span><input app-controll v-if="measures[k].enabled != undefined" type="checkbox" v-model="measures[k].enabled" v-on:change="emitValue()" class="enabler-box"/>
               <label class="value-and-label">
                   <span>{{k}}</span>
-                  <input type="number" v-model="measures[k].value" v-on:change="emitValue()" />
+                  <input app-controll type="number" v-model="measures[k].value" v-on:change="emitValue()" />
               </label>
-              <select v-model="measures[k].unit" v-on:change="emitValue()">
+              <select app-controll v-model="measures[k].unit" v-on:change="emitValue()">
                   <option v-for="(u, _k, j) in unitManifest" :key="'init-'+j.toString()+'-'+i.toString()" :value="unitManifest[_k]">
                       {{_k}}
                   </option>
@@ -15,11 +15,11 @@
           </li>
       </ul>
       <div class="colapsable-section">
-        <input :id="uniqueID + '-color-' + index.toString()" type="checkbox" style="display:none;" />
+        <input app-controll :id="uniqueID + '-color-' + index.toString()" type="checkbox" style="display:none;" />
         <label :for="uniqueID + '-color-' + index.toString()"><span :style="'background-color:'+color+';box-shadow:0 0 0 1px rgba(0,0,0,.4);display:inline-block;padding:8px;'"></span> Color</label>
         <ColorTool :start="color" :index="index" v-on:value-change="colorUpdate" />
       </div>
-      <span>Invert</span><input type="checkbox" v-model="invert" v-on:change="emitValue()" style="float:right;"/>
+      <span>Invert</span><input app-controll type="checkbox" v-model="invert" v-on:change="emitValue()" style="float:right;"/>
   </div>
 </template>
 

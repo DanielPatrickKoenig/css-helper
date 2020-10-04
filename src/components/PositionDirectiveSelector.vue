@@ -2,7 +2,7 @@
   <div>
       <div class="editor-section-sub-header">
         Shape: 
-        <select v-model="selectedShapeIndex" v-on:change="selectionChanged">
+        <select app-controll v-model="selectedShapeIndex" v-on:change="selectionChanged">
             <option v-for="(s, i) in shapes" :key="'shape-'+i.toString()" :value="i">
                 {{s}}
             </option>
@@ -10,7 +10,7 @@
       </div>
       <div v-for="(s, i) in selectedPositions" :key="'selector-'+i.toString()" class="editor-section-sub-header">
         {{i == 0 ? 'Horizontal: ' : 'Vertical: '}}
-        <select v-model="selectedPositions[i].position" v-on:change="selectionChanged">
+        <select app-controll v-model="selectedPositions[i].position" v-on:change="selectionChanged">
             <option v-for="(p, k, j) in positions" :key="'option-'+i.toString()+'-'+j.toString()" :value="p">
                 {{p}}
             </option>
@@ -19,7 +19,7 @@
             <SliderComponent :width="sliderParams.width" :max="sliderParams.max" :ratiox="selectedPositions[i].ratio" :constraint="sliderParams.constraint" v-on:slider-moved="onSliderMoved" :sig="i">
                 <div style="width:20px;height:20px;margin-left:-10px;margin-top:-10px;background-color:#000000;border-radius:20px;"></div>
             </SliderComponent>
-            <input type="number" v-model="selectedPositions[i].ratio" v-on:change="selectionChanged" />
+            <input app-controll type="number" v-model="selectedPositions[i].ratio" v-on:change="selectionChanged" />
         </div>
       </div>
   </div>

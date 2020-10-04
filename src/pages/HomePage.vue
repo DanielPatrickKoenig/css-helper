@@ -8,7 +8,7 @@
             <SliderComponent constraint="horizontal" :width="dimensions.width" :ratiox="rat" :max="255" v-on:slider-moved="onSliderMoved">
                 
             </SliderComponent>
-            <input type="number" v-model="rat" />
+            <input app-controll type="number" v-model="rat" />
         </div> -->
     </div>
 </template>

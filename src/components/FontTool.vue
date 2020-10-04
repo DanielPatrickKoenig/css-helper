@@ -1,6 +1,6 @@
 <template>
     <div>
-        <select v-model="selectedFontIndex" v-on:change="emitValue()">
+        <select app-controll v-model="selectedFontIndex" v-on:change="emitValue()">
             <option v-for="(font, i) in fonts" :key="'font-'+i.toString()" :value="i">
                 {{font}}
             </option>

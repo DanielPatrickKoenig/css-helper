@@ -8,7 +8,7 @@
       <span></span>
     </div>
     <nav :class="menuOpen ? 'full-width-content full-width-content-open' : 'full-width-content'">
-      <button :class="menuOpen ? 'hamberger-menu hamberger-menu-open' : 'hamberger-menu'"><font-awesome-icon icon="bars" v-on:click="menuOpen = !menuOpen" /></button>
+      <button app-controll :class="menuOpen ? 'hamberger-menu hamberger-menu-open' : 'hamberger-menu'"><font-awesome-icon icon="bars" v-on:click="menuOpen = !menuOpen" /></button>
       <div :class="menuOpen ? 'main-nav main-nav-open' : 'main-nav'">
         <router-link v-on:click.native="menuOpen = false;" to="/"><font-awesome-icon icon="home" /> Home</router-link> <span>|</span> <router-link v-on:click.native="menuOpen = false;" to="/search"><font-awesome-icon icon="filter" /> Property Selector</router-link>
       </div>
@@ -338,6 +338,7 @@ textarea.style-content{
       border:none;
       background-color:transparent;
       justify-content: flex-end;
+      box-shadow:none;
     }
     > button:first-child{
       width: 70%;
