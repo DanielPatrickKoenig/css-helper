@@ -23,7 +23,7 @@
             <ul :class="selectionInfo.show ? 'selectors-open' : ''" :style="currentPreviewOption != 2 ? 'display:none;' : ''">
                 <li v-for="(v, i) in selectorList" :key="'selector-'+i.toString()" :slot="'item-'+i.toString()">
                     <button app-controll v-on:click="onSelectorChosen(i)">
-                        {{i}} / {{v}}
+                        {{v}}
                     </button>
                     <button app-controll v-on:click="selectionInfo.selectorEditorOpen = true; selectionInfo.selectorEditIndex = i;">
                         <font-awesome-icon icon="pencil-alt" />
@@ -234,7 +234,6 @@ input[type="number"][app-controll], input[type="text"][app-controll]{
     padding: 5px;
     border: none;
     background-color: $interaction-light;
-    border-radius: 5px;
 }
 select[app-controll]{
     display: block;
@@ -242,7 +241,6 @@ select[app-controll]{
     padding: 5px;
     border: none;
     background-color: $interaction-light;
-    border-radius: 5px;
 }
 button[app-controll]{
     display: block;
@@ -251,7 +249,6 @@ button[app-controll]{
     border: none;
     background-color: #cccccc;
     color: $interaction-dark;
-    border-radius: 8px;
     background-image:linear-gradient(0deg, rgba(255, 255, 255, 0.75625) 0%, rgba(255, 255, 255, 0.4375) 43.9285714286%, rgba(255, 255, 255, 0.575) 47.5%, rgba(255, 255, 255, 0.7125) 85.3571428571%);
     text-shadow: 0 -1px 0px #ffffff;
     box-shadow: 0 0 0 1px $interaction-dark;

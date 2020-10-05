@@ -232,7 +232,6 @@ div.property-editor-ui{
   > div{
     box-shadow:0 0 0 9px $property-header-space, 0 0 0 10px $interaction-dark;
     margin-bottom:28px;
-    border-radius:1px;
     h3 {
       // background-color:$property-header-bg;
       box-shadow:0 0 0 10px transparent;

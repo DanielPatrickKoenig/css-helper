@@ -3,7 +3,7 @@
         <div v-for="(v, i) in values" :key="'property-value-'+i.toString()">
             
             <PropertyEditor :name="name" :index="i" v-on:data-type-selected="onDataTypeSelected" listed="true" :open="expand" v-on:editor-expantion-change="onExpansionChange" >
-                <button app-controll v-if="values.length > 1" v-on:click="removeValue(i)" slot="value-ui" style="float:right;margin-bottom:8px;margin-top:27px;margin-right:-20px;width:30px;"> 
+                <button app-controll v-if="values.length > 1" v-on:click="removeValue(i)" slot="value-ui" style="float:right;margin-bottom:8px;margin-top:27px;margin-right:-16px;width:30px;"> 
                     <font-awesome-icon icon="times" />
                 </button>
                 <DataRepGroup :type="getPropertyType(i)" :name="name" :index="i" v-on:value-change="onValueChange" />
