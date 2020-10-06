@@ -8,6 +8,16 @@
         <OptionSelector v-if="!selectionInfo.show" :options="modes" width="60%" class="main-mode-selector">
             <buton v-for="(mode, i) in modes" :key="'mode-'+i.toString()" :slot="'option-'+i.toString()" v-on:click="currentMode=i;"><font-awesome-icon :icon="mode" /></buton>
         </OptionSelector>
+        <div class="selector-dropdown-container">
+            <label>Selector:</label>
+            <select app-controll v-model="selectionInfo.selectorIndex" v-on:change="selectorDropdownChange(selectionInfo.selectorIndex)">
+                <option v-for="(selector, i) in selectorList" :key="'selector-'+i.toString()" :value="i">
+                    {{selector}}
+                </option>
+                
+            </select>
+        </div>
+        
         <div v-if="showEditors" :class="currentMode == 0 ? '' : 'm-hidden-content'">
             <PropertyEditorGroup v-for="(s, i) in selectorList" :key="'selector-'+i.toString()" :names="propertyNames" :types="selectePropertyTypes" sig="a" v-on:data-type-selected="onDataTypeSelected" v-on:value-change="onValueChange" multiples="true" :sindex="i" :style="selectorIndex == i ? '' : 'display:none;'" />
         </div>
@@ -20,7 +30,7 @@
             <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectorList[selectorIndex]" :suppliments="supplimentManifet" :sig="previewSig" :style="currentPreviewOption != 0 ? 'display:none;' : ''" v-on:style-text-change="onStyleTextUpdate" />
             <textarea class="html-editor" v-model="markup" :style="currentPreviewOption != 1 ? 'display:none;' : ''" />
             <textarea disabled class="style-content" :value="styleText" :style="currentPreviewOption != 1 ? 'display:none;' : ''"></textarea>
-            <ul :class="selectionInfo.show ? 'selectors-open' : ''" :style="currentPreviewOption != 2 ? 'display:none;' : ''">
+            <ul :class="selectionInfo.show ? 'selectors-open selector-list' : 'selector-list'" :style="currentPreviewOption != 2 ? 'display:none;' : ''">
                 <li v-for="(v, i) in selectorList" :key="'selector-'+i.toString()" :slot="'item-'+i.toString()">
                     <button app-controll v-on:click="onSelectorChosen(i)">
                         {{v}}
@@ -103,6 +113,10 @@ export default {
         ...mapState(['selectorIndex', 'selectorList', 'selectorPropertyMatrix'])
     },
     methods: {
+        selectorDropdownChange: function (index) {
+            setTimeout(() => {document.querySelector('.selector-list > li:nth-child('+(index + 1).toString()+') button:first-child').click();}, 100);
+            
+        },
         addSelector: function () {
             this.$store.dispatch('addSelector', this.$data.selectionInfo.tempSelector);
             this.$data.selectionInfo.selectorEditorOpen = false;
@@ -138,6 +152,7 @@ export default {
         },
         onSelectorChosen: function (index) {
             // this.selectorIndex = index;
+            this.$data.selectionInfo.selectorIndex = index;
             this.$store.dispatch('setSelectorInex', index);
             // this.$root.selectorIndex = this.selectorIndex;
             // this.$data.showEditors = false;
