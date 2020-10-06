@@ -54,6 +54,14 @@ export default {
 <style lang="scss">
 @import './scss/variables.scss';
 @import './scss/mixins.scss';
+div.selector-dropdown-container{
+  padding-bottom: 30px;
+  
+  > select{
+    
+    width:100%;
+  }
+}
 svg.svg-inline--fa path{
   fill:$interaction-dark;
 }
@@ -115,6 +123,8 @@ nav.full-width-content{
     z-index: 20;
     background-color: transparent;
     border:none;
+    box-shadow: 0 0 0 0 transparent;
+    width: auto;
   }
   .hamberger-menu-open{
     
@@ -216,14 +226,17 @@ ul.property-type-selector{
     padding:12px 6px;
     box-shadow:0 0 0 1px rgba(0,0,0,.4);
     color:#333333;
+    cursor: default;
   }
   > li.selected-type{
     background-color:#333333;
     color:#ffffff;
+    
   }
 }
 div.property-editor-ui{
   h4{
+    cursor: default;
     color:$interaction-dark;
     box-shadow:0 1px 0 $interaction-light inset
   }
@@ -232,7 +245,6 @@ div.property-editor-ui{
   > div{
     box-shadow:0 0 0 9px $property-header-space, 0 0 0 10px $interaction-dark;
     margin-bottom:28px;
-    border-radius:1px;
     h3 {
       // background-color:$property-header-bg;
       box-shadow:0 0 0 10px transparent;
@@ -351,6 +363,21 @@ textarea.style-content{
   margin: 0 0 16px 0;
 }
 @include min(850px){
+  div.selector-dropdown-container{
+    margin-top: -53px;
+    padding-bottom: 6px;
+    > label{
+      max-width: 150px;
+      
+    }
+    > select{
+      
+      max-width:150px;
+      display: inline-block;
+      margin-left: 8px;
+    }
+  }
+  
   div.property-editor-ui{
     margin:0 10px;
     display:block !important;

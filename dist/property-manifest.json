@@ -133,8 +133,8 @@
         "description": "Defines the origin of a background image.",
         "property_types": [
             23,
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -158,8 +158,8 @@
         "description": "Specifies the size of the background images.",
         "property_types": [
             25,
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -199,8 +199,8 @@
         "css3": true,
         "description": "Defines the shape of the bottom-left border corner of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -213,8 +213,8 @@
         "css3": true,
         "description": "Defines the shape of the bottom-right border corner of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -235,8 +235,8 @@
         "css3": false,
         "description": "Sets the width of the bottom border of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -356,8 +356,8 @@
         "css3": false,
         "description": "Sets the width of the left border of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -370,8 +370,8 @@
         "css3": true,
         "description": "Defines the shape of the border corners of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -411,8 +411,8 @@
         "css3": false,
         "description": "Sets the width of the right border of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -452,8 +452,8 @@
         "css3": true,
         "description": "Defines the shape of the top-left border corner of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -466,8 +466,8 @@
         "css3": true,
         "description": "Defines the shape of the top-right border corner of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -488,8 +488,8 @@
         "css3": false,
         "description": "Sets the width of the top border of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -502,8 +502,8 @@
         "css3": false,
         "description": "Sets the width of the border on all the four sides of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -534,8 +534,8 @@
         "css3": false,
         "description": "Specify the height of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -552,8 +552,8 @@
         "css3": false,
         "description": "Specify the maximum height of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -570,8 +570,8 @@
         "css3": false,
         "description": "Specify the maximum width of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -588,8 +588,8 @@
         "css3": false,
         "description": "Specify the minimum height of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -606,8 +606,8 @@
         "css3": false,
         "description": "Specify the minimum width of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -624,8 +624,8 @@
         "css3": false,
         "description": "Specify the width of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -737,8 +737,8 @@
         "css3": true,
         "description": "Specifies the initial main size of the flex item.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -829,8 +829,8 @@
         "css3": false,
         "description": "Defines the font size for the text.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -923,8 +923,8 @@
         "css3": false,
         "description": "Sets the margin on all four sides of the element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -942,8 +942,8 @@
         "css3": false,
         "description": "Sets the bottom margin of the element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -959,8 +959,8 @@
         "css3": false,
         "description": "Sets the left margin of the element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -976,8 +976,8 @@
         "css3": false,
         "description": "Sets the right margin of the element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -993,8 +993,8 @@
         "css3": false,
         "description": "Sets the top margin of the element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1029,8 +1029,8 @@
         "css3": true,
         "description": "Specifies the gap between the columns in a multi-column element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1071,8 +1071,8 @@
         "css3": true,
         "description": "Specifies the width of the rule drawn between the columns in a multi-column layout.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1094,8 +1094,8 @@
         "css3": true,
         "description": "Specifies the optimal width of the columns in a multi-column element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1139,8 +1139,8 @@
         "css3": true,
         "description": "Set the space between an outline and the border edge of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1161,8 +1161,8 @@
         "css3": false,
         "description": "Sets the width of the outline.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1176,8 +1176,8 @@
         "css3": false,
         "description": "Sets the padding on all four sides of the element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1192,8 +1192,8 @@
         "css3": false,
         "description": "Sets the padding to the bottom side of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1206,8 +1206,8 @@
         "css3": false,
         "description": "Sets the padding to the left side of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1220,8 +1220,8 @@
         "css3": false,
         "description": "Sets the padding to the right side of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1234,8 +1234,8 @@
         "css3": false,
         "description": "Sets the padding to the top side of an element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1280,8 +1280,8 @@
         "css3": false,
         "description": "Sets the spacing between the borders of adjacent table cells.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1329,8 +1329,8 @@
         "description": "Specifies the length of the tab character.",
         "property_types": [
             14,
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1397,8 +1397,8 @@
         "css3": false,
         "description": "Indent the first line of text.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1457,8 +1457,8 @@
         "description": "Sets the vertical positioning of an element relative to the current text baseline.",
         "property_types": [
             66,
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1471,8 +1471,8 @@
         "css3": false,
         "description": "Sets the extra spacing between letters.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1488,8 +1488,8 @@
         "css3": false,
         "description": "Sets the spacing between words.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1537,8 +1537,8 @@
         "css3": true,
         "description": "Defines the perspective from which all child elements of the object are viewed.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1551,8 +1551,8 @@
         "css3": true,
         "description": "Defines the origin (the vanishing point for the 3D space) for the perspective property.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1656,8 +1656,8 @@
         "css3": false,
         "description": "Specify the location of the top edge of the positioned element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1673,8 +1673,8 @@
         "css3": false,
         "description": "Specify the location of the right edge of the positioned element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1690,8 +1690,8 @@
         "css3": false,
         "description": "Specify the location of the bottom edge of the positioned element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
@@ -1707,8 +1707,8 @@
         "css3": false,
         "description": "Specify the location of the left edge of the positioned element.",
         "property_types": [
-            15,
             3,
+            15,
             5,
             6,
             7,
