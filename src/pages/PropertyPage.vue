@@ -27,7 +27,7 @@
         </OptionSelector>
         
         <div :class="currentMode == 0 ? 'm-hidden-content main-preview' : 'main-preview'">
-            <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectorList[selectorIndex]" :suppliments="supplimentManifet" :sig="previewSig" :style="currentPreviewOption != 0 ? 'display:none;' : ''" v-on:style-text-change="onStyleTextUpdate" />
+            <HTMLPreview v-if="showingPreview" :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectorList[selectorIndex]" :suppliments="supplimentManifet" :sig="previewSig" :style="currentPreviewOption != 0 ? 'display:none;' : ''" v-on:style-text-change="onStyleTextUpdate" />
             <textarea class="html-editor" v-model="markup" :style="currentPreviewOption != 1 ? 'display:none;' : ''" />
             <textarea disabled class="style-content" :value="styleText" :style="currentPreviewOption != 1 ? 'display:none;' : ''"></textarea>
             <ul :class="selectionInfo.show ? 'selectors-open selector-list' : 'selector-list'" :style="currentPreviewOption != 2 ? 'display:none;' : ''">
@@ -35,7 +35,7 @@
                     <button app-controll v-on:click="onSelectorChosen(i)">
                         {{v}}
                     </button>
-                    <button app-controll v-on:click="selectionInfo.selectorEditorOpen = true; selectionInfo.selectorEditIndex = i;">
+                    <button app-controll v-on:click="selectionInfo.selectorEditorOpen = true; selectionInfo.selectorEditIndex = i;selectionInfo.tempSelector = selectorList[selectionInfo.selectorEditIndex].toString();">
                         <font-awesome-icon icon="pencil-alt" />
                     </button>
                     <button app-controll v-on:click="removeSelector(v)">
@@ -50,14 +50,17 @@
         </div>
         
         <ModalWindow v-if="selectionInfo.selectorEditorOpen" title="Selector Editor" v-on:modal-close-clicked="selectionInfo.selectorEditorOpen = false; selectionInfo.adding = false;" >
-            <div v-if="selectionInfo.adding">
+            <input app-controll v-model="selectionInfo.tempSelector" type="text" />
+            <button v-if="selectionInfo.adding" app-controll v-on:click="addSelector"><font-awesome-icon icon="plus" /></button>
+            <button v-else app-controll v-on:click="updateSelector(selectionInfo.selectorEditIndex, selectionInfo.tempSelector)">OK</button>
+            <!-- <div v-if="selectionInfo.adding">
                 <input app-controll v-model="selectionInfo.tempSelector" type="text" />
                 <button app-controll v-on:click="addSelector"><font-awesome-icon icon="plus" /></button>
             </div>
             <div v-else>
                 <input app-controll v-model="selectorList[selectionInfo.selectorEditIndex]" type="text" />
-            </div>
-            <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectionInfo.adding ? selectionInfo.tempSelector : selectorList[selectionInfo.selectorEditIndex]" highlighting="true" :suppliments="supplimentManifet" :sig="previewSig" />
+            </div> -->
+            <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectionInfo.tempSelector" highlighting="true" :suppliments="supplimentManifet" :sig="previewSig" />
         </ModalWindow>
     </div>
 </template>
@@ -106,7 +109,8 @@ export default {
             currentMode: 0,
             previewOptions: ['image', 'code', 'sitemap'],
             currentPreviewOption: 0,
-            styleText: ''
+            styleText: '',
+            showingPreview: true
         }
     },
     computed: {
@@ -118,11 +122,36 @@ export default {
             
         },
         addSelector: function () {
+            this.$data.showingPreview = false;
+            setTimeout(() => {
+                this.$data.showingPreview = true;
+            }, 100);
             this.$store.dispatch('addSelector', this.$data.selectionInfo.tempSelector);
             this.$data.selectionInfo.selectorEditorOpen = false;
             this.$data.selectionInfo.adding = false;
+            this.updateClassManifest();
+            
+        },
+        updateSelector: function (index, selector) {
+            this.$data.showingPreview = false;
+            setTimeout(() => {
+                this.$data.showingPreview = true;
+            }, 100);
+            // setSelectors
+            let newSelectors = [];
+            for(let i = 0; i < this.selectorList.length; i++){
+                newSelectors.push(i == index ? selector : this.selectorList[i]);
+            }
+            this.$store.dispatch('setSelectors', newSelectors);
+            this.$data.selectionInfo.selectorEditorOpen = false;
+            this.$data.selectionInfo.adding = false;
+            this.updateClassManifest();
         },
         removeSelector: function (selector) {
+            this.$data.showingPreview = false;
+            setTimeout(() => {
+                this.$data.showingPreview = true;
+            }, 100);
             this.$store.dispatch('removeSelector', selector);
         },
         onDataTypeSelected: function (e) {

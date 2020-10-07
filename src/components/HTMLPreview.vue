@@ -49,7 +49,7 @@ export default {
             return this.highlighting ? '<style>#' + this.$data.mainElementID + this.$data.selectorConnecion + this.selector + '{box-shadow:0 0 0 1px #ff0000 !important;}</style>' : '';
         },
         getStyleString: function (index) {
-            console.log('########## matrix ############', this.matrix);
+            console.log('########## index ############', index);
             let styleSTR = this.$data.selectorManifest['#' + this.$data.mainElementID + this.$data.selectorConnecion + this.selectors[index]];
             for(let v in Utilities.ValueSeparatorMatrix){
                 styleSTR = styleSTR.split(Utilities.ValueSeparatorMatrix[v].proxy).join(Utilities.ValueSeparatorMatrix[v].actual);
