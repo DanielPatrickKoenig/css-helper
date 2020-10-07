@@ -50,17 +50,16 @@
         </div>
         
         <ModalWindow v-if="selectionInfo.selectorEditorOpen" title="Selector Editor" v-on:modal-close-clicked="selectionInfo.selectorEditorOpen = false; selectionInfo.adding = false;" >
-            <input app-controll v-model="selectionInfo.tempSelector" type="text" />
-            <button v-if="selectionInfo.adding" app-controll v-on:click="addSelector"><font-awesome-icon icon="plus" /></button>
-            <button v-else app-controll v-on:click="updateSelector(selectionInfo.selectorEditIndex, selectionInfo.tempSelector)">OK</button>
-            <!-- <div v-if="selectionInfo.adding">
-                <input app-controll v-model="selectionInfo.tempSelector" type="text" />
-                <button app-controll v-on:click="addSelector"><font-awesome-icon icon="plus" /></button>
+            <input app-controll v-model="selectionInfo.tempSelector" type="text" class="selector-editor-input" />
+            <div class="selector-editor-preview-container">
+                <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectionInfo.tempSelector" highlighting="true" :suppliments="supplimentManifet" :sig="previewSig" />
             </div>
-            <div v-else>
-                <input app-controll v-model="selectorList[selectionInfo.selectorEditIndex]" type="text" />
-            </div> -->
-            <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectionInfo.tempSelector" highlighting="true" :suppliments="supplimentManifet" :sig="previewSig" />
+            <div class="selector-editor-buttons-container">
+                <button app-controll v-on:click="selectionInfo.selectorEditorOpen = false; selectionInfo.adding = false;">Cancel</button>
+                <button v-if="selectionInfo.adding" app-controll v-on:click="addSelector">Add</button>
+                <button v-else app-controll v-on:click="updateSelector(selectionInfo.selectorEditIndex, selectionInfo.tempSelector)">Update</button>
+            </div>
+            
         </ModalWindow>
     </div>
 </template>
@@ -267,6 +266,35 @@ export default {
     width:20em;
     > .drag-order-inner-list{
         width:100%;
+    }
+}
+.selector-editor-input{
+    display: block;
+    padding: 5px;
+    border: none;
+    background-color: #bedaf1;
+    width: 98.6%;
+    margin-top: 21px;
+}
+.selector-editor-preview-container{
+    height:300px;
+    overflow-x:hidden;
+    overflow-y:auto;
+    padding:1px;
+    background-color:#ffffff;
+    margin-top:8px;
+}
+.selector-editor-buttons-container{
+    display:flex;
+    flex-direction: row;
+    > button{
+        flex-grow: 1;
+        &:first-child{
+            margin-right:4px;
+        }
+        &:last-child{
+            margin-left:4px;
+        }
     }
 }
 </style>

@@ -4,8 +4,8 @@
         <div class="modal-inner-widnow">
             <label>
                 {{title}}
-                <button app-controll v-on:click="closedClicked"><font-awesome-icon icon="times" /></button>
             </label>
+            <button class="close-button" app-controll v-on:click="closedClicked"><font-awesome-icon icon="times" /></button>
             <div>
                 <slot></slot>
             </div>
@@ -26,6 +26,12 @@ export default {
 @import '../scss/variables.scss';
 @import '../scss/mixins.scss';
 div.modal-shell-window{
+    .close-button{
+        width: 32px;
+        position: absolute;
+        right: 8px;
+        top: 0;
+    }
     position:fixed;
     z-index:200;
     left:0;
@@ -47,6 +53,11 @@ div.modal-shell-window{
         padding:8px;
         background-color: $modal-bg;
         position:relative;
+        
+        > label{
+            color: #ffffff;
+            font-size: 25px;
+        }
     }
 }
 

@@ -4,6 +4,9 @@
             <label><input app-controll type="checkbox" v-model="expand" style="display:none;" v-on:change="expandChange" />{{pname ? pname : name}}<span class="collapse-toggle"><font-awesome-icon v-if="expand" icon="caret-up" /><font-awesome-icon v-else icon="caret-down" /></span></label>
         </h3>
         <div :style="expand || open ? '' : 'display:none;'">
+            <button v-if="!listed || index < 1" app-controll v-on:click="showCSSText">
+                Show CSS Text
+            </button>
             <p v-if="!listed || index == 0">{{propertyManifest.description}}</p>
             <h4 v-if="listed">
                 <span v-on:click="vexpand = !vexpand;">
@@ -26,6 +29,13 @@
                 <slot></slot>
             </div>
         </div>
+        <ModalWindow v-if="cssValue != null" v-on:modal-close-clicked="cssValue = null" title="CSS Text">
+            <label class="css-text-label">
+                <input type="text" :value="cssValue" :id="copierID" />
+                <a><font-awesome-icon icon="clipboard" /></a>
+                <div v-on:click="copyCSS"></div>
+            </label>
+        </ModalWindow>
         <!-- <select>
             <option v-for="(v, i) in propertyManifest[this.name].property_types" :key="'type-'+i.toString()" :value="v">{{getValueTypeByID(v).label}}</option>
         </select> -->
@@ -33,15 +43,21 @@
 </template>
 <script>
 import Utilities from '../utils/Utilities';
+import ModalWindow from './ModalWindow.vue';
 import {mapState} from 'vuex';
 export default {
+    components: {
+        ModalWindow
+    },
     props: ['name', 'index', 'listed', 'sindex', 'open', 'pname'],
     data () {
         return {
             selectionIndex: 0,
             showTypeMenu: false,
             expand: false,
-            vexpand: true
+            vexpand: true,
+            cssValue: null,
+            copierID: `copyable-css-${Utilities.createUniqueID()}`
         }
     },
     computed: {
@@ -59,6 +75,19 @@ export default {
         },
         expandChange: function () {
             this.$emit('editor-expantion-change', this.$data.expand);
+        },
+        showCSSText: function () {
+            const nameVal = this.pname ? this.pname : this.name;
+            let cssString = `${nameVal}: ${this.selectorPropertyMatrix[this.selectorList[this.selectorIndex]].css[nameVal]}`;
+            for(let v in Utilities.ValueSeparatorMatrix){
+                cssString = cssString.split(Utilities.ValueSeparatorMatrix[v].proxy).join(Utilities.ValueSeparatorMatrix[v].actual);
+            }
+            this.$data.cssValue = cssString;
+        },
+        copyCSS: function () {
+            document.querySelector(`#${this.$data.copierID}`).select();
+            document.querySelector(`#${this.$data.copierID}`).setSelectionRange(0, 99999);
+            document.execCommand('copy');
         }
     },
     mounted: function () {
@@ -78,6 +107,8 @@ export default {
             }
         }
         this.$emit('data-type-selected', {pt: this.propertyManifest[this.name].property_types[firstSelection], index: this.index, name: this.name, sindex: this.sindex});
+
+        
     }
 }
 </script>
