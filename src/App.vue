@@ -68,6 +68,20 @@ svg.svg-inline--fa path{
 .css-text-label{
   color:#ffffff;
   position:relative;
+  width: 100%;
+  display: block;
+  margin: 20px 0 4px 0;
+  > input{
+    width: 96%;
+    padding: 5px;
+  }
+  > a{
+    position: absolute;
+    right: 0;
+    padding: 4px 8px 4px 10px;
+    background-color: #EEEEEF;
+    box-shadow: 1px 0 0 1px #333333 inset;
+  }
   > div{
     position: absolute;
     top:0;

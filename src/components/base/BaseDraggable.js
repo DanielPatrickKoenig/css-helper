@@ -1,5 +1,5 @@
 export default{
-    props: ['width', 'height', 'ratiox', 'ratioy', 'max', 'sig', 'noinit'],
+    props: ['width', 'height', 'ratiox', 'ratioy', 'max', 'sig', 'noinit', 'disabled'],
     data () {
         return{
             dragging: false,
@@ -31,9 +31,11 @@ export default{
         onDown: function (e) {
             // console.log('onDown start');
             e.preventDefault();
-            this.$data.dragging = true;
-            this.$data.mDragging = !e.touches;
-            this.initDrag(e);
+            if(!this.disabled){
+                this.$data.dragging = true;
+                this.$data.mDragging = !e.touches;
+                this.initDrag(e);
+            }
             // this.calculateComponentPosition();
             // const ofs = this.processMouseEvent(e);
             // const targetPos = {x: e.currentTarget.getBoundingClientRect().left, y: e.currentTarget.getBoundingClientRect().top};
