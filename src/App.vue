@@ -65,6 +65,17 @@ div.selector-dropdown-container{
 svg.svg-inline--fa path{
   fill:$interaction-dark;
 }
+.css-text-label{
+  color:#ffffff;
+  position:relative;
+  > div{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+  }
+}
 span.selected-option{
   svg.svg-inline--fa path{
     fill:#000000;
@@ -84,6 +95,9 @@ body{
     div.preview-display{
       font-family: initial;
     }
+  }
+  .selector-editor-preview-container{
+    font-family: initial;
   }
 }
 div.main-container{
