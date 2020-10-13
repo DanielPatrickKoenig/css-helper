@@ -1,25 +1,24 @@
 <template>
-    <div class="path-tool" :style="cssStyle">
-        <svg>
-            <path :d="pathString" stroke="rgba(0,0,0,.5)" stroke-width="1" fill="transparent" />
-        </svg>
-        <SliderComponent v-for="(p, i) in points" :key="'point-'+i.toString()" :width="size.width" :height="size.height" :max="max" :ratiox="points[i].x" :ratioy="points[i].y" v-on:slider-moved="onPointMoved" :sig="i" :disabled="deleting">
-            <button v-if="deleting" v-on:click="deletePoint(i)" style="position:absolute;z-index:100;"><font-awesome-icon icon="times"/></button>
-            <div v-else style="width:20px;height:20px;margin-left:-10px;margin-top:-10px;background-color:#000000;border-radius:20px;"></div>
-        </SliderComponent>
-        <div v-for="(a, i) in inserters" :key="'inserter-'+i.toString()" :class="'inserter insertion-item-'+(i+1).toString()" :style="'left:'+(inserters[i].x*100).toString()+'%;top:'+(inserters[i].y*100).toString()+'%;'" v-on:click="showInsterterMenu(i)">
-            <ul v-if="activeInserter == i">
-                <li v-on:click="addPoint(inserters[i].x, inserters[i].y, i)">
-                    Add Point Here
-                </li>
-                <li v-if="inserters.length > 3" v-on:click="enableDeleting()">
-                    Delete A Point
-                </li>
-                <li v-on:click="cancelInsertMenu()">
-                    Cancel
-                </li>
-            </ul>
+    <div>
+        <div class="path-tool" :style="cssStyle">
+            <svg>
+                <path :d="pathString" stroke="rgba(0,0,0,.5)" stroke-width="1" fill="transparent" />
+            </svg>
+            <SliderComponent v-for="(p, i) in points" :key="'point-'+i.toString()" :width="size.width" :height="size.height" :max="max" :ratiox="points[i].x" :ratioy="points[i].y" v-on:slider-moved="onPointMoved" :sig="i" :disabled="deleting">
+                <button v-if="deleting" v-on:click="deletePoint(i)" style="position:absolute;z-index:100;transform: translate(-50%, -50%);width: 20px;height: 20px;padding:0;"><font-awesome-icon icon="times"/></button>
+                <div v-else style="width:20px;height:20px;margin-left:-10px;margin-top:-10px;background-color:#000000;border-radius:20px;"></div>
+            </SliderComponent>
+            <div 
+                v-for="(a, i) in inserters" 
+                :key="'inserter-'+i.toString()" 
+                :class="'inserter insertion-item-'+(i+1).toString()" 
+                :style="(adding ? '' : 'display:none;')+'left:'+(inserters[i].x*100).toString()+'%;top:'+(inserters[i].y*100).toString()+'%;'" 
+                v-on:click="addPoint(inserters[i].x, inserters[i].y, i)" 
+            />
+            
         </div>
+        <button app-controll v-if="!deleting" v-on:click="adding = !adding;">{{adding ? 'Cancel Add' : 'Add Point'}}</button>
+        <button app-controll v-if="!adding && points.length > 3" v-on:click="deleting = !deleting;">{{deleting ? 'Cancel Delete' : 'Delete Point'}}</button>
     </div>
 </template>
 
@@ -30,8 +29,8 @@ export default {
     data () {
         return {
             points: [],
-            activeInserter: -1,
-            deleting: false
+            deleting: false,
+            adding: false
         }
     },
     methods: {
@@ -45,16 +44,6 @@ export default {
             this.$data.deleting = true;
             this.cancelInsertMenu();
         },
-        showInsterterMenu: function (index) {
-            if(this.$data.activeInserter < 0){
-                this.$data.activeInserter = index;
-            }
-        },
-        cancelInsertMenu: function () {
-            setTimeout(() => {
-                this.$data.activeInserter = -1;
-            }, 10);
-        },
         addPoint: function (x, y, index) {
             if(index){
                 this.$data.points.splice(index, 0, {x: x, y: y});
@@ -63,7 +52,7 @@ export default {
                 this.$data.points.push({x: x, y: y});
             }
             this.emitValue();
-            this.cancelInsertMenu();
+            this.$data.adding = false;
         },
         onPointMoved: function (e) {
             console.log(e);
@@ -119,7 +108,8 @@ div.path-tool{
     position: relative;
     width:var(--width);
     height:var(--height);
-    svg{
+    margin: 0 auto 32px auto;
+    > svg{
         width:100%;
         height:100%;
         position:absolute;
