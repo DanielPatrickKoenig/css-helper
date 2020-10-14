@@ -5,7 +5,7 @@
                 <path :d="pathString" stroke="rgba(0,0,0,.5)" stroke-width="1" fill="transparent" />
             </svg>
             <SliderComponent v-for="(p, i) in points" :key="'point-'+i.toString()" :width="size.width" :height="size.height" :max="max" :ratiox="points[i].x" :ratioy="points[i].y" v-on:slider-moved="onPointMoved" :sig="i" :disabled="deleting">
-                <button v-if="deleting" v-on:click="deletePoint(i)" style="position:absolute;z-index:100;transform: translate(-50%, -50%);width: 20px;height: 20px;padding:0;"><font-awesome-icon icon="times"/></button>
+                <button v-if="deleting" v-on:click="deletePoint(i)" class="delete-point-button"><font-awesome-icon icon="times"/></button>
                 <div v-else style="width:20px;height:20px;margin-left:-10px;margin-top:-10px;background-color:#000000;border-radius:20px;"></div>
             </SliderComponent>
             <div 
@@ -14,7 +14,9 @@
                 :class="'inserter insertion-item-'+(i+1).toString()" 
                 :style="(adding ? '' : 'display:none;')+'left:'+(inserters[i].x*100).toString()+'%;top:'+(inserters[i].y*100).toString()+'%;'" 
                 v-on:click="addPoint(inserters[i].x, inserters[i].y, i)" 
-            />
+            >
+                <font-awesome-icon icon="plus" />
+            </div>
             
         </div>
         <button app-controll v-if="!deleting" v-on:click="adding = !adding;">{{adding ? 'Cancel Add' : 'Add Point'}}</button>
@@ -115,14 +117,33 @@ div.path-tool{
         position:absolute;
     }
     div.inserter{
-        width: 12px;
-        height: 12px;
-        margin-left:-6px;
-        margin-top:-6px;
-        display:inline-block;
+        width: 20px;
+        height: 20px;
+        margin-left:-10px;
+        margin-top:-10px;
         border-radius: 20px;
-        background-color:#cc0000;
+        background-color:#ffffff;
+        box-shadow:0 0 0 1px;
         position:absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .delete-point-button{
+        color:#ff0000;
+        background-color:#ffffff;
+        border:none;
+        box-shadow:0 0 0 1px;
+        position:absolute;
+        z-index:100;
+        transform: translate(-50%, -50%);
+        width: 20px;
+        height: 20px;
+        padding:0; 
+        border-radius:20px;
+        path{
+            fill:#ff0000;
+        }
     }
 }
 </style>
