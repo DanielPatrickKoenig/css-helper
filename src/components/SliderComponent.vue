@@ -13,7 +13,9 @@ export default {
     props: ['constraint'],
     computed: {
         cssParams: function () {
-            return {'--x': `${this.$data.position.x - this.componentPosition.x}px`, '--y': `${this.$data.position.y - this.componentPosition.y}px`};
+            return {
+                '--x': `${this.$data.position.x - this.componentPosition.x}px`, 
+                '--y': `${this.$data.position.y - this.componentPosition.y}px`};
         }
     },
     mounted: function () {
@@ -21,10 +23,13 @@ export default {
             // const xPos = bounds.left+((this.ratiox/this.max)*this.width);
             const targetElement = document.querySelector(`div#${this.$data.uniqueID} > div:first-child`);
             const bounds = targetElement.getBoundingClientRect();
-            console.log(this.sig, bounds.left+((this.ratiox/this.max)*this.width));
-            this.initDrag({pageX: bounds.left, pageY: bounds.top, currentTarget: targetElement});
-            this.processDrag({pageX: bounds.left+((this.ratiox/this.max)*this.width), pageY: bounds.top+((this.ratioy/this.max)*this.height), currentTarget: targetElement});
-            this.$forceUpdate();
+            // console.log(this.sig, bounds.left+((this.ratiox/this.max)*this.width));
+            // setTimeout(() => {
+                this.initDrag({pageX: bounds.left, pageY: bounds.top, currentTarget: targetElement});
+                this.processDrag({pageX: bounds.left+((this.ratiox/this.max)*this.width), pageY: bounds.top+((this.ratioy/this.max)*this.height), currentTarget: targetElement});
+                this.$forceUpdate();
+            // },1000);
+            
             // this.onUp();
         }, 10);
     }

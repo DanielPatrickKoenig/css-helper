@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="path-tool" :style="cssStyle">
+        <div class="path-tool" :style="cssStyle" v-if="!changeProcessing" >
             <svg>
                 <path :d="pathString" stroke="rgba(0,0,0,.5)" stroke-width="1" fill="transparent" />
             </svg>
@@ -32,14 +32,17 @@ export default {
         return {
             points: [],
             deleting: false,
-            adding: false
+            adding: false,
+            changeProcessing: false
         }
     },
     methods: {
         deletePoint: function (index){
+            this.changeProcessing = true;
             setTimeout(() => {
                 this.$data.points.splice(index, 1);
                 this.$data.deleting = false;
+                this.changeProcessing = false;
             }, 100);
         },
         enableDeleting: function () {
@@ -47,14 +50,14 @@ export default {
             this.cancelInsertMenu();
         },
         addPoint: function (x, y, index) {
-            if(index){
-                this.$data.points.splice(index, 0, {x: x, y: y});
-            }
-            else{
-                this.$data.points.push({x: x, y: y});
-            }
+            console.log(`addedPointParams = {x: ${x}, y: ${y}}`);
+            this.$data.points.splice(index, 0, {x: x, y: y});
             this.emitValue();
-            this.$data.adding = false;
+            this.changeProcessing = true;
+            setTimeout(() => {
+                this.$data.adding = false;
+                this.changeProcessing = false;
+            }, 100);
         },
         onPointMoved: function (e) {
             console.log(e);

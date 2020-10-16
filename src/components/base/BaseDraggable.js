@@ -53,7 +53,7 @@ export default{
             this.$data.mDragging = false;
         },
         onMove: function (e) {
-            if(this.$data.dragging){
+            if(this.$data.dragging && !this.disabled){
                 this.$data.dragged = true;
                 console.log('touch', e);
                 e.preventDefault();
