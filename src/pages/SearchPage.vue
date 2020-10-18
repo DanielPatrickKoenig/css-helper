@@ -7,6 +7,7 @@
 <script>
 // import axios from 'axios';
 import PropertyTable from '../components/PropertyTable.vue';
+import Utilities from '../utils/Utilities.js';
 import {mapState} from 'vuex';
 export default {
   name: 'Search',
@@ -21,6 +22,9 @@ export default {
   },
   computed: {
     ...mapState(['propertyManifest', 'ready'])
+  },
+  mounted: function (){
+    this.$store.dispatch('setNotificationMessage', Utilities.MessageCodes.ACCESS_SEARCH);
   }
 }
 </script>

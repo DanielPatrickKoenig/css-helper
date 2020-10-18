@@ -14,7 +14,9 @@ export default new Vuex.Store({
         selectorList: [],
         selectorIndex: 0,
         colorPresets: null,
-        recorder: ActivityRecorder
+        recorder: ActivityRecorder,
+        notificationMessage: '',
+        notificationSignature: 0
     },
     mutations: {
         SET_PROPERTY_MANIFEST(state, payload){
@@ -120,6 +122,10 @@ export default new Vuex.Store({
                     break;
                 }
             }
+        },
+        SET_NOTIFICATION_MESSAGE(state, payload){
+            state.notificationMessage = payload;
+            state.notificationSignature = `nsig-${Math.random().toString().split('.').join()}-${Math.random().toString().split('.').join()}-${Math.random().toString().split('.').join()}`
         }
     },
     actions: {
@@ -150,6 +156,9 @@ export default new Vuex.Store({
         },
         setTypeMatrixValue: function ({commit}, payload) {
             commit('SET_TYPE_MATRIX_VALUE', payload);
+        },
+        setNotificationMessage: function ({commit}, payload){
+            commit('SET_NOTIFICATION_MESSAGE', payload);
         }
     }
 });

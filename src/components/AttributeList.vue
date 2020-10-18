@@ -22,10 +22,10 @@ export default {
     methods: {
         added: function (e) {
             this.$data.attributes.push({name: e.name, data: e.data, sig: Utilities.createUniqueID()});
-            // console.log(e);
+            // // console.log(e);
         },
         info: function (e) {
-            console.log(e);
+            // console.log(e);
         },
         removeAttribute: function (e) {
             this.$data.attributes.splice(Utilities.getArrayIndexByValue(this.$data.attributes, e, 'sig'), 1);

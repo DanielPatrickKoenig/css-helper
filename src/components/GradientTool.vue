@@ -72,7 +72,7 @@ export default {
     },
     computed: {
         styleString: function () {
-            console.log(this.getStyleString());
+            // console.log(this.getStyleString());
             return `background-image:${this.getStyleString()}`;
         }
     },
@@ -85,7 +85,7 @@ export default {
             this.emitValue();
         },
         removeColor: function (index) {
-            console.log(index);
+            // console.log(index);
             let colorList = [];
             for(let i = 0; i < this.$data.colors.length; i++){
                 if(i!=index){
@@ -100,7 +100,7 @@ export default {
             }, 10);
         },
         colorUpdate: function(e){
-            console.log(e);
+            // console.log(e);
             this.$data.colors[e.index].hue = e.value;
             this.emitValue();
 
@@ -121,7 +121,7 @@ export default {
                 sString += `${this.$data.colors[i].hue} ${(this.$data.colors[i].position*100).toString()}%`;
             }
             sString += ')';
-            console.log(sString);
+            // console.log(sString);
             return sString;
         },
         onRadialSelectionChange: function (e) {
@@ -134,7 +134,7 @@ export default {
             return `${this.$data.radialData.shape} at ${pos1} ${pos2}`;
         },
         onPositionChanged: function (e) {
-            console.log(e);
+            // console.log(e);
             this.$data.colors[e.sig].position = e.x;
             this.emitValue();
         },
@@ -150,7 +150,7 @@ export default {
                 innerVal = closeList.join(')');
                 const sectionSep = 'SECTION_SEPERATOR'
                 let valSectionList = innerVal.split(',rgb').join(sectionSep+'rgb').split('#').join(sectionSep+'#').split(sectionSep);
-                console.log('innerVal', innerVal);
+                // console.log('innerVal', innerVal);
                 if(val.split('(')[0] == Utilities.GradientTypes.LINEAR){
                     this.$data.angle = Number(valSectionList[0].split('deg')[0]);
                 }
@@ -174,10 +174,10 @@ export default {
                 }, 10);
             }
             
-            // console.log(this.data);
+            // // console.log(this.data);
             // let pre = this.data.prefix ? this.data.prefix : '';
             // let suf = this.data.suffix ? this.data.suffix : '';
-            // // console.log(val.split(pre).join('').split(suf).join(''));
+            // // // console.log(val.split(pre).join('').split(suf).join(''));
             // return val.split(pre).join('').split(suf).join('');
             return val;
         }

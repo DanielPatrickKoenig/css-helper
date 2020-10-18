@@ -46,7 +46,7 @@ export default {
             }
         },
         colorClicked: function (hex) {
-            console.log(hex);
+            // console.log(hex);
             this.$emit('color-selected', Utilities.colorStringToRGB(hex));
         }
     },

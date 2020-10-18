@@ -317,7 +317,7 @@ function propertyisLogged(scope, name, sindex, composited){
 }
 
 function hasPropertyTypeList(scope, name){
-    console.log('mapped state = ', scope.$store);
+    // console.log('mapped state = ', scope.$store);
     // return mappedState().propertyManifest[name].sub_properties || mappedState().propertyManifest[name].value_max;
     return scope.$store.state.propertyManifest[name].sub_properties || scope.$store.state.propertyManifest[name].value_max;
 }
@@ -532,6 +532,12 @@ const Templates = {
     }
 }
 
+const MessageCodes = {
+    ACCESS_EDITOR: 'fai:code',
+    EMPTY_EDITOR: 'fai:nocode',
+    ACCESS_SEARCH: 'fai:search'
+}
+
 const Utilities = {
     createUniqueID: createUniqueID,
     getArrayIndexByValue: getArrayIndexByValue,
@@ -554,6 +560,7 @@ const Utilities = {
     FontList: FontList,
     Animatables: Animatables,
     Templates: Templates,
-    addToClipboard: addToClipboard
+    addToClipboard: addToClipboard,
+    MessageCodes: MessageCodes
 }
 export default Utilities;

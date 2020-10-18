@@ -100,7 +100,7 @@ export default {
             let frameString = '';
             if(this.$data.useSteps){
                 let unitStrings = [];
-                console.log('sup');
+                // console.log('sup');
                 for(let i = 0; i < this.$data.ratios.length; i++){
                     let currentString = `${Math.round(this.$data.ratios[i]*100)}%{`;
                     for(let j = 0; j < this.$data.properties.length; j++){
@@ -124,7 +124,7 @@ export default {
         },
         emitValue: function () {
             this.$emit('value-change', {value: this.$data.keyframeName, name: this.name, index: this.index, type: this.data, composited: this.composited, sindex: this.sindex, suppliment: this.getKeyframeString()});
-            console.log(this.getKeyframeString());
+            // console.log(this.getKeyframeString());
         },
         addRatio: function () {
             this.$data.ratios.push(0);

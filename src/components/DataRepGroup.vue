@@ -55,7 +55,7 @@ export default {
     },
     methods: {
         onValueChange: function (e) {
-            console.log(e);
+            // console.log(e);
             this.$emit('value-change', e);
         }
     }

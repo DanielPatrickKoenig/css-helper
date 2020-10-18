@@ -16,9 +16,11 @@ const ActionTypes = {
     FOCUS: 14,
     BLUR: 15
 }
+let lastActivity = {};
 function init () {
     document.querySelector('body').addEventListener('keydown', (e) => {
-        console.log(e);
+        // console.log(e);
+        lastActivity = e;
     });
 }
 function log (actionType, data) {
@@ -71,6 +73,7 @@ const ActivityRecorder = {
     logMouseUp: logMouseUp,
     logChange: logChange,
     getActions: getActions,
-    actionLog: actionLog
+    actionLog: actionLog,
+    lastActivity: lastActivity
 };
 export default ActivityRecorder;

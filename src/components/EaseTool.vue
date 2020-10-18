@@ -151,7 +151,7 @@ export default {
                         left: (document.querySelector(`#${_self.$data.followerID} span:first-child`).getBoundingClientRect().left-document.querySelector(`#${_self.$data.followerID}`).getBoundingClientRect().left).toString()+'px',
                         top: (document.querySelector(`#${_self.$data.followerID} span:last-child`).getBoundingClientRect().top-document.querySelector(`#${_self.$data.followerID}`).getBoundingClientRect().top).toString()+'px'
                     }
-                    // console.log(_self.$data.curveFollowerPosition);
+                    // // console.log(_self.$data.curveFollowerPosition);
                 },
                 onUpdateParams: [self]
             });

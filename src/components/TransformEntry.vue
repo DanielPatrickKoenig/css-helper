@@ -65,7 +65,7 @@ export default {
             }
         },
         onAngleChange: function (e) {
-            // console.log(e);
+            // // console.log(e);
             this.$data.valueMatrix[Number(e.sig.split('.')[0])][Number(e.sig.split('.')[1])].n = e.angle;
             this.dispatchValue();
         },
@@ -91,10 +91,10 @@ export default {
                         // targetValueIndex = i;
                     }
                 }
-                // console.log(targetValues);
-                // console.log(valueChunkList);
-                // console.log(targetValueIndex);
-                // console.log(this.$data.valueMatrix);
+                // // console.log(targetValues);
+                // // console.log(valueChunkList);
+                // // console.log(targetValueIndex);
+                // // console.log(this.$data.valueMatrix);
                 
                 for(let i = 0; i < targetValues.length; i++){
                     let itterator = 0;
@@ -113,12 +113,12 @@ export default {
                     }
                 }
             }
-            // console.log(this.$data.valueMatrix);
+            // // console.log(this.$data.valueMatrix);
             this.$forceUpdate();
         }
     },
     mounted: function () {
-        // console.log(this.start);
+        // // console.log(this.start);
         if(this.method){
             this.createValueMatrix(this.transformFunctions[this.method]);
         }

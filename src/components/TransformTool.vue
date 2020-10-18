@@ -50,7 +50,7 @@ export default {
     }
   },
   created: function () {
-    console.log(this.initval);
+    // console.log(this.initval);
     for(let t in Utilities.TransformFunctions){
       this.$data.methods[t] = {name: t, enabled: false, valueString: ''}
     }

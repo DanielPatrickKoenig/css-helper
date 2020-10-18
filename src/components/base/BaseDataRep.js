@@ -21,10 +21,10 @@ export default {
             return val;
         },
         parseValue: function (val){
-            // console.log(this.data);
+            // // console.log(this.data);
             let pre = this.data.prefix ? this.data.prefix : '';
             let suf = this.data.suffix ? this.data.suffix : '';
-            // console.log(val.split(pre).join('').split(suf).join(''));
+            // // console.log(val.split(pre).join('').split(suf).join(''));
             return val.split(pre).join('').split(suf).join('');
         }
     },

@@ -65,6 +65,7 @@ export default {
                 }
             }
             this.recorder.logClick(e.currentTarget);
+            this.$store.dispatch('setNotificationMessage', this.$data.selections.length > 0 ? Utilities.MessageCodes.ACCESS_EDITOR : Utilities.MessageCodes.EMPTY_EDITOR);
         }
     },
     computed: {

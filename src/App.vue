@@ -14,22 +14,28 @@
       </div>
     </nav>
     <router-view class="main-content"></router-view>
+    <NotificationPod :message="notificationMessage" :sig="notificationSignature" />
   </div>
 </template>
 
 <script>
 // import axios from 'axios';
 import ActivityRecorder from './utils/ActivityRecorder.js';
+import NotificationPod from './components/NotificationPod.vue';
 import {mapState} from 'vuex';
 export default {
   name: 'App',
+  components: {
+    NotificationPod
+  },
   data () {
     return {
       menuOpen: false
+
     }
   },
   computed: {
-    ...mapState(['ready'])
+    ...mapState(['ready', 'notificationMessage', 'notificationSignature'])
   },
   mounted: function () {
     this.$store.dispatch('pullPropertyManifest');

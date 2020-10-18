@@ -19,8 +19,8 @@ export default {
             if(Utilities.ValueSeparatorMatrix[name]){
                 sepID = name;
             }
-            console.log(sepID);
-            console.log(Utilities.ValueSeparatorMatrix);
+            // console.log(sepID);
+            // console.log(Utilities.ValueSeparatorMatrix);
             let sep = Utilities.ValueSeparatorMatrix[sepID].proxy;
             return sep;
         },
@@ -48,14 +48,14 @@ export default {
             valueList = currentValue.split(targetSeparator);
         }
 
-        console.log(valueList);
+        // console.log(valueList);
 
         for(let i = 0; i < this.names.length; i++){
             let propertyData = this.propertyManifest[this.names[i]];
             this.$data.propertyTypes.push(Utilities.getValueTypeByID(propertyData.property_types[0]));
             this.$data.values.push(valueList[i] ? valueList[i] : '0');
         }
-        console.log(this.$data.values);
+        // console.log(this.$data.values);
     }
 }
 </script>

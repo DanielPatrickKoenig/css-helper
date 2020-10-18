@@ -86,13 +86,14 @@ export default {
         },
         copyCSS: function () {
             Utilities.addToClipboard(document.querySelector(`#${this.$data.copierID}`));
+            this.$store.dispatch('setNotificationMessage', 'Added to clipboard.');
             // document.querySelector(`#${this.$data.copierID}`).select();
             // document.querySelector(`#${this.$data.copierID}`).setSelectionRange(0, 99999);
             // document.execCommand('copy');
         }
     },
     mounted: function () {
-        console.log('manifest - ',this.propertyManifest);
+        // console.log('manifest - ',this.propertyManifest);
         let firstSelection = 0;
         if(this.selectorTypeMatrix[this.selectorList[this.sindex]]){
             if(this.selectorTypeMatrix[this.selectorList[this.sindex]].type){

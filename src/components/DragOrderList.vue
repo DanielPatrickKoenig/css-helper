@@ -45,7 +45,7 @@ export default {
                     }
                 }
             }
-            // console.log(this.$data.draggedIndex.toString() + ' / ' + aboveCount.toString());
+            // // console.log(this.$data.draggedIndex.toString() + ' / ' + aboveCount.toString());
             this.$emit('order-changed', {moved: this.$data.draggedIndex, target: aboveCount});
             this.$data.dragging = false;
             this.$data.draggedIndex = -1;
@@ -62,7 +62,7 @@ export default {
         },
         itemStyle: function (index) {
             let outputStyle = '';
-            // console.log('ul.drag-order-items-container > li:nth-child('+(index+1).toString()+')');
+            // // console.log('ul.drag-order-items-container > li:nth-child('+(index+1).toString()+')');
             let thisIndex = index + 1;
             if(index == this.$data.draggedIndex){
                 outputStyle = 'top:'+this.$data.position.y+'px;';
@@ -71,14 +71,14 @@ export default {
                 let isAboveIndex = this.$data.position.y + document.querySelector('#'+this.$data.uniqueID).getBoundingClientRect().top < document.querySelector('ul.drag-order-items-container > li:nth-child('+thisIndex.toString()+')').getBoundingClientRect().top;
                 let isFirst = index == 0 || (index == 1 && this.$data.draggedIndex == 0);
                 let isBelowLast = false;
-                // console.log('ul.drag-order-items-container > li:nth-child('+(thisIndex - 1).toString()+')');
+                // // console.log('ul.drag-order-items-container > li:nth-child('+(thisIndex - 1).toString()+')');
                 let reducer = this.$data.draggedIndex == index - 1 ? 2 : 1;
                 if(document.querySelector('ul.drag-order-items-container > li:nth-child('+(thisIndex - reducer).toString()+')')){
-                    // console.log(document.querySelector('ul.drag-order-items-container > li:nth-child('+(thisIndex - 1).toString()+')').getBoundingClientRect().top);
+                    // // console.log(document.querySelector('ul.drag-order-items-container > li:nth-child('+(thisIndex - 1).toString()+')').getBoundingClientRect().top);
                     isBelowLast = this.$data.position.y + document.querySelector('#'+this.$data.uniqueID).getBoundingClientRect().top > document.querySelector('ul.drag-order-items-container > li:nth-child('+(thisIndex - reducer).toString()+')').getBoundingClientRect().top;
                 }
                 if(isAboveIndex && (isFirst || isBelowLast)){
-                    // console.log(index);
+                    // // console.log(index);
                     outputStyle = 'padding-top:' + document.querySelector('ul.drag-order-items-container > li:nth-child('+(this.$data.draggedIndex+1).toString()+')').getBoundingClientRect().height.toString() + 'px;';
                 }
                 // 
