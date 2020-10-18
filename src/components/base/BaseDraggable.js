@@ -29,7 +29,7 @@ export default{
             // this.$emit('slider-moved', {x: this.$data.positionRatio.x * total, y: this.$data.positionRatio.y * total, sig: this.sig});
         },
         onDown: function (e) {
-            // console.log('onDown start');
+            // // console.log('onDown start');
             e.preventDefault();
             if(!this.disabled){
                 this.$data.dragging = true;
@@ -42,7 +42,7 @@ export default{
             // this.$data.offset = {x: ofs.x - targetPos.x, y: ofs.y - targetPos.y};
             // const pos = ofs;
             // this.$data.position = this.processPosition(pos.x - this.$data.offset.x, pos.y - this.$data.offset.y);
-            // console.log('onDown end');
+            // // console.log('onDown end');
         },
         dispatchMoveEvent: function () {
             const total = this.max ? this.max : 1;
@@ -55,7 +55,7 @@ export default{
         onMove: function (e) {
             if(this.$data.dragging && !this.disabled){
                 this.$data.dragged = true;
-                console.log('touch', e);
+                // console.log('touch', e);
                 e.preventDefault();
                 this.processDrag(e);   
             }
@@ -88,7 +88,7 @@ export default{
             this.$data.componentPosition = {x: document.querySelector(`#${this.$data.uniqueID}`).getBoundingClientRect().left, y: document.querySelector(`#${this.$data.uniqueID}`).getBoundingClientRect().top};
         },
         refactorPosition: function (r, size) {
-            console.log(this.max);
+            // console.log(this.max);
             const total = this.max ? this.max : 1;
             return size * (r / total);
         },
@@ -98,7 +98,7 @@ export default{
     },
     watch: {
         ratiox: function (){
-            console.log('updated ratiox');
+            // console.log('updated ratiox');
             this.$data.positionRatio.x = this.ratiox;
             this.$data.position.x = this.width ? this.refactorPosition(this.$data.positionRatio.x, this.width) + this.getComponentOffset().left : this.$data.positionRatio.x;
         },

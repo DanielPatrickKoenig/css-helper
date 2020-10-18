@@ -6,7 +6,7 @@
             </option>
         </select>
         <OptionSelector v-if="!selectionInfo.show" :options="modes" width="60%" class="main-mode-selector">
-            <buton v-for="(mode, i) in modes" :key="'mode-'+i.toString()" :slot="'option-'+i.toString()" v-on:click="currentMode=i;"><font-awesome-icon :icon="mode" /></buton>
+            <span v-for="(mode, i) in modes" :key="'mode-'+i.toString()" :slot="'option-'+i.toString()" v-on:click="currentMode=i;"><font-awesome-icon :icon="mode" /></span>
         </OptionSelector>
         <div class="selector-dropdown-container">
             <label>Selector:</label>
@@ -123,6 +123,7 @@ export default {
     methods: {
         copyStyle: function () {
             Utilities.addToClipboard(document.querySelector('.style-content'));
+            this.$store.dispatch('setNotificationMessage', 'Added to clipboard.');
         },
         selectorDropdownChange: function (index) {
             setTimeout(() => {document.querySelector('.selector-list > li:nth-child('+(index + 1).toString()+') button:first-child').click();}, 100);
@@ -163,14 +164,14 @@ export default {
         },
         onDataTypeSelected: function (e) {
             this.$data.selectePropertyTypes['type'+e.index.toString()] = Utilities.getValueTypeByID(e.pt);
-            // console.log(this.$data.selectePropertyTypes);
+            // // console.log(this.$data.selectePropertyTypes);
             // this.updateClassManifest();
             this.$forceUpdate();
         },
         onValueChange: function (e) {
-            console.log(e);
+            // console.log(e);
             if(!e.composited){
-                console.log('################# property page value change ######################');
+                // console.log('################# property page value change ######################');
                 this.$data.classManifest[this.selectorList[e.sindex]] = JSON.parse(JSON.stringify(this.selectorPropertyMatrix[this.selectorList[e.sindex]].css));
                 if(e.suppliment != '' && e.suppliment != undefined && e.suppliment != null){
                     this.$data.supplimentManifet[this.selectorList[e.sindex]] = e.suppliment;
@@ -180,10 +181,10 @@ export default {
 
                 // this.$data.classStructure[e.name] = e.value;
                 this.$data.typeStructure[e.name] = e.type;
-                // console.log(this.$data.classStructure);
+                // // console.log(this.$data.classStructure);
                 this.$data.previewSig = Utilities.createUniqueID();
                 this.$forceUpdate();
-                console.log('suppliment manifest', this.$data.supplimentManifet);
+                // console.log('suppliment manifest', this.$data.supplimentManifet);
             }
         },
         onSelectorChosen: function (index) {
@@ -198,7 +199,7 @@ export default {
             //         if(repeat){
             //             _self.onSelectorChosen(index);
             //         }
-            //         console.log('store', _self.$store);
+            //         // console.log('store', _self.$store);
             //     }, 50, self);
             // }, 50, this);
 

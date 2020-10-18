@@ -23,7 +23,7 @@ export default {
             // const xPos = bounds.left+((this.ratiox/this.max)*this.width);
             const targetElement = document.querySelector(`div#${this.$data.uniqueID} > div:first-child`);
             const bounds = targetElement.getBoundingClientRect();
-            // console.log(this.sig, bounds.left+((this.ratiox/this.max)*this.width));
+            // // console.log(this.sig, bounds.left+((this.ratiox/this.max)*this.width));
             // setTimeout(() => {
                 this.initDrag({pageX: bounds.left, pageY: bounds.top, currentTarget: targetElement});
                 this.processDrag({pageX: bounds.left+((this.ratiox/this.max)*this.width), pageY: bounds.top+((this.ratioy/this.max)*this.height), currentTarget: targetElement});

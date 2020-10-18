@@ -40,11 +40,8 @@ export default {
         
     },
     methods: {
-        onColorSelected: function (e) {
-            console.log(e);
-        },
         onSliderMoved: function (e) {
-            console.log(e.x);
+            // console.log(e.x);
             this.$data.rat = e.x;
         }
     }

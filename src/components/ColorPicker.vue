@@ -52,7 +52,7 @@ export default {
     },
     created: function () {
         this.setColors();
-        console.log('color picker created');
+        // console.log('color picker created');
     }
 
 }

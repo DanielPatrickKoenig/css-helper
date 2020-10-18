@@ -57,7 +57,7 @@ export default {
             this.emitValue();
         },
         onColorSelected: function (e) {
-            console.log(e);
+            // console.log(e);
             this.$data.sliderData.r.value = e.r;
             this.$data.sliderData.g.value = e.g;
             this.$data.sliderData.b.value = e.b;

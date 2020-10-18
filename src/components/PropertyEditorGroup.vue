@@ -57,19 +57,19 @@ export default {
         onDataTypeSelected: function (e) {
             this.$emit('data-type-selected', e);
             this.$data.selectePropertyTypes['type'+e.index.toString()] = Utilities.getValueTypeByID(e.pt);
-            // console.log(this.$data.selectePropertyTypes);
+            // // console.log(this.$data.selectePropertyTypes);
             Utilities.addToTypeLog(this, e.name, e.index, e.sindex, e.pt);
             this.$forceUpdate();
         },
         onValueChange: function (e) {
             // this.$emit('value-change', e);
-            console.log(this.$store.state);
+            // console.log(this.$store.state);
             this.$store.dispatch('setPropertyMatrixValue', [this.selectorList[this.sindex], 'css', e.name, e.value]);
             this.$emit('value-change', e);
             
             // this.$data.classStructure[e.name] = e.value;
             // this.$data.previewSig = Utilities.createUniqueID();
-            // console.log(this.$data.classStructure);
+            // // console.log(this.$data.classStructure);
         },
         getSubProperties: function (name) {
             let subProperties = this.propertyManifest[name].sub_properties;
@@ -95,7 +95,7 @@ export default {
                 }
             }
             self.$forceUpdate();
-            console.log('these are the property types', self.$data.selectePropertyTypes);
+            // console.log('these are the property types', self.$data.selectePropertyTypes);
         }, 100, this);
         
         // this.$data.selectePropertyTypes['type'+i]

@@ -50,7 +50,7 @@ export default {
             this.cancelInsertMenu();
         },
         addPoint: function (x, y, index) {
-            console.log(`addedPointParams = {x: ${x}, y: ${y}}`);
+            // console.log(`addedPointParams = {x: ${x}, y: ${y}}`);
             this.$data.points.splice(index, 0, {x: x, y: y});
             this.emitValue();
             this.changeProcessing = true;
@@ -60,7 +60,7 @@ export default {
             }, 100);
         },
         onPointMoved: function (e) {
-            console.log(e);
+            // console.log(e);
             this.$data.points[e.sig].x = e.x;
             this.$data.points[e.sig].y = e.y;
             this.$forceUpdate();

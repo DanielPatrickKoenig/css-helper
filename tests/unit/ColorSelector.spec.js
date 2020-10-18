@@ -56,7 +56,7 @@ describe('ColorSelector.vue', () => {
             // propsData: { data, showonempty }
         });
         const swatches = wrapper.findAll('ul');
-        console.log(swatches.at(0).text().split('NaN').length.toString());
+        // console.log(swatches.at(0).text().split('NaN').length.toString());
         expect(swatches.at(0).text().split('NaN').length).toEqual(1);
     })
 });

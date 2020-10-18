@@ -40,7 +40,7 @@ export default {
             this.$data.x = e.x;
             this.$data.y = e.y;
             this.emitValue();
-            // console.log(e);
+            // // console.log(e);
         },
         onWidthMoved: function (e) {
             this.$data.wide = e.x;
