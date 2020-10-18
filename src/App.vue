@@ -336,8 +336,9 @@ div.main-preview{
   box-shadow:0 0 0 1px rgba(0,0,0,.5);
 }
 .editor-section-header{
-  padding: 14px 0;
-  display:block;
+  padding: 6px 12px 6px 0;
+  display: inline-block;
+  margin: 12px 0;
 }
 .editor-section-sub-header{
   margin: 12px 0;
@@ -364,7 +365,7 @@ textarea.style-content{
     width:100%;
     height: 400px;
 }
-.style-content + ul{
+.style-content-container + ul{
   margin:0;
   padding:0;
   > li{

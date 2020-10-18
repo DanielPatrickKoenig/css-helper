@@ -29,7 +29,12 @@
         <div :class="currentMode == 0 ? 'm-hidden-content main-preview' : 'main-preview'">
             <HTMLPreview v-if="showingPreview" :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectorList[selectorIndex]" :suppliments="supplimentManifet" :sig="previewSig" :style="currentPreviewOption != 0 ? 'display:none;' : ''" v-on:style-text-change="onStyleTextUpdate" />
             <textarea class="html-editor" v-model="markup" :style="currentPreviewOption != 1 ? 'display:none;' : ''" />
-            <textarea disabled class="style-content" :value="styleText" :style="currentPreviewOption != 1 ? 'display:none;' : ''"></textarea>
+            <div class="style-content-container" :style="currentPreviewOption != 1 ? 'display:none;' : ''">
+                <textarea class="style-content" :value="styleText"></textarea>
+                <div v-on:click="copyStyle">
+                    <a><font-awesome-icon icon="clipboard" /></a>
+                </div>
+            </div>
             <ul :class="selectionInfo.show ? 'selectors-open selector-list' : 'selector-list'" :style="currentPreviewOption != 2 ? 'display:none;' : ''">
                 <li v-for="(v, i) in selectorList" :key="'selector-'+i.toString()" :slot="'item-'+i.toString()">
                     <button app-controll v-on:click="onSelectorChosen(i)">
@@ -116,6 +121,9 @@ export default {
         ...mapState(['selectorIndex', 'selectorList', 'selectorPropertyMatrix'])
     },
     methods: {
+        copyStyle: function () {
+            Utilities.addToClipboard(document.querySelector('.style-content'));
+        },
         selectorDropdownChange: function (index) {
             setTimeout(() => {document.querySelector('.selector-list > li:nth-child('+(index + 1).toString()+') button:first-child').click();}, 100);
             
@@ -294,6 +302,25 @@ export default {
         }
         &:last-child{
             margin-left:4px;
+        }
+    }
+}
+.style-content-container{
+    position:relative;
+    background-color:#eeeeee;
+    > textarea{
+        background-color: transparent;
+    }
+    > div{
+        position:absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        > a{
+            position:absolute;
+            top:3px;
+            right:3px;
         }
     }
 }
