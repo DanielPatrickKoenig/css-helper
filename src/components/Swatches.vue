@@ -1,9 +1,17 @@
 <template>
-  <svg :style="'width:'+width.toString()+'px;height:'+height.toString()+'px;'">
+    <div class="swatches-ui" :style="cssProps">
+        <slot></slot>
+        <ul>
+            <li v-for="(c, i) in colors.hex" :key="'color-'+i.toString()" :style="cssProps" v-on:click="colorClicked(c)">
+                <div :style="'background-color:'+c+';'"></div>
+            </li>
+        </ul>
+    </div>
+  <!-- <svg :style="'width:'+width.toString()+'px;height:'+height.toString()+'px;'">
       <path v-for="(c, i) in swatchCoords" :key="'coords-'+i.toString()" :d="c" :fill="colors.hex[i]" v-on:click="colorClicked(colors.hex[i])" class="color-swatch"></path>
       <circle fill="#ffffff" :cx="width/2" :cy="height/2" :r="height*.44" />
       <slot></slot>
-  </svg>
+  </svg> -->
 </template>
 
 <script>
@@ -14,7 +22,7 @@ export default {
     data () {
         return {
             width: this.size ? this.size : 100,
-            height: this.size ? this.size : 100,
+            swatchSize: this.size / (this.colors.length / 5),
             swatchCoords: []
         }
     },
@@ -42,12 +50,44 @@ export default {
             this.$emit('color-selected', Utilities.colorStringToRGB(hex));
         }
     },
+    computed: {
+        cssProps: function (){
+            return {
+                '--swatch-size': `${this.$data.width / (this.colors.hex.length / 7)}px`,
+                '--control-size': `${this.$data.width}px`,
+
+            }
+        }
+    },
     mounted: function () {
         this.createSwatches();
     }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.swatches-ui{
+    position:relative;
+    > ul{
+        width:100%;
+        margin:0;
+        padding:0;
+        display:flex;
+        flex-flow: wrap;
+        justify-content: center;
+        width: var(--control-size);
+        > li{
+            width: var(--swatch-size);
+            height: var(--swatch-size);
+            padding:0;
+            margin:0;
+            > div{
+                width:100%;
+                height:100%;
+                box-shadow:0 0 0 1px rgba(0,0,0,.4) inset;
+            }
+        }
 
+    }
+}
 </style>

@@ -2,7 +2,8 @@
     <div>
         <!-- <ColorPicker :granularity="swatchCount" :offset="sliderData.o.value-512" /> -->
         <Swatches :colors="colorPresets" :size="pickerSize" v-on:color-selected="onColorSelected">
-            <circle :r="pickerSize*.4" :cx="pickerSize/2" :cy="pickerSize/2" :fill="'rgba('+sliderData.r.value.toString()+','+sliderData.g.value.toString()+','+sliderData.b.value.toString()+','+sliderData.a.value.toString()+')'" />
+            <div class="swatches-color-box" :style="'background-color:rgba('+sliderData.r.value.toString()+','+sliderData.g.value.toString()+','+sliderData.b.value.toString()+','+sliderData.a.value.toString()+');'" />
+            <!-- <circle :r="pickerSize*.4" :cx="pickerSize/2" :cy="pickerSize/2" :fill="'rgba('+sliderData.r.value.toString()+','+sliderData.g.value.toString()+','+sliderData.b.value.toString()+','+sliderData.a.value.toString()+')'" /> -->
         </Swatches>
         <ul>
             <li v-for="(v, k, i) in sliderData" :key="'slider-container-'+i.toString()">
@@ -65,3 +66,10 @@ export default {
     }
 }
 </script>
+<style lang="scss" scoped>
+.swatches-color-box{
+    width:100%;
+    height:80px;
+    box-shadow:0 0 0 1px rgba(0,0,0,.5) inset;
+}
+</style>

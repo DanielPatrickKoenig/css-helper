@@ -27,6 +27,11 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
+function addToClipboard(element){
+    element.select();
+    element.setSelectionRange(0, 99999);
+    document.execCommand('copy');
+}
 
 const DataReps = {
     SELECT: 0,
@@ -548,6 +553,7 @@ const Utilities = {
     mappedState: mappedState,
     FontList: FontList,
     Animatables: Animatables,
-    Templates: Templates
+    Templates: Templates,
+    addToClipboard: addToClipboard
 }
 export default Utilities;

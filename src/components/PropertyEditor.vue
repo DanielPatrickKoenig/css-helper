@@ -85,9 +85,10 @@ export default {
             this.$data.cssValue = cssString;
         },
         copyCSS: function () {
-            document.querySelector(`#${this.$data.copierID}`).select();
-            document.querySelector(`#${this.$data.copierID}`).setSelectionRange(0, 99999);
-            document.execCommand('copy');
+            Utilities.addToClipboard(document.querySelector(`#${this.$data.copierID}`));
+            // document.querySelector(`#${this.$data.copierID}`).select();
+            // document.querySelector(`#${this.$data.copierID}`).setSelectionRange(0, 99999);
+            // document.execCommand('copy');
         }
     },
     mounted: function () {

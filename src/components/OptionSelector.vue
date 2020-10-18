@@ -25,13 +25,17 @@ ul{
     > li{
         display: flex;
         flex-grow: 1;
-        padding: 3px 4px;
+        
         /* background-image: linear-gradient(#eeeeee, #cccccc); */
         justify-content: center;
         text-align: center;
         margin: 0;
         
         width: 50%;
+        > *{
+            display:block;
+            padding: 3px 4px;
+        }
     }
     > li:not(:first-child){
         box-shadow: 1px 0 0 rgba(0, 0, 0, 0.3) inset;
