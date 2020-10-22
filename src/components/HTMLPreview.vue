@@ -4,6 +4,7 @@
         <span v-for="(v, k, i) in selectorManifest" :key="'style-'+i.toString()" v-html="'<style>'+(supplimentData[selectors[i]] != undefined ? supplimentData[selectors[i]] : '')+'#' + mainElementID + selectorConnecion + selectors[i]+'{'+getStyleString(i)+'}</style>'"></span>
         <span v-html="getHighlightStyle()"></span>
         <!-- <span :id="mainElementID+'-style-container'" v-html="'<style>#'+this.getInitialID()+'{'+getCSSString()+'}</style>'"></span> -->
+        <!-- <SelectorBuilder v-if="selectorBuilderElement" :element="selectorBuilderElement" /> -->
         <div v-html="markup" :id="mainElementID" class="preview-display"></div>
     </div>
 </template>
@@ -11,6 +12,7 @@
 import Utilities from '../utils/Utilities';
 export default {
     props: ['markup', 'matrix', 'selector', 'selectors', 'highlighting', 'suppliments', 'sig'],
+    
     data () {
         return {
             mainElementID: this.getInitialID(),
