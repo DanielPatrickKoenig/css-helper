@@ -10,7 +10,7 @@
     <nav :class="menuOpen ? 'full-width-content full-width-content-open' : 'full-width-content'">
       <button app-controll :class="menuOpen ? 'hamberger-menu hamberger-menu-open' : 'hamberger-menu'"><font-awesome-icon icon="bars" v-on:click="menuOpen = !menuOpen" /></button>
       <div :class="menuOpen ? 'main-nav main-nav-open' : 'main-nav'">
-        <router-link v-on:click.native="menuOpen = false;" to="/"><font-awesome-icon icon="home" /> Home</router-link> <span>|</span> <router-link v-on:click.native="menuOpen = false;" to="/search"><font-awesome-icon icon="filter" /> Property Selector</router-link>
+        <router-link v-on:click.native="menuOpen = false;" to="/"><font-awesome-icon icon="home" /> Home</router-link> <span>|</span> <router-link v-on:click.native="menuOpen = false;" to="/search"><font-awesome-icon icon="filter" /> Property Selector</router-link> <span>|</span> <router-link v-on:click.native="menuOpen = false;" to="/selectors"><font-awesome-icon icon="crosshairs" /> Selector Builder</router-link>
       </div>
     </nav>
     <router-view class="main-content"></router-view>

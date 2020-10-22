@@ -3,11 +3,12 @@ import App from './App.vue';
 import HomePage from './pages/HomePage.vue';
 import SearchPage from './pages/SearchPage.vue';
 import PropertyPage from './pages/PropertyPage.vue';
+import SelectorsPage from './pages/SelectorsPage.vue';
 import VueRouter from 'vue-router';
 import store from './store' 
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPlus, faCog, faInfo, faTimes, faCaretDown, faCaretUp, faBars, faCode, faSort, faChevronUp, faChevronDown, faSitemap, faSlidersH, faEye, faWrench, faImage, faHome, faFilter, faPencilAlt, faSearch, faClipboard } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faCog, faInfo, faTimes, faCaretDown, faCaretUp, faBars, faCode, faSort, faChevronUp, faChevronDown, faSitemap, faSlidersH, faEye, faWrench, faImage, faHome, faFilter, faPencilAlt, faSearch, faClipboard, faCrosshairs } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 Vue.use(VueRouter);
@@ -17,7 +18,8 @@ const router = new VueRouter({
   routes: [
     { path: '/', component: HomePage },
     { path: '/search', component: SearchPage },
-    { path: '/property', component: PropertyPage }
+    { path: '/property', component: PropertyPage },
+    { path: '/selectors', component: SelectorsPage }
   ]
 });
 
@@ -42,6 +44,7 @@ library.add(faFilter);
 library.add(faPencilAlt);
 library.add(faSearch);
 library.add(faClipboard);
+library.add(faCrosshairs);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 

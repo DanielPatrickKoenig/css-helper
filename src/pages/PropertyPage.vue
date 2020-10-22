@@ -56,6 +56,7 @@
         
         <ModalWindow v-if="selectionInfo.selectorEditorOpen" title="Selector Editor" v-on:modal-close-clicked="selectionInfo.selectorEditorOpen = false; selectionInfo.adding = false;" >
             <input app-controll v-model="selectionInfo.tempSelector" type="text" class="selector-editor-input" />
+            
             <div class="selector-editor-preview-container">
                 <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="selectionInfo.tempSelector" highlighting="true" :suppliments="supplimentManifet" :sig="previewSig" />
             </div>
