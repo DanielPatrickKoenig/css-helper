@@ -236,7 +236,6 @@
         "description": "Sets the width of the bottom border of an element.",
         "property_types": [
             3,
-            15,
             5,
             6,
             7,
@@ -357,7 +356,6 @@
         "description": "Sets the width of the left border of an element.",
         "property_types": [
             3,
-            15,
             5,
             6,
             7,
@@ -412,7 +410,6 @@
         "description": "Sets the width of the right border of an element.",
         "property_types": [
             3,
-            15,
             5,
             6,
             7,
@@ -489,7 +486,6 @@
         "description": "Sets the width of the top border of an element.",
         "property_types": [
             3,
-            15,
             5,
             6,
             7,
@@ -503,7 +499,6 @@
         "description": "Sets the width of the border on all the four sides of an element.",
         "property_types": [
             3,
-            15,
             5,
             6,
             7,
