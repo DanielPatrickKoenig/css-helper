@@ -48,7 +48,7 @@ export default {
             this.$forceUpdate();
         },
         getHighlightStyle: function () {
-            return this.highlighting ? '<style>#' + this.$data.mainElementID + this.$data.selectorConnecion + this.selector + '{box-shadow:0 0 0 1px #ff0000 !important;}</style>' : '';
+            return this.highlighting ? '<style>#' + this.$data.mainElementID + this.$data.selectorConnecion + this.selector.split(',').join(',#' + this.$data.mainElementID + this.$data.selectorConnecion) + '{box-shadow:0 0 0 1px #ff0000 !important;}</style>' : '';
         },
         getStyleString: function (index) {
             // console.log('########## index ############', index);
