@@ -1,7 +1,10 @@
 <template>
     <div v-if="tagsList.length > 0" class="selector-dropdown-conaitner">
-        <SelectorBuilderNode v-on:selector-builder-selection="onSelection" :tags="tagsList" :ids="idsList" :classes="classesList" :attributes="attributesList" :afteropperator="true" :active="nodes.length < 1" :index="0" />
-        <SelectorBuilderNode v-for="(node, i) in nodes" :key="'node-'+i.toString()" v-on:selector-builder-selection="onSelection" v-on:remove-last-node="removeLastNode" :tags="tagsList" :ids="idsList" :classes="classesList" :attributes="attributesList" :afteropperator="node.isOp" :removable="true" :active="nodes.length <= i + 1" :index="i + 1"/>
+        <div><label><input app-controll type="checkbox" v-model="showPsudo" /> Psudo Classes</label></div>
+        <div>
+            <SelectorBuilderNode v-on:selector-builder-selection="onSelection" :tags="tagsList" :ids="idsList" :classes="classesList" :attributes="attributesList" :afteropperator="true" :active="nodes.length < 1" :index="0" :pclasses="showPsudo" />
+            <SelectorBuilderNode v-for="(node, i) in nodes" :key="'node-'+i.toString()" v-on:selector-builder-selection="onSelection" v-on:remove-last-node="removeLastNode" :tags="tagsList" :ids="idsList" :classes="classesList" :attributes="attributesList" :afteropperator="node.isOp" :removable="true" :active="nodes.length <= i + 1" :index="i + 1" :pclasses="showPsudo"/>
+        </div>
     </div>
 </template>
 
@@ -22,7 +25,8 @@ export default {
             idsList: [],
             classesList: [],
             tagsList: [],
-            attributesList: []
+            attributesList: [],
+            showPsudo: false
         }
     },
     methods: {
@@ -109,8 +113,14 @@ export default {
 <style lang="scss" scoped>
 div.selector-dropdown-conaitner{
     width:100%;
-    display:flex;
-    flex-direction: row;
-    flex-flow: wrap;
+    > div:first-child{
+        margin: 4px 0;
+    }
+    > div{
+        width:100%;
+        display:flex;
+        flex-direction: row;
+        flex-flow: wrap;
+    }
 }
 </style>

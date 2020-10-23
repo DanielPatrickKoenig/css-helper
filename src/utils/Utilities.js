@@ -31,6 +31,7 @@ function addToClipboard(element){
     element.select();
     element.setSelectionRange(0, 99999);
     document.execCommand('copy');
+    element.blur();
 }
 
 const DataReps = {
