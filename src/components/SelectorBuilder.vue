@@ -2,11 +2,11 @@
     <div v-if="tagsList.length > 0" class="selector-dropdown-conaitner">
         <div>
             <label>
-                <input app-controll type="checkbox" v-model="showPsudo" /> Psudo Classes
-            </label>
-            <span style="padding: 0 6px;"> | </span>
-            <label>
                 <input app-controll type="checkbox" v-model="useBuilder" /> Use Builder
+            </label>
+            <span v-if="useBuilder" style="padding: 0 6px;"> | </span>
+            <label v-if="useBuilder">
+                <input app-controll type="checkbox" v-model="showPsudo" /> Psudo Classes
             </label>
         </div>
         <div :style="{display: useBuilder ? 'flex' : 'none'}">

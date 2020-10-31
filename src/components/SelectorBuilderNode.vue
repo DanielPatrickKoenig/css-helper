@@ -1,5 +1,8 @@
 <template>
     <div v-if="active">
+        <a v-if="removable" v-on:click="removeNode">
+            <font-awesome-icon icon="times" />
+        </a>
         <select app-controll v-model="value" v-on:change="onSelection">
             <option :value="defaultVal.value">{{defaultVal.label}}</option>
             <optgroup label="Tags" v-if="afteropperator">
@@ -21,9 +24,6 @@
                 <option v-for="(psu, i) in psudoList" :key="'psudo-'+i.toString()" :value="psu.value">{{psu.label}}</option>
             </optgroup>
         </select>
-        <a v-if="removable" v-on:click="removeNode">
-            <font-awesome-icon icon="times" />
-        </a>
     </div>
     <div v-else class="value-label">
         {{`${value.split('()').join('')}`}}<span v-if="value.split('()').length > 1">(<input type="text" v-model="arg" v-on:change="onArgChange" v-on:keyup="onArgChange" />)</span>
@@ -54,6 +54,13 @@ export default {
             arg: ''
         }
     },
+    watch: {
+        active: function () {
+            if(this.active){
+                this.$data.value = '';
+            }
+        }
+    },
     methods: {
         onSelection: function (e) {
             let isOp = false;
@@ -62,7 +69,9 @@ export default {
                     isOp = true;
                 }
             }
-            this.$emit('selector-builder-selection', {isOp, value: e.currentTarget.value});
+            if(e.currentTarget.value != ''){
+                this.$emit('selector-builder-selection', {isOp, value: e.currentTarget.value});
+            }
         },
         onArgChange: function () {
             this.$emit('selector-builder-selection', {isOp: false, value: `${this.$data.value.split('()')[0]}(${this.$data.arg})`, index: this.index});
@@ -84,7 +93,7 @@ export default {
 
 <style lang="scss" scoped>
 select{
-    max-width:80px;
+    max-width:185px;
     display:inline-block;
     margin: 1px 4px;
 }

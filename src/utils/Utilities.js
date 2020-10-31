@@ -402,7 +402,10 @@ const Templates = {
     recordList: {
         id: 'record-list',
         label: 'Record List',
-        html: `<ul id="records">
+        html: `<div id="record_list_header">
+    <label class="record-list-label">List of records</label>
+</div>
+<ul id="records">
     <li class="record">
         <input type="checkbox" />
         <label>
@@ -475,7 +478,10 @@ const Templates = {
             Delete
         </button>
     </li>
-</ul>`,
+</ul>
+<div id="record_list_footer">
+    <button>Add</button>
+</div>`,
         selectors: ['ul', 'ul > li', 'ul > li > input[type="checkbox"]', 'ul > li > label', 'ul > li > button', '.record', '.btn', '.edit-btn', '.delete-btn', '#records']
     },
     header: {
