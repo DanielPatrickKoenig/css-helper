@@ -115,7 +115,11 @@ div.markup-container{
     display:flex;
     flex-direction:row;
     justify-content: space-between;
+    
     &.show-markup-1{
+        > :first-child{
+            box-shadow: 0 1px 0 rgba(0,0,0,.3) inset;
+        }
         > :last-child{
             display:none;
             width:100%;
@@ -172,6 +176,7 @@ div.selector-copy-container{
         right: 0;
         bottom: 0;
         width:99%;
+        background-color:#eeeeee;
     }
     > div{
         position:absolute;

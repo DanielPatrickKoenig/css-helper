@@ -402,29 +402,95 @@ const Templates = {
     recordList: {
         id: 'record-list',
         label: 'Record List',
-        html: `<ul>
-            <li><label>Item one<label><button>Edit</button><button>Delete</button><input type="checkbox" /></li>
-            <li><label>Item two<label><button>Edit</button><button>Delete</button><input type="checkbox" /></li>
-            <li><label>Item three<label><button>Edit</button><button>Delete</button><input type="checkbox" /></li>
-            <li><label>Item four<label><button>Edit</button><button>Delete</button><input type="checkbox" /></li>
-            <li><label>Item five<label><button>Edit</button><button>Delete</button><input type="checkbox" /></li>
-            <li><label>Item six<label><button>Edit</button><button>Delete</button><input type="checkbox" /></li>
-        </ul>`,
-        selectors: ['ul', 'ul > li', 'ul > li > input[type="checkbox"]', 'ul > li > label', 'ul > li > button']
+        html: `<ul id="records">
+    <li class="record">
+        <input type="checkbox" />
+        <label>
+            Item one
+        </label>
+        <button class="btn edit-btn">
+            Edit
+        </button>
+        <button class="btn delete-btn">
+            Delete
+        </button>
+    </li>
+    <li class="record">
+        <input type="checkbox" />
+        <label>
+            Item two
+        </label>
+        <button class="btn edit-btn">
+            Edit
+        </button>
+        <button class="btn delete-btn">
+            Delete
+        </button>
+    </li>
+    <li class="record">
+        <input type="checkbox" />
+        <label>
+            Item three
+        </label>
+        <button class="btn edit-btn">
+            Edit
+        </button>
+        <button class="btn delete-btn">
+            Delete
+        </button>
+    </li>
+    <li class="record">
+        <input type="checkbox" />
+        <label>
+            Item four
+        </label>
+        <button class="btn edit-btn">
+            Edit
+        </button>
+        <button class="btn delete-btn">
+            Delete
+        </button>
+    </li>
+    <li class="record">
+        <input type="checkbox" />
+        <label>
+            Item five
+        </label>
+        <button class="btn edit-btn">
+            Edit
+        </button>
+        <button class="btn delete-btn">
+            Delete
+        </button>
+    </li>
+    <li class="record">
+        <input type="checkbox" />
+        <label>
+            Item six
+        </label>
+        <button class="btn edit-btn">
+            Edit
+        </button>
+        <button class="btn delete-btn">
+            Delete
+        </button>
+    </li>
+</ul>`,
+        selectors: ['ul', 'ul > li', 'ul > li > input[type="checkbox"]', 'ul > li > label', 'ul > li > button', '.record', '.btn', '.edit-btn', '.delete-btn', '#records']
     },
     header: {
         id: 'header',
         label: 'Header',
         html: `<header>
-            <img src="" />
-            <h1>Company Name</h1>
-            <nav>
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
-                <a href="#">FAQ</a>
-            </nav>
-        </header>`,
+    <img src="" />
+    <h1>Company Name</h1>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">FAQ</a>
+    </nav>
+</header>`,
         selectors: ['header', 'hearder > img', 'header > h1', 'header > nav', 'header > nav > a']
     },
     button: {
@@ -443,92 +509,92 @@ const Templates = {
         id: 'headlines_and_copy',
         label: 'Headlines and Copy',
         html: `<h1>Lorem Ipsum</h1>
-        <h2>What is Lorem Ipsum?</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        <h2>Where does it come from?</h2>
-        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-        <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-        <h2>Why do we use it?</h2>
-        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-        <h2>Where can I get some?</h2>
-        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>`,
+<h2>What is Lorem Ipsum?</h2>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+<h2>Where does it come from?</h2>
+<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+<h2>Why do we use it?</h2>
+<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+<h2>Where can I get some?</h2>
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>`,
         selectors: ['h1', 'h2', 'p']
     },
     paragraph_and_image: {
         id: 'paragraph_and_image',
         label: 'Paragraph and image',
-        html: `<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        <img src="http://www.wikipsum.com/img/logo.png">`,
+        html: `<p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+<img class="logo" src="http://www.wikipsum.com/img/logo.png">`,
         selectors: ['p', 'img']
     },
     form: {
         id: 'form',
         label: 'Form',
         html: `<form>
-            <p>Sign up</p>
+    <p>Sign up</p>
+    <label>
+        <span>
+            First Name
+        </span>
+        <input type="text" />
+    </label>
+    <label>
+        <span>
+            Last Name
+        </span>
+        <input type="text" />
+    </label>
+    <label>
+        <span>
+            Email
+        </span>
+        <input type="text" />
+    </label>
+    <label>
+        <span>
+            Email
+        </span>
+        <input type="text" />
+    </label>
+    <label>
+        <span>
+            Password
+        </span>
+        <input type="password" />
+    </label>
+    <label>
+        <span>
+            Confirm Password
+        </span>
+        <input type="password" />
+    </label>
+    <label>Gender</label>
+    <ul>
+        <li>
             <label>
+                <input type="radio" />
                 <span>
-                    First Name
-                </span>
-                <input type="text" />
-            </label>
-            <label>
-                <span>
-                    Last Name
-                </span>
-                <input type="text" />
-            </label>
-            <label>
-                <span>
-                    Email
-                </span>
-                <input type="text" />
-            </label>
-            <label>
-                <span>
-                    Email
-                </span>
-                <input type="text" />
-            </label>
-            <label>
-                <span>
-                    Password
-                </span>
-                <input type="password" />
-            </label>
-            <label>
-                <span>
-                    Confirm Password
-                </span>
-                <input type="password" />
-            </label>
-            <label>Gender</label>
-            <ul>
-                <li>
-                    <label>
-                        <input type="radio" />
-                        <span>
-                            Male
-                        </span>
-                    </label>
-                </li>
-                <li>
-                    <label>
-                        <input type="radio" />
-                        <span>
-                            Female
-                        </span>
-                    </label>
-                </li>
-            </ul>
-            <label>
-                <input type="checkbox" />
-                <span>
-                    I agree to the <a href="#">terms and conditions</a>
+                    Male
                 </span>
             </label>
-            <input type="submit"/>
-        </form>`,
+        </li>
+        <li>
+            <label>
+                <input type="radio" />
+                <span>
+                    Female
+                </span>
+            </label>
+        </li>
+    </ul>
+    <label>
+        <input type="checkbox" />
+        <span>
+            I agree to the <a href="#">terms and conditions</a>
+        </span>
+    </label>
+    <input type="submit"/>
+</form>`,
         selectors: ['form', 'form label', 'form input[type="text"]', 'form input[type="checkbox"]', 'form input[type="radio"]', 'form input[type="password"]', 'form input[type="submit"]', 'form ul', 'form ul li', 'form a']
     }
 }

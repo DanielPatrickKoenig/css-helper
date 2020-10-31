@@ -1,9 +1,20 @@
 <template>
     <div v-if="tagsList.length > 0" class="selector-dropdown-conaitner">
-        <div><label><input app-controll type="checkbox" v-model="showPsudo" /> Psudo Classes</label></div>
         <div>
+            <label>
+                <input app-controll type="checkbox" v-model="showPsudo" /> Psudo Classes
+            </label>
+            <span style="padding: 0 6px;"> | </span>
+            <label>
+                <input app-controll type="checkbox" v-model="useBuilder" /> Use Builder
+            </label>
+        </div>
+        <div :style="{display: useBuilder ? 'flex' : 'none'}">
             <SelectorBuilderNode v-on:selector-builder-selection="onSelection" :tags="tagsList" :ids="idsList" :classes="classesList" :attributes="attributesList" :afteropperator="true" :active="nodes.length < 1" :index="0" :pclasses="showPsudo" />
             <SelectorBuilderNode v-for="(node, i) in nodes" :key="'node-'+i.toString()" v-on:selector-builder-selection="onSelection" v-on:remove-last-node="removeLastNode" :tags="tagsList" :ids="idsList" :classes="classesList" :attributes="attributesList" :afteropperator="node.isOp" :removable="true" :active="nodes.length <= i + 1" :index="i + 1" :pclasses="showPsudo"/>
+        </div>
+        <div>
+            <input app-controll type="text" v-model="selectorString" :style="{width: '100%', display: useBuilder ? 'none' : 'block'}" v-on:change="onSelectorChange" v-on:keyup="onSelectorChange" />
         </div>
     </div>
 </template>
@@ -26,7 +37,9 @@ export default {
             classesList: [],
             tagsList: [],
             attributesList: [],
-            showPsudo: false
+            showPsudo: false,
+            useBuilder: true,
+            selectorString: ''
         }
     },
     methods: {
@@ -73,6 +86,9 @@ export default {
             }
             return output;
         },
+        onSelectorChange: function () {
+            this.$emit('update-selector', this.$data.selectorString);
+        },
         onSelection: function (e) {
             if(e.index != undefined){
                 this.$data.nodes[e.index].value = e.value;
@@ -81,19 +97,19 @@ export default {
                 this.$data.nodes.push(e);
             }
             
-            let selectorString = '';
+            this.$data.selectorString = '';
             for(let i = 0; i < this.$data.nodes.length; i++) {
-                selectorString += this.$data.nodes[i].value;
+                this.$data.selectorString += this.$data.nodes[i].value;
             }
-            this.$emit('update-selector', selectorString);
+            this.$emit('update-selector', this.$data.selectorString);
         },
         removeLastNode: function () {
             this.$data.nodes.pop();
-            let selectorString = '';
+            this.$data.selectorString = '';
             for(let i = 0; i < this.$data.nodes.length; i++) {
-                selectorString += this.$data.nodes[i].value;
+                this.$data.selectorString += this.$data.nodes[i].value;
             }
-            this.$emit('update-selector', selectorString);
+            this.$emit('update-selector', this.$data.selectorString);
         }
     },
     mounted: function () {
