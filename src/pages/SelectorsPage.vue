@@ -1,5 +1,32 @@
 <template>
     <div>
+        <div v-if="excercise >= 0 && excercises.length > 0">
+            <h2>
+                Exercise {{excercise+1}}
+            </h2>
+            <label>
+                Create a selector that will highlight the same elements highlighted in the box below.
+            </label>
+            <div class="markup-container excercise-box">
+                <HTMLPreview :markup="markup" :matrix="classManifest" :selectors="selectorList" :selector="excercises[excercise]" :suppliments="supplimentManifet" :highlighting="true" :sig="excerciseSig" />
+            </div>
+            <ul class="challenge-nav">
+                <li>
+                    <button app-controll :class="{'active-button': excercise > 0}" v-on:click="excercise -= excercise > 0 ? 1 : 0;">PREVIOUS</button>
+                </li>
+                <li>
+                    <button app-controll :class="{'active-button': excercise < excercises.length - 1 && lastSolved >= excercise && excerciseResult == ''}" v-on:click="excercise += excercise < excercises.length - 1 && lastSolved >= excercise ? 1 : 0;">NEXT</button>
+                </li>
+                <li>
+                    <button app-controll :class="{'active-button': selector != ''}" v-on:click="checkAnswers">
+                        SUBMIT
+                    </button>
+                </li>
+            </ul>
+            <ModalWindow v-if="excerciseResult != ''" :title="'Exercise ' + (excercise+1).toString() + ' Results'" v-on:modal-close-clicked="excerciseResult = '';" >
+                <div class="excercise-results">{{excerciseResult}}</div>
+            </ModalWindow>
+        </div>
         <div class="selector-builder-container" v-if="selectorReady">
             <SelectorBuilder :element="selectorBuilderElement" v-on:update-selector="updateSelector" />
             <div class="selector-copy-container">
@@ -31,6 +58,7 @@
 import SelectorBuilder from '../components/SelectorBuilder.vue';
 import HTMLPreview from '../components/HTMLPreview.vue';
 import OptionSelector from '../components/OptionSelector.vue';
+import ModalWindow from '../components/ModalWindow.vue';
 import Utilities from '../utils/Utilities.js';
 import {TweenLite} from 'gsap';
 import {mapState} from 'vuex';
@@ -38,7 +66,8 @@ export default {
     components: {
         SelectorBuilder,
         HTMLPreview,
-        OptionSelector
+        OptionSelector,
+        ModalWindow
     },
     data () {
         return {
@@ -52,12 +81,20 @@ export default {
             templates: Utilities.Templates,
             elementCount: '',
             modes: ['image', 'code'],
-            currentMode: 0
+            currentMode: 0,
+            excercise: Utilities.getParameterByName('challenge') ? 0 : -1,
+            lastSolved: -1,
+            excercises: [],
+            excerciseResult: ''
             
         }
     }, methods: {
         updateSelector: function (e) {
             this.$data.selector = e;
+            // console.log(e);
+            // if(this.$data.excercise >= 0){
+            //     this.checkAnswers();
+            // }
         },
         onHTMLEditorUpdate: function () {
             this.$data.selectorReady = false;
@@ -65,6 +102,50 @@ export default {
             setTimeout(() => {
                 this.$data.selectorReady = true;
             }, 100);
+        },
+        checkAnswers: function () {
+            if(this.$data.selector != ''){
+                const excerciseElement = document.querySelector('.markup-container.excercise-box .preview-display');
+                const excerciseSelections = excerciseElement.querySelectorAll(this.$data.excercises[this.$data.excercise]);
+                const excerciseDescendants = excerciseElement.querySelectorAll('*');
+
+                const builderElement = document.querySelector('.markup-container:not(.excercise-box) .preview-display');
+                const builderSelections = builderElement.querySelectorAll(this.$data.selector);
+                const builderDescendants = builderElement.querySelectorAll('*');
+                // console.log(excerciseDescendants);
+                let excerciseMatches = [];
+
+                for(let i = 0; i < excerciseSelections.length; i++){
+                    for(let j = 0; j < excerciseDescendants.length; j++){
+                        if(excerciseSelections[i] == excerciseDescendants[j]){
+                            excerciseMatches.push(j);
+                        }
+                    }
+                }
+
+                let builderMatches = [];
+
+                for(let i = 0; i < builderSelections.length; i++){
+                    for(let j = 0; j < builderDescendants.length; j++){
+                        if(builderSelections[i] == builderDescendants[j]){
+                            builderMatches.push(j);
+                        }
+                    }
+                }
+
+                // console.log(excerciseMatches);
+                // console.log(builderMatches);
+
+                if(builderMatches.join('-') == excerciseMatches.join('-')){
+                    if(this.$data.lastSolved < this.$data.excercise){
+                        this.$data.lastSolved = this.$data.excercise;
+                    }
+                    this.$data.excerciseResult = this.$data.excercise == this.$data.excercises.length + -1 ? 'Excelent! You completed all the challenges.' : 'Correct! Great Job';
+                }
+                else{
+                    this.$data.excerciseResult = 'Sorry, that is not correct.'
+                }
+            }
         },
         copySelector: function () {
             Utilities.addToClipboard(document.querySelector('.selector-copy-container > input'));
@@ -76,7 +157,7 @@ export default {
                 total = this.$data.selectorBuilderElement.querySelectorAll(this.$data.selector).length;
             }
             catch(err){
-                console.log(err);
+                // console.log(err);
                 total = '-';
             }
             return total;
@@ -84,7 +165,7 @@ export default {
         runElementCounter: function (scope) {
             let n = {x: 0};
             TweenLite.to(n, 1, {x: 1, onComplete: scope.runElementCounter, onCompleteParams: [scope], onUpdate: () => {
-                console.log('a');
+                // console.log('a');
                 scope.$data.elementCount = scope.getElementCount();
             }});
         }
@@ -100,6 +181,7 @@ export default {
         for(let template in Utilities.Templates){
             if(this.$data.templateID == Utilities.Templates[template].id){
                 this.$data.markup = Utilities.Templates[template].html;
+                this.$data.excercises = Utilities.Templates[template].excercises.selector;
             }
         }
         this.onHTMLEditorUpdate();
@@ -111,6 +193,67 @@ export default {
 <style lang="scss" scoped>
 @import '../scss/variables.scss';
 @import '../scss/mixins.scss';
+@keyframes bounce{
+    0%{
+        transform: scale(1,1);
+    }
+    25%{
+        transform: scale(1,1.2);
+    }
+    50%{
+        transform: scale(1,.85);
+    }
+    75%{
+        transform: scale(1,1.06);
+    }
+    100%{
+        transform: scale(1,1);
+    }
+}
+div.excercise-box{
+    padding: 2px;
+    box-shadow:0 0 0 1px #333333;
+    margin: 8px 0;
+    max-height:400px;
+    overflow-y:auto;
+}
+.excercise-results{
+    color:#ffffff;
+    font-size:40px;
+}
+ul.challenge-nav{
+    padding:0;
+    margin:0;
+    display: block;
+    height: 88px;
+    > li{
+        display:block;
+        float:left;
+        padding:0;
+        margin:0;
+        width:50%;
+        &:last-child{
+            width:100%;
+        }
+        button{
+            opacity: .5;
+            &.active-button{
+                opacity: 1;
+            }
+        }
+        &:not(:first-child){
+            button.active-button{
+                animation-name:bounce;
+                animation-duration: .6s;
+                animation-iteration-count: 1;
+                animation-timing-function: ease-out;
+            }
+        }
+        
+    }
+    
+    
+}
 div.markup-container{
     display:flex;
     flex-direction:row;

@@ -118,10 +118,10 @@ export default {
         this.classesList = this. convertToValuePairs(this.classes);
         this.idsList = this. convertToValuePairs(this.ids);
         this.attributesList = this. convertToValuePairs(this.attributes);
-        console.log(this.tagsList);
-        console.log(this.classesList);
-        console.log(this.idsList);
-        console.log(this.attributesList);
+        // console.log(this.tagsList);
+        // console.log(this.classesList);
+        // console.log(this.idsList);
+        // console.log(this.attributesList);
     }
 }
 </script>
