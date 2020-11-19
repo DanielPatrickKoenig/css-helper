@@ -48,7 +48,7 @@ export default {
                 {label: 'and (,)', value: ', '}
             ],
             selector: [],
-            psudo: ['active', 'any-link', 'checked', 'blank', 'default', 'defined', 'dir()', 'disabled', 'empty', 'enabled', 'first', 'first-child', 'first-of-type', 'fullscreen', 'focus', 'focus-visible', 'focus-within', 'has()', 'host()', 'host-context()', 'hover', 'indeterminate', 'in-range', 'invalid', 'is() (', 'matches(), ', 'any())', 'lang()', 'last-child', 'last-of-type', 'left', 'link', 'not()', 'nth-child()', 'nth-last-child()', 'nth-last-of-type()', 'nth-of-type()', 'only-child', 'only-of-type', 'optional', 'out-of-range', 'placeholder-shown', 'read-only', 'read-write', 'required', 'right', 'root', 'scope', 'target', 'valid', 'visited', 'where()'],
+            psudo: ['active', 'any-link', 'checked', 'blank', 'default', 'defined', 'dir()', 'disabled', 'empty', 'enabled', 'first', 'first-child', 'first-of-type', 'fullscreen', 'focus', 'focus-visible', 'focus-within', 'has()', 'host()', 'host-context()', 'hover', 'indeterminate', 'in-range', 'invalid', 'is()', 'matches()', 'any()', 'lang()', 'last-child', 'last-of-type', 'left', 'link', 'not()', 'nth-child()', 'nth-last-child()', 'nth-last-of-type()', 'nth-of-type()', 'only-child', 'only-of-type', 'optional', 'out-of-range', 'placeholder-shown', 'read-only', 'read-write', 'required', 'right', 'root', 'scope', 'target', 'valid', 'visited', 'where()'],
             psudoList: [],
             value: null,
             arg: ''

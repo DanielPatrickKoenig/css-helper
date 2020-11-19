@@ -402,6 +402,10 @@ const Templates = {
     recordList: {
         id: 'record-list',
         label: 'Record List',
+        excercises: {
+            selector: ['div', 'li:nth-child(odd)', 'li:nth-child(even) > button.delete-btn', 'button:not(.delete-btn)', 'ul label, ul .edit-btn'],
+            property: [],
+        },
         html: `<div id="record_list_header">
     <label class="record-list-label">List of records</label>
 </div>
