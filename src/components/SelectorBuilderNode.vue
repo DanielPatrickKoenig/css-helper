@@ -1,5 +1,8 @@
 <template>
     <div v-if="active">
+        <a v-if="removable" v-on:click="removeNode">
+            <font-awesome-icon icon="times" />
+        </a>
         <select app-controll v-model="value" v-on:change="onSelection">
             <option :value="defaultVal.value">{{defaultVal.label}}</option>
             <optgroup label="Tags" v-if="afteropperator">
@@ -21,9 +24,6 @@
                 <option v-for="(psu, i) in psudoList" :key="'psudo-'+i.toString()" :value="psu.value">{{psu.label}}</option>
             </optgroup>
         </select>
-        <a v-if="removable" v-on:click="removeNode">
-            <font-awesome-icon icon="times" />
-        </a>
     </div>
     <div v-else class="value-label">
         {{`${value.split('()').join('')}`}}<span v-if="value.split('()').length > 1">(<input type="text" v-model="arg" v-on:change="onArgChange" v-on:keyup="onArgChange" />)</span>
@@ -41,17 +41,24 @@ export default {
             idList: this.ids,
             attributeList: this.attributes,
             operatorList: [
-                {label: 'descendent', value: ' '},
-                {label: 'child', value: ' > '},
-                {label: 'next sibling', value: ' + '},
-                {label: 'following sibling', value: ' ~ '},
-                {label: 'and', value: ', '}
+                {label: 'descendent ( )', value: ' '},
+                {label: 'child (>)', value: ' > '},
+                {label: 'next sibling (+)', value: ' + '},
+                {label: 'following sibling (~)', value: ' ~ '},
+                {label: 'and (,)', value: ', '}
             ],
             selector: [],
             psudo: ['active', 'any-link', 'checked', 'blank', 'default', 'defined', 'dir()', 'disabled', 'empty', 'enabled', 'first', 'first-child', 'first-of-type', 'fullscreen', 'focus', 'focus-visible', 'focus-within', 'has()', 'host()', 'host-context()', 'hover', 'indeterminate', 'in-range', 'invalid', 'is() (', 'matches(), ', 'any())', 'lang()', 'last-child', 'last-of-type', 'left', 'link', 'not()', 'nth-child()', 'nth-last-child()', 'nth-last-of-type()', 'nth-of-type()', 'only-child', 'only-of-type', 'optional', 'out-of-range', 'placeholder-shown', 'read-only', 'read-write', 'required', 'right', 'root', 'scope', 'target', 'valid', 'visited', 'where()'],
             psudoList: [],
             value: null,
             arg: ''
+        }
+    },
+    watch: {
+        active: function () {
+            if(this.active){
+                this.$data.value = '';
+            }
         }
     },
     methods: {
@@ -62,7 +69,9 @@ export default {
                     isOp = true;
                 }
             }
-            this.$emit('selector-builder-selection', {isOp, value: e.currentTarget.value});
+            if(e.currentTarget.value != ''){
+                this.$emit('selector-builder-selection', {isOp, value: e.currentTarget.value});
+            }
         },
         onArgChange: function () {
             this.$emit('selector-builder-selection', {isOp: false, value: `${this.$data.value.split('()')[0]}(${this.$data.arg})`, index: this.index});
@@ -84,7 +93,7 @@ export default {
 
 <style lang="scss" scoped>
 select{
-    max-width:80px;
+    max-width:185px;
     display:inline-block;
     margin: 1px 4px;
 }

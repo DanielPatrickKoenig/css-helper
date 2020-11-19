@@ -111,13 +111,11 @@ span.collapse-toggle{
 }
 body{
   font-family:$body-font;
-  .main-preview{
+  .main-preview,
+  .markup-container{
     div.preview-display{
       font-family: initial;
     }
-  }
-  .selector-editor-preview-container{
-    font-family: initial;
   }
 }
 div.main-container{
