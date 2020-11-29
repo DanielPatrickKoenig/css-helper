@@ -1,8 +1,8 @@
 <template>
     <div class="proprty-page">
-        <select app-controll class="template-selector" v-model="templateID" v-on:change="onTemplateSelected">
-            <option v-for="(t, k, i) in templates" :key="'template-'+i.toString()" :value="templates[k].id">
-                {{templates[k].label}}
+        <select app-controll class="template-selector" v-model="templateID" v-on:change="onTemplateSelected" :style="'visibility:'+(templates[templateID].label ? 'visible' : 'hidden')">
+            <option v-for="(t, k, i) in labeledTemlates" :key="'template-'+i.toString()" :value="labeledTemlates[k].id">
+                {{labeledTemlates[k].label}}
             </option>
         </select>
         <OptionSelector v-if="!selectionInfo.show" :options="modes" width="60%" class="main-mode-selector">
@@ -119,7 +119,16 @@ export default {
         }
     },
     computed: {
-        ...mapState(['selectorIndex', 'selectorList', 'selectorPropertyMatrix'])
+        ...mapState(['selectorIndex', 'selectorList', 'selectorPropertyMatrix']),
+        labeledTemlates: function () {
+            let lt = {};
+            for(let t in Utilities.Templates){
+                if(Utilities.Templates[t].label){
+                    lt[t] = Utilities.Templates[t];
+                }
+            }
+            return lt;
+        }
     },
     methods: {
         copyStyle: function () {

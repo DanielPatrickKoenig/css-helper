@@ -2,10 +2,10 @@
     <div>
         <label>Using Steps <input app-controll type="checkbox" v-model="useSteps" v-on:change="emitValue()" style="float:right;" /></label>
         <div v-if="useSteps">
-            <button app-controll v-on:click="addRatio()">Add Step</button>
+            <button app-controll style="margin-bottom:10px;" v-on:click="addRatio()">Add Step</button>
             <ul>
                 <li v-for="(ratio, i) in ratios" :key="'ratio-'+i.toString()">
-                    <button app-controll v-if="ratios.length > 2" v-on:click="removeRatio(i)" style="float:right;margin-right:15px;margin-top:-6px;"><font-awesome-icon icon="times" /></button>
+                    <button app-controll v-if="ratios.length > 2" v-on:click="removeRatio(i)" style="float: right;margin-right: 15px;margin-top: -6px;width: 26px;margin-left: -8px;"><font-awesome-icon icon="times" /></button>
                     <SliderComponent :width="sliderParams.width" :max="sliderParams.max" :ratiox="ratios[i]" constraint="horizontal" v-on:slider-moved="onSliderMoved" :sig="i" style="margin:6px 0;box-shadow:none;border-top:1px solid rgba(0,0,0,.5);">
                         <div style="width:20px;height:20px;margin-left:-10px;margin-top:-10px;background-color:#000000;border-radius:20px;"></div>
                     </SliderComponent>
@@ -14,8 +14,8 @@
             </ul>
         </div>
         <ul>
-            <li v-for="(property, i) in properties" :key="'property-'+i.toString()" style="display:block;">
-                <button app-controll v-on:click="removeProperty(i)" style="float:right;"><font-awesome-icon icon="times" /></button>
+            <li v-for="(property, i) in properties" :key="'property-'+i.toString()" style="display:block; margin-top:15px;">
+                <button app-controll v-on:click="removeProperty(i)" style="float:right;width: 31px;margin-top: -10px;"><font-awesome-icon icon="times" /></button>
                 <label>{{property.name}}</label>
                 <ul style="margin-top:4px;">
                     <li v-for="(value, j) in properties[i].values" :key="'value-'+i.toString()+'-'+j.toString()" :style="!useSteps && j >= 2 ? 'display:none;' : ''">

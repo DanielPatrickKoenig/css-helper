@@ -64,7 +64,7 @@ export default {
             if(document.querySelector(`#${this.$data.mainElementID}`)){
                 const styleTags = document.querySelector(`#${this.$data.mainElementID}`).parentNode.querySelectorAll('style');
                 for(let i = 0; i < styleTags.length;i++){
-                    styleString += styleTags[i].innerHTML.split('-html-preview-container ')[1];
+                    styleString += styleTags[i].innerHTML.split(`#${this.$data.mainElementID} `).join('');
                 }
             }
             // console.log(styleString);
