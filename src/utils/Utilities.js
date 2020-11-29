@@ -399,7 +399,7 @@ const Templates = {
         html: '<div>Div element</div>',
         selectors: ['div']
     },
-    recordList: {
+    'record-list': {
         id: 'record-list',
         label: 'Record List',
         excercises: {
@@ -486,7 +486,7 @@ const Templates = {
 <div id="record_list_footer">
     <button>Add</button>
 </div>`,
-        selectors: ['ul', 'ul > li', 'ul > li > input[type="checkbox"]', 'ul > li > label', 'ul > li > button', '.record', '.btn', '.edit-btn', '.delete-btn', '#records']
+        selectors: ['ul', 'ul > li', 'ul > li > label', 'ul > li > button']
     },
     header: {
         id: 'header',
@@ -606,6 +606,43 @@ const Templates = {
     <input type="submit"/>
 </form>`,
         selectors: ['form', 'form label', 'form input[type="text"]', 'form input[type="checkbox"]', 'form input[type="radio"]', 'form input[type="password"]', 'form input[type="submit"]', 'form ul', 'form ul li', 'form a']
+    },
+    animation: {
+        id: 'animation',
+        html: `<div class="outer" style="width:20px;height:20px;position:absolute;">
+    <div class="inner" style="width:100%;height:100%;position:absolute;background-color:grey;">
+    </div>
+</div>`,
+        selectors: ['.outer', '.inner']
+    }
+}
+
+const Videos = {
+    selectors: {
+        title: 'Selectors',
+        description: 'A video course on creating CSS selectors.',
+        playlist: 'https://www.youtube.com/watch?v=V7SduSIv5Rw&list=PLWbNYR6IUzO4vxqjoJCg8wsqdftxIaWcw',
+        embedables: [
+            {name: 'Intro to Selectors', video: 'https://www.youtube.com/embed/V7SduSIv5Rw'},
+            {name: 'Operators', video :'https://www.youtube.com/embed/ooFH-sPkd08'},
+            {name: 'Classes and IDs', video: 'https://www.youtube.com/embed/GJg8zkAPCOw'},
+            {name: 'Attributes', video: 'https://www.youtube.com/embed/nCH5WddepNM'},
+            {name: 'Pseudo Classes - Part 1', video: 'https://www.youtube.com/embed/GTr1cumZExE'},
+            {name: 'Pseudo Classes - Part 2', video: 'https://www.youtube.com/embed/QTn1-hkgoQA'},
+            {name: 'What&#39;s Next', video: 'https://www.youtube.com/embed/zjZLUYEyBOE'}
+        ]
+    },
+    properties_beginners: {
+        title: 'Properties: Basic Concepts',
+        description: 'The first of three courses on setting CSS properties.'
+    },
+    properties_intermediate: {
+        title: 'Properties: Intermediate Concepts',
+        description: 'The second of three courses on setting CSS properties.'
+    },
+    properties_advanced: {
+        title: 'Properties: Advanced Concepts',
+        description: 'The last of three courses on setting CSS properties.'
     }
 }
 
@@ -638,6 +675,7 @@ const Utilities = {
     Animatables: Animatables,
     Templates: Templates,
     addToClipboard: addToClipboard,
-    MessageCodes: MessageCodes
+    MessageCodes: MessageCodes,
+    Videos: Videos
 }
 export default Utilities;
