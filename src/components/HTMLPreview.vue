@@ -57,7 +57,14 @@ export default {
                 styleSTR = styleSTR.split(Utilities.ValueSeparatorMatrix[v].proxy).join(Utilities.ValueSeparatorMatrix[v].actual);
             }
             // console.log(styleSTR);
-            return styleSTR;
+            const styleSplit = styleSTR.split(';');
+            let filteredStyles = [];
+            for(let i = 0; i < styleSplit.length; i++){
+                if(styleSplit[i].split('[object Object]').length <= 1){
+                    filteredStyles.push(styleSplit[i]);
+                }
+            }
+            return filteredStyles.join(';'); //styleSTR;
         },
         setFullStyleData: function () {
             let styleString = '';

@@ -39,7 +39,7 @@
         <div class="selector-template-container">
             <label>Total Elements: {{elementCount}}</label>
             <select app-controll v-model="markup" v-on:change="onHTMLEditorUpdate">
-                <option v-for="(template, key, i) in templates" :key="'template'+i.toString()" :value="template.html">
+                <option v-for="(template, key, i) in labeledTemlates" :key="'template'+i.toString()" :value="template.html">
                     {{template.label}}
                 </option>
             </select>
@@ -173,6 +173,15 @@ export default {
         ...mapState(['selectorIndex', 'selectorList', 'selectorPropertyMatrix']),
         highlighting: function () {
             return this.$data.selector != '';
+        },
+        labeledTemlates: function () {
+            let lt = {};
+            for(let t in Utilities.Templates){
+                if(Utilities.Templates[t].label){
+                    lt[t] = Utilities.Templates[t];
+                }
+            }
+            return lt;
         }
     },
     mounted: function () {

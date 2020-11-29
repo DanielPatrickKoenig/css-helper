@@ -614,6 +614,90 @@ const Templates = {
     </div>
 </div>`,
         selectors: ['.outer', '.inner']
+    },
+    flex: { // http://css-training-wheels.com/#/property?names=margin,padding,height,width,flex-direction,justify-content,flex-wrap,display&template=flex
+        id: 'flex',
+        html: `<div id="record_list_header">
+    <label class="record-list-label">List of records</label>
+</div>
+<ul id="records">
+    <li class="record">
+        <input type="checkbox" />
+        <label>
+            Item one
+        </label>
+        <button class="btn edit-btn">
+            Edit
+        </button>
+        <button class="btn delete-btn">
+            Delete
+        </button>
+    </li>
+    <li class="record">
+        <input type="checkbox" />
+        <label>
+            Item two
+        </label>
+        <button class="btn edit-btn">
+            Edit
+        </button>
+        <button class="btn delete-btn">
+            Delete
+        </button>
+    </li>
+    <li class="record">
+        <input type="checkbox" />
+        <label>
+            Item three
+        </label>
+        <button class="btn edit-btn">
+            Edit
+        </button>
+        <button class="btn delete-btn">
+            Delete
+        </button>
+    </li>
+    <li class="record">
+        <input type="checkbox" />
+        <label>
+            Item four
+        </label>
+        <button class="btn edit-btn">
+            Edit
+        </button>
+        <button class="btn delete-btn">
+            Delete
+        </button>
+    </li>
+    <li class="record">
+        <input type="checkbox" />
+        <label>
+            Item five
+        </label>
+        <button class="btn edit-btn">
+            Edit
+        </button>
+        <button class="btn delete-btn">
+            Delete
+        </button>
+    </li>
+    <li class="record">
+        <input type="checkbox" />
+        <label>
+            Item six
+        </label>
+        <button class="btn edit-btn">
+            Edit
+        </button>
+        <button class="btn delete-btn">
+            Delete
+        </button>
+    </li>
+</ul>
+<div id="record_list_footer">
+    <button>Add</button>
+</div>`,
+        selectors: ['ul', 'ul > li']
     }
 }
 
