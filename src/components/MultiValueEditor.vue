@@ -20,11 +20,13 @@ import BaseGroupValueEditor from './base/BaseGroupValueEditor.js';
 export default {
     extends: BaseGroupValueEditor,
     methods: {
-        addValue: function () {
+        addValue: function (suspendEmit) {
             let propertyData = this.propertyManifest[this.name];
             this.$data.propertyTypes.push(Utilities.getValueTypeByID(propertyData.property_types[0]));
             this.$data.values.push('0');
-            this.$emit('value-change', {value: this.$data.values.join(this.getValueSeparator(this.name)), name: this.name, index: this.index, type: this.$data.propertyTypes, sindex: this.sindex});
+            if(suspendEmit != true){
+                this.$emit('value-change', {value: this.$data.values.join(this.getValueSeparator(this.name)), name: this.name, index: this.index, type: this.$data.propertyTypes, sindex: this.sindex});
+            }
         },
         removeValue: function (index) {
             this.$data.values.splice(index, 1);
@@ -36,7 +38,7 @@ export default {
                 this.values = this.selectorPropertyMatrix[this.selectorList[this.sindex]].css[this.name].split(this.propertyManifest[this.name].value_separator);
             }
             else{
-                this.addValue();
+                this.addValue(true);
             }
         },
         getPropertyType: function (index) {
