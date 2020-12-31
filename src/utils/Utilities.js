@@ -86,7 +86,7 @@ const TableLayoutOptions = ['auto', 'fixed'];
 const DirectionOptions = ['ltr', 'rtl'];
 const TextAlignOptions = ['left', 'right', 'center', 'justify'];
 const TextAlignLastOptions = ['auto', 'start', 'end', 'left', 'right', 'center', 'justify'];
-const TextDecorationOptions = ['underline', 'overline', 'line-through', 'blink'];
+const TextDecorationOptions = ['underline', 'overline', 'line-through', 'blink', 'none'];
 const TextDecorationStyleOptions = ['solid', 'double', 'dotted', 'dashed', 'wavy'];
 const TextJustifyOptions = ['auto', 'none', 'inter-word', 'distribute'];
 const TextOverflowOptions = ['clip', 'ellipsis'];
@@ -492,7 +492,7 @@ const Templates = {
         id: 'header',
         label: 'Header',
         html: `<header>
-    <img src="" />
+    <img width="50" src="http://css-training-wheels.com/CSS_TrainingWheel_02.svg" />
     <h1>Company Name</h1>
     <nav>
         <a href="#">Home</a>
@@ -501,7 +501,7 @@ const Templates = {
         <a href="#">FAQ</a>
     </nav>
 </header>`,
-        selectors: ['header', 'hearder > img', 'header > h1', 'header > nav', 'header > nav > a']
+        selectors: ['header', 'header > img', 'header > h1', 'header > nav', 'header > nav > a']
     },
     button: {
         id: 'button',
@@ -533,8 +533,8 @@ const Templates = {
     paragraph_and_image: {
         id: 'paragraph_and_image',
         label: 'Paragraph and image',
-        html: `<p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-<img class="logo" src="http://www.wikipsum.com/img/logo.png">`,
+        html: `<img width="100" class="logo" src="http://css-training-wheels.com/CSS_TrainingWheel_02.svg">
+<p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>`,
         selectors: ['p', 'img']
     },
     form: {
