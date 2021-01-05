@@ -10,8 +10,14 @@
                     <a :href="video.playlist" target="_blank">{{video.title}}</a>
                 </h3>
                 <p>{{video.description}}</p>
-                <input :id="'videos-'+k" class="video-list-toggle" type="checkbox">
-                <label :for="'videos-'+k"><span class="closed"><font-awesome-icon icon="chevron-down" /></span><span class="opened"><font-awesome-icon icon="chevron-up" /></span></label>
+
+                <!-- <input :id="'videos-'+k" class="video-list-toggle" type="checkbox">
+                <label :for="'videos-'+k">
+                    <span class="closed"><font-awesome-icon icon="chevron-down" /></span>
+                    <span class="opened">
+                        <font-awesome-icon icon="chevron-up" />
+                    </span>
+                </label>
                 
                 <ul class="inner-list">
                     <li 
@@ -28,7 +34,7 @@
                         >
                         </iframe>
                     </li>
-                </ul>
+                </ul> -->
             </li>
         </ul>
         <!-- <EaseTool /> -->
