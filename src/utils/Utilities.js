@@ -731,14 +731,14 @@ const Videos = {
             {name: 'What&#39;s Next?', video: 'https://www.youtube.com/embed/pJ8rps18sI0'}
         ]
     },
-    properties_intermediate: {
-        title: 'Properties: Intermediate Concepts',
-        description: 'The second of three courses on setting CSS properties.'
-    },
-    properties_advanced: {
-        title: 'Properties: Advanced Concepts',
-        description: 'The last of three courses on setting CSS properties.'
-    }
+    // properties_intermediate: {
+    //     title: 'Properties: Intermediate Concepts',
+    //     description: 'The second of three courses on setting CSS properties.'
+    // },
+    // properties_advanced: {
+    //     title: 'Properties: Advanced Concepts',
+    //     description: 'The last of three courses on setting CSS properties.'
+    // }
 }
 
 const MessageCodes = {
