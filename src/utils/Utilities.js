@@ -713,12 +713,23 @@ const Videos = {
             {name: 'Attributes', video: 'https://www.youtube.com/embed/nCH5WddepNM'},
             {name: 'Pseudo Classes - Part 1', video: 'https://www.youtube.com/embed/GTr1cumZExE'},
             {name: 'Pseudo Classes - Part 2', video: 'https://www.youtube.com/embed/QTn1-hkgoQA'},
-            {name: 'What&#39;s Next', video: 'https://www.youtube.com/embed/zjZLUYEyBOE'}
+            {name: 'What&#39;s Next?', video: 'https://www.youtube.com/embed/zjZLUYEyBOE'}
         ]
     },
     properties_beginners: {
         title: 'Properties: Basic Concepts',
-        description: 'The first of three courses on setting CSS properties.'
+        description: 'The first of three courses on setting CSS properties.',
+        playlist: 'https://www.youtube.com/watch?v=BjEYsbKJUyM&list=PLWbNYR6IUzO5HmEV1Sj-BoJaPqp0-NGVK',
+        embedables: [
+            {name: 'Intro to CSS Properties', video: 'https://www.youtube.com/embed/BjEYsbKJUyM'},
+            {name: 'Margin and Padding', video :'https://www.youtube.com/embed/KT69t6XqGqE'},
+            {name: 'The Display Property', video: 'https://www.youtube.com/embed/9IM7g9CdLwE'},
+            {name: 'The Position Property', video: 'https://www.youtube.com/embed/gKJq-6PXbsA'},
+            {name: 'Flex', video: 'https://www.youtube.com/embed/csfCAZ6yf90'},
+            {name: 'Text Part 1', video: 'https://www.youtube.com/embed/B5ePrItmA6k'},
+            {name: 'Text Part 2', video: 'https://www.youtube.com/embed/yfWx8VVUQ_U'},
+            {name: 'What&#39;s Next?', video: 'https://www.youtube.com/embed/pJ8rps18sI0'}
+        ]
     },
     properties_intermediate: {
         title: 'Properties: Intermediate Concepts',
