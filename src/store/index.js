@@ -126,6 +126,12 @@ export default new Vuex.Store({
         SET_NOTIFICATION_MESSAGE(state, payload){
             state.notificationMessage = payload;
             state.notificationSignature = `nsig-${Math.random().toString().split('.').join()}-${Math.random().toString().split('.').join()}-${Math.random().toString().split('.').join()}`
+        },
+        RESET_SELECTOR_DATA(state){
+            state.selectorPropertyMatrix = {};
+            state.selectorTypeMatrix = {};
+            state.selectorList = [];
+            state.selectorIndex = 0;
         }
     },
     actions: {
@@ -159,6 +165,9 @@ export default new Vuex.Store({
         },
         setNotificationMessage: function ({commit}, payload){
             commit('SET_NOTIFICATION_MESSAGE', payload);
+        },
+        resetSelectorData: function ({commit}){
+            commit('RESET_SELECTOR_DATA');
         }
     }
 });

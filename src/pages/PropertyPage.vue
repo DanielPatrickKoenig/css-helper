@@ -89,6 +89,7 @@ export default {
         return {
             propertyNames: Utilities.getParameterByName('names').split(','),
             templateID: Utilities.getParameterByName('template') ? Utilities.getParameterByName('template') : '',
+            propertyTypeNum: Utilities.getParameterByName('tnum'),
             templates: Utilities.Templates,
             selectePropertyTypes: {},
             DataReps: Utilities.DataReps,
@@ -131,6 +132,20 @@ export default {
         }
     },
     methods: {
+        activatePropertyType: function (scope, typeNumber) {
+            setTimeout(() => {
+                const targetElement = document.querySelector(`.property-type-selector li:nth-child(${typeNumber}) > a`);
+                const expandElement = document.querySelector('.collapsed-header input[type="checkbox"]').click();
+                if(targetElement){
+                    targetElement.click();
+                    expandElement.click();
+                }
+                else{
+                    scope.activatePropertyType(scope, typeNumber);
+                }
+            },100);
+            
+        },
         copyStyle: function () {
             Utilities.addToClipboard(document.querySelector('.style-content'));
             this.$store.dispatch('setNotificationMessage', 'Added to clipboard.');
@@ -257,7 +272,12 @@ export default {
             location.reload();
         }
     },
+    beforeCreate: function(){
+        this.$store.dispatch('resetSelectorData');
+        console.log('before create property page');
+    },
     mounted: function () {
+        console.log('mounted property page');
         // this.$store.dispatch('addSelector', '');
         // this.$store.dispatch('addSelector', ' > span');
         // this.$store.dispatch('addSelector', ' > table th');
@@ -273,6 +293,11 @@ export default {
         // const selectors = selectedTemplate.selectors;
         // this.$store.dispatch('setSelectors', selectors);
         this.updateClassManifest();
+
+        if(this.$data.propertyTypeNum){
+            console.log('has tnum !!!');
+            this.activatePropertyType(this, this.$data.propertyTypeNum);
+        }
     }
 }
 </script>

@@ -698,6 +698,121 @@ const Templates = {
     <button>Add</button>
 </div>`,
         selectors: ['ul', 'ul > li']
+    },
+    gradient: {
+        id: 'gradient',
+        html: '<div style="width:300px;height:300px;position:absolute;left:50%;top:100px;transform:translate(-50%,0);border:1px solid;"></div>',
+        selectors: ['div']
+    },
+    header_challenge: { // http://css-training-wheels.com/#/property?names=align-items,flex-grow,justify-content,margin,display&template=header_challenge
+        id: 'header_challenge',
+        html: `<header>
+    <img width="50" src="http://css-training-wheels.com/CSS_TrainingWheel_02.svg" />
+    <h1>Company Name</h1>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">FAQ</a>
+    </nav>
+</header>
+<br />
+<br />
+Make the content above look like the image below using the provided css properties
+<br />
+<br />
+<img src="/headerChallenge1.png" />`,
+        selectors: ['header', 'header > img', 'header > h1', 'header > nav', 'header > nav > a']
+    },
+    'record-list_challenge': { // http://css-training-wheels.com/#/property?names=flex-grow,justify-content,display,position,top,right,visibility&template=record-list_challenge
+        id: 'record-list_challenge',
+        html: `<div id="record_list_header">
+    <label class="record-list-label">List of records</label>
+</div>
+<ul id="records">
+    <li class="record">
+        <input type="checkbox" />
+        <label>
+            Item one
+        </label>
+        <button class="btn edit-btn">
+            Edit
+        </button>
+        <button class="btn delete-btn">
+            Delete
+        </button>
+    </li>
+    <li class="record">
+        <input type="checkbox" />
+        <label>
+            Item two
+        </label>
+        <button class="btn edit-btn">
+            Edit
+        </button>
+        <button class="btn delete-btn">
+            Delete
+        </button>
+    </li>
+    <li class="record">
+        <input type="checkbox" />
+        <label>
+            Item three
+        </label>
+        <button class="btn edit-btn">
+            Edit
+        </button>
+        <button class="btn delete-btn">
+            Delete
+        </button>
+    </li>
+    <li class="record">
+        <input type="checkbox" />
+        <label>
+            Item four
+        </label>
+        <button class="btn edit-btn">
+            Edit
+        </button>
+        <button class="btn delete-btn">
+            Delete
+        </button>
+    </li>
+    <li class="record">
+        <input type="checkbox" />
+        <label>
+            Item five
+        </label>
+        <button class="btn edit-btn">
+            Edit
+        </button>
+        <button class="btn delete-btn">
+            Delete
+        </button>
+    </li>
+    <li class="record">
+        <input type="checkbox" />
+        <label>
+            Item six
+        </label>
+        <button class="btn edit-btn">
+            Edit
+        </button>
+        <button class="btn delete-btn">
+            Delete
+        </button>
+    </li>
+</ul>
+<div id="record_list_footer">
+    <button>Add</button>
+</div>
+<br />
+<br />
+Make the content above look and behave like the image below using the provided css properties. You will need to add a few selectors.
+<br />
+<br />
+<img src="/recordListChalleng1.gif" />`,
+        selectors: ['ul', 'ul > li', 'ul > li > label', 'ul > li > button']
     }
 }
 
@@ -706,6 +821,14 @@ const Videos = {
         title: 'Selectors',
         description: 'A video course on creating CSS selectors.',
         playlist: 'https://www.youtube.com/watch?v=V7SduSIv5Rw&list=PLWbNYR6IUzO4vxqjoJCg8wsqdftxIaWcw',
+        challenges: [
+            {
+                name: 'Selector Challenge', 
+                link: {
+                    ctw: '/selectors?template=record-list&challenge=true'
+                }
+            }
+        ],
         embedables: [
             {name: 'Intro to Selectors', video: 'https://www.youtube.com/embed/V7SduSIv5Rw'},
             {name: 'Operators', video :'https://www.youtube.com/embed/ooFH-sPkd08'},
@@ -720,6 +843,22 @@ const Videos = {
         title: 'Properties: Basic Concepts',
         description: 'The first of three courses on setting CSS properties.',
         playlist: 'https://www.youtube.com/watch?v=BjEYsbKJUyM&list=PLWbNYR6IUzO5HmEV1Sj-BoJaPqp0-NGVK',
+        challenges: [
+            {
+                name: 'Header Challenge', 
+                link: {
+                    ctw: '/property?names=align-items,flex-grow,justify-content,margin,display&template=header_challenge',
+                    codepen: 'https://codepen.io/css-training-wheels/pen/ExgEdgg?editors=0100'
+                }
+            },
+            {
+                name: 'Record List Challenge', 
+                link: {
+                    ctw: '/property?names=flex-grow,justify-content,display,position,top,right,visibility&template=record-list_challenge',
+                    codepen: 'https://codepen.io/css-training-wheels/pen/yLaKRgy?editors=0100'
+                }
+            }
+        ],
         embedables: [
             {name: 'Intro to CSS Properties', video: 'https://www.youtube.com/embed/BjEYsbKJUyM'},
             {name: 'Margin and Padding', video :'https://www.youtube.com/embed/KT69t6XqGqE'},

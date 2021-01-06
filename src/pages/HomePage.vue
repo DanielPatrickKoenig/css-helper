@@ -1,6 +1,6 @@
 <template>
     <div class="home-page">
-        <h2>HOME</h2>
+        <h2>Video Courses</h2>
         <ul class="video-list">
             <li
                 v-for="(video, k, i) in videos"
@@ -11,14 +11,43 @@
                 </h3>
                 <p>{{video.description}}</p>
 
-                <!-- <input :id="'videos-'+k" class="video-list-toggle" type="checkbox">
+                <input :id="'videos-'+k" class="video-list-toggle" type="checkbox">
                 <label :for="'videos-'+k">
                     <span class="closed"><font-awesome-icon icon="chevron-down" /></span>
                     <span class="opened">
                         <font-awesome-icon icon="chevron-up" />
                     </span>
                 </label>
-                
+                <ul class="inner-list">
+                    <li>
+                        <h4>
+                            Challenges
+                        </h4>
+                    </li>
+                    <li 
+                        v-for="(challenge, i) in video.challenges"
+                        :key="'challenge-'+i.toString()"
+                    >
+                        <h5>
+                            {{challenge.name}}
+                        </h5>
+                        <router-link 
+                            v-if="challenge.link.ctw" 
+                            :to="challenge.link.ctw"
+                            target="_blank"
+                        >
+                            CTW
+                        </router-link>
+                        <a 
+                            v-if="challenge.link.codepen" 
+                            :href="challenge.link.codepen"
+                            target="_blank"
+                        >
+                            CodePen
+                        </a>
+                    </li>
+                </ul>
+                <!--
                 <ul class="inner-list">
                     <li 
                         v-for="(chapter, j) in video.embedables"
@@ -106,14 +135,23 @@ export default {
             > ul.inner-list{
                 display:flex;
                 width: 100%;
-                flex-direction:row;
-                flex-wrap:wrap;
-                justify-content: center;
+                flex-direction:column;
+
+                h4,h5{
+                    margin: 3px 0;
+                }
 
                 li{
                     display:flex;
+                    flex-direction: column;
                     margin:3px;
                     max-width:98%;
+                    &:not(:first-child){
+                        margin: 3px 9px;
+                    }
+                    a {
+                        display:block;
+                    }
 
                 }
             }
