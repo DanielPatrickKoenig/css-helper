@@ -1,5 +1,21 @@
 <template>
     <div class="home-page">
+        <h2>
+            About CSS Training Wheels
+        </h2>
+        <p>
+            CSS Training Wheels is place for beginners to learn the ins and outs of CSS. It is also a tool for more experienced developers create advanced CSS content with visual tools that output valid CSS. To learn more, check out the video below.
+        </p>
+        <iframe
+            class="about-video"
+            width="100%"
+            height="480"
+            src="https://www.youtube.com/embed/BZ38IPDd_d8"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+        >
+        </iframe>
         <h2>Video Courses</h2>
         <ul class="video-list">
             <li
@@ -115,6 +131,7 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+@import '../scss/mixins.scss';
 .home-page{
     ul.video-list{
         margin:0;
@@ -185,5 +202,13 @@ input.video-list-toggle{
         }   
     }
 
+}
+.about-video{
+    width: 100%;
+    height: 250px;
+    box-shadow:0 0 0 1px rgba(0,0,0,0.4);
+    @include min(850px){
+        height: 400px;
+    }   
 }
 </style>
