@@ -4,7 +4,7 @@
             About CSS Training Wheels
         </h2>
         <p>
-            CSS Training Wheels is place for beginners to learn the ins and outs of CSS. It is also a tool for more experienced developers create advanced CSS content with visual tools that output valid CSS. To learn more, check out the video below.
+            CSS Training Wheels is a place for beginners to learn the ins and outs of CSS. It is also a tool for more experienced developers create advanced CSS content with visual tools that output valid CSS. To learn more, check out the video below.
         </p>
         <iframe
             class="about-video"

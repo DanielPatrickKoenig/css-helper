@@ -150,6 +150,7 @@ nav.full-width-content{
   height: 2em;
   z-index:10;
   .hamberger-menu, .hamberger-menu-open{
+    
     font-size: 1.6em;
     position: relative;
     z-index: 20;
@@ -157,6 +158,8 @@ nav.full-width-content{
     border:none;
     box-shadow: 0 0 0 0 transparent;
     width: auto;
+    left: -10px;
+    top: -12px;
   }
   .hamberger-menu-open{
     
